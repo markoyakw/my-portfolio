@@ -1,0 +1,13 @@
+.stack {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.stack--direction-row {
+    flex-direction: row;
+}
+
+.stack--direction-column {
+    flex-direction: column;
+}

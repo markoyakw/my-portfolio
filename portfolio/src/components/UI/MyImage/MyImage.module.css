@@ -1,0 +1,14 @@
+.image-container--rounded {
+    border-radius: 50%;
+}
+
+.image__container {
+    position: relative;
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
+}
+
+.image {
+    position: absolute;
+}

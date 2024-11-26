@@ -1,0 +1,43 @@
+html {
+    --color-background: #0A060E;
+    --color-link: white;
+
+    --spacing-xs: 4px;
+    --spacing-s: 12px;
+    --spacing-m: 20px;
+    --spacing-l: 32px;
+    --spacing-xl: 52px;
+
+    --font-size-xs: 10px;
+    --font-size-s: 14px;
+    --font-size-m: 20px;
+    --font-size-l: 28px;
+    --font-size-xl: 36px;
+}
+
+html {
+    --color-primary: #007bff;
+    --color-primary-light: #66b2ff;
+    --color-primary-dark: #0056b3;
+
+    --color-secondary: #6c757d;
+    --color-secondary-light: #a1a5aa;
+    --color-secondary-dark: #495057;
+
+    --color-accent: #CF9CE7;
+    --color-accent-light: #F7EFFB;
+    --color-accent-dark: #9D3BCE;
+
+    --color-background: #141415;
+    --color-surface: #f8f9fa;
+    /* cards or sections */
+
+    --color-border: #dee2e6;
+    --color-text-primary: #f8f9fa;
+    --color-text-secondary: #141415;
+
+    --color-success: #28a745;
+    --color-warning: #ffc107;
+    --color-error: #dc3545;
+    --color-disabled: #a1a1a1;
+}
