@@ -1,7 +1,20 @@
-.MLG-picture:hover {
-    animation: 
+.MLG-picture {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
-@keyframes loadingMLG{
+.MLG-picture:hover .MLG-picture__glasses {
+    top: 5px;
+    transition: top 0.3s;
+}
 
+.MLG-picture__glasses {
+    position: absolute;
+    z-index: 100;
+    width: 80%;
+    transform: rotateZ(-8deg);
+    left: 13px;
+    top: -100px;
 }

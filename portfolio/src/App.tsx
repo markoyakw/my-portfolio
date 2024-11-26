@@ -6,6 +6,7 @@ import MyGridItem from './components/UI/MyGrid/MyGridItem'
 import resumePhoto from "./assets/resume-photo.jpg"
 import MyImage from './components/UI/MyImage/MyImage'
 import WavyHand from './components/UI/animations/WavyHand/WavyHand'
+import AddMLGGlassesOnHover from './components/UI/animations/AddMLGGlassesOnHover/AddMLGGlassesOnHover'
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
             <MyContainer>
               <MyCard>
                 <MyContainer width='150px' height="150px">
-                  <MyImage src={resumePhoto} rounded zoomLevel={1.2} paddingTop="8px" />
+                  <AddMLGGlassesOnHover>
+                    <MyImage src={resumePhoto} rounded zoomLevel={1.2} paddingTop="8px" />
+                  </AddMLGGlassesOnHover>
                 </MyContainer>
                 <h1>Hello<WavyHand />, <br />i'm Marko</h1>
               </MyCard>
