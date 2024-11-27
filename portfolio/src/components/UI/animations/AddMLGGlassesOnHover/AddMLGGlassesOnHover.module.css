@@ -5,16 +5,16 @@
     height: 100%;
 }
 
-.MLG-picture:hover .MLG-picture__glasses {
-    top: 5px;
-    transition: top 0.3s;
-}
-
 .MLG-picture__glasses {
     position: absolute;
     z-index: 100;
-    width: 80%;
+    width: 60%;
     transform: rotateZ(-8deg);
-    left: 13px;
+    left: 39px;
     top: -100px;
+    transition: top 0.3s;
+}
+
+.MLG-picture__glasses--hovered {
+    top: 19px;
 }

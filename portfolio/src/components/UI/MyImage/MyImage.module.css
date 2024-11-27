@@ -3,9 +3,9 @@
 }
 
 .image__container {
-    position: relative;
     width: inherit;
     height: inherit;
+    position: relative;
     overflow: hidden;
 }
 

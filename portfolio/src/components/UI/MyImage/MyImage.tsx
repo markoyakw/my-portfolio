@@ -1,15 +1,15 @@
-import { FC } from 'react'
+import { CSSProperties, FC } from 'react'
 import classes from "./MyImage.module.css"
-import { TSizeProp } from '../../../types/cssVariables'
+import { TCssSizeProp } from '../../../types/cssVariables'
 
 type TMyImageProps = {
     src: string,
     rounded?: boolean,
     zoomLevel?: number,
-    paddingTop?: TSizeProp,
-    paddingRight?: TSizeProp,
-    paddingBottom?: TSizeProp,
-    paddingLeft?: TSizeProp,
+    paddingTop?: TCssSizeProp,
+    paddingRight?: TCssSizeProp,
+    paddingBottom?: TCssSizeProp,
+    paddingLeft?: TCssSizeProp,
 }
 
 const MyImage: FC<TMyImageProps> = ({
@@ -24,7 +24,7 @@ const MyImage: FC<TMyImageProps> = ({
 
     const myImageClassName = classes["image"]
     const myImageContainerClassName = `${classes["image__container"]} ${rounded && classes["image-container--rounded"]}`
-    const myImageStyles = {
+    const myImageStyles: CSSProperties = {
         scale: zoomLevel?.toString(),
         paddingTop,
         paddingRight,

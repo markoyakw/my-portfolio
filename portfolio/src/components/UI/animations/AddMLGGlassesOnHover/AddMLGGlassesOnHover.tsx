@@ -3,13 +3,17 @@ import classes from "./AddMLGGlassesOnHover.module.css"
 import MLGGlassesPicture from "../../../../assets/MLGGlasses.png"
 
 type TAddMLGGlassesOnHoverProps = {
-    children: ReactNode
+    children: ReactNode,
+    isHovered: boolean
 }
 
-const AddMLGGlassesOnHover: FC<TAddMLGGlassesOnHoverProps> = ({ children }) => {
+const AddMLGGlassesOnHover: FC<TAddMLGGlassesOnHoverProps> = ({ children, isHovered }) => {
+
+    const MLGPictureGlassesClassName = `${classes["MLG-picture__glasses"]} ${isHovered ? classes["MLG-picture__glasses--hovered"] : ""}`
+
     return (
         <div className={classes["MLG-picture"]}>
-            <img className={classes["MLG-picture__glasses"]} src={MLGGlassesPicture} alt="mlg sunglasses" />
+            <img className={MLGPictureGlassesClassName} src={MLGGlassesPicture} alt="mlg sunglasses" />
             <div className={classes["loading-cover"]}></div>
             {children}
         </div>

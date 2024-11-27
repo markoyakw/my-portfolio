@@ -1,4 +1,4 @@
-export type TCssSize = "xs" | "s" | "m" | "l" | "xl"
+export type TCssSizeVariables = "xs" | "s" | "m" | "l" | "xl"
 
-type TSizeUnit = '%' | 'px' | 'em' | 'vh' | 'vh'
-export type TSizeProp = `${number}${TSizeUnit}`
+type TCssSizeUnit = '%' | 'px' | 'em' | 'vh' | 'vh'
+export type TCssSizeProp = `${number}${TCssSizeUnit}`
