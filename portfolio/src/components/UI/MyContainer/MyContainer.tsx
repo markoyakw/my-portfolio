@@ -7,6 +7,8 @@ type TContainerProps = {
     style?: CSSProperties;
     maxWidth?: string;
     maxHeight?: string;
+    minWidth?: TCssSizeProp;
+    minHeight?: TCssSizeProp;
     width?: TCssSizeProp;
     height?: TCssSizeProp;
     margin?: TSpacingProp;
@@ -26,11 +28,12 @@ const MyContainer: FC<TContainerProps> = ({
     width,
     aspectRatio,
     addedClassName,
+    minHeight,
+    minWidth,
     ...props
 }) => {
 
     const containerStyle: CSSProperties = {
-        ...style,
         maxWidth,
         maxHeight,
         width,

@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <BrowserRouter>
             <nav>
-                <MyContainer height="80px">
+                <MyContainer height="60px">
                     <MyStack justifyContent="space-between" alignItems='center'>
                         <MyLink href='/'>Home</MyLink>
 

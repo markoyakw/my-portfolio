@@ -1,12 +1,12 @@
 import { FC } from "react"
-import StackIcon from "tech-stack-icons"
 import { TCssSizeProp } from "../../../types/cssVariables"
 import MyContainer from "../MyContainer/MyContainer"
 import MyStack from "../MyStack/MyStack"
 import MyText from "../MyText/MyText"
+import MyIcon, { TMyIconName } from "./MyIcon"
 
 type TMyTechStackIconProps = {
-    iconName: string,
+    iconName: TMyIconName,
     displayName: string,
     size: TCssSizeProp,
 }
@@ -21,7 +21,7 @@ const MyTechStackIcon: FC<TMyTechStackIconProps> = ({ iconName, displayName, siz
             <figure>
                 <MyStack direction="column" alignItems="center">
                     <MyContainer width={`${logoSize * logoToContainerRatio}px`} aspectRatio="1/1">
-                        <StackIcon name={iconName} />
+                        <MyIcon name={iconName} />
                     </MyContainer>
                     <figcaption>
                         <MyText size="s" color="secondary">

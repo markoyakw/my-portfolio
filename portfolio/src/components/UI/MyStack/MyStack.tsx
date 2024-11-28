@@ -1,11 +1,11 @@
 import { FC, ReactNode } from 'react'
 import classes from "./MyStack.module.css"
-import { TCssSize } from '../../../types/cssVariables'
+import { TCssSizeVariables } from '../../../types/cssVariables'
 
 type TMyStackProps = {
     children: ReactNode,
     direction?: "row" | "column",
-    gapSize?: null | TCssSize,
+    gapSize?: null | TCssSizeVariables,
     alignItems?: "center" | "flex-start" | "flex-end",
     justifyContent?: "center" | "flex-start" | "flex-end" | "space-around" | "space-between"
 }
