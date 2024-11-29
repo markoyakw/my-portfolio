@@ -11,6 +11,7 @@ import MyIcon, { myLinksIconNameArr } from '@components/UI/MyIcon/MyIcon'
 import { FaLocationDot } from 'react-icons/fa6'
 import MyAnimatedIconStack from '@components/UI/animations/MyAnimatedIconStack/MyAnimatedIconStack'
 import MyLink from '@components/UI/MyLink/MyLink'
+import MyCustomCursor from '@components/UI/MyCustomCursor/MyCustomCursor'
 
 const test = myLinksIconNameArr.map(name => (
     <MyLink href=''>
@@ -47,9 +48,13 @@ const HelloCard = () => {
                             <FaLocationDot /> Germany, Dusseldorf - Duisburg
                         </MyText>
                     </MyStack>
-                    <MyStack justifyContent='center'>
-                        <MyAnimatedIconStack iconNameArr={myLinksIconNameArr} />
-                    </MyStack>
+                    <MyCustomCursor cursor={
+                        <div> bebra</div>
+                    }>
+                        <MyStack justifyContent='center'>
+                            <MyAnimatedIconStack iconNameArr={myLinksIconNameArr} />
+                        </MyStack>
+                    </MyCustomCursor>
                 </MyStack>
             </MyStack>
         </MyCard>

@@ -5,10 +5,9 @@ import { NavLink } from "react-router-dom"
 type TMyLinkProps = {
     children: ReactNode,
     href: string,
-    customCursor?: ReactNode
 }
 
-const MyLink: FC<TMyLinkProps> = ({ children, href, customCursor }) => {
+const MyLink: FC<TMyLinkProps> = ({ children, href }) => {
 
     const getLinkClasses = (isActive: boolean) => {
         return isActive
