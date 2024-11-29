@@ -1,8 +1,8 @@
 import { CSSProperties } from "react";
-import { TCssSize } from "../../../types/cssVariables";
+import { TCssSizeVariables } from "../../../types/cssVariables";
 
-type TSpacingValue = TCssSize | "" | null;
-export type TSpacingProp = TCssSize | [TSpacingValue, TSpacingValue] | [TSpacingValue, TSpacingValue] | [TSpacingValue, TSpacingValue, TSpacingValue, TSpacingValue]
+type TSpacingValue = TCssSizeVariables | "" | null;
+export type TSpacingProp = TCssSizeVariables | [TSpacingValue, TSpacingValue] | [TSpacingValue, TSpacingValue] | [TSpacingValue, TSpacingValue, TSpacingValue, TSpacingValue]
 
 const getSpacingStyleValue = (margin: TSpacingValue | undefined) => {
     return margin || margin !== "" ? `var(--spacing-${margin})` : "";

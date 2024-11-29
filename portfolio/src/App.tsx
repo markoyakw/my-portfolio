@@ -22,10 +22,10 @@ function App() {
             <MyGridItem gridArea="1/1/4/5">
               <HelloCard />
             </MyGridItem>
-            
-            <MyGridItem gridArea="auto/auto/span 1/ span 7">
+
+            {/* <MyGridItem gridArea="4/1/span 1/ span 5">
               <TechStackCard />
-            </MyGridItem>
+            </MyGridItem> */}
             {/* <MyGridItem gridArea="1/4/1/9">
               <WorkPositionCard />
             </MyGridItem>
