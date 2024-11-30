@@ -23,19 +23,21 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-      "baseUrl": ".",
-      "paths": {
-        "@components/*": [
-          "src/components/*"
-        ],
-        "@assets/*": [
-          "src/assets/*"
-        ],
-        "@/*": [
-          "src/*"
-        ]
-      }
-    
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src"

@@ -3,12 +3,12 @@
 }
 
 .animated-stack-item {
-    padding-left: var(--spacing-s);
-    position: relative;
+    padding-left: calc(var(--spacing-s)/2);
+    padding-right: calc(var(--spacing-s)/2);
     transition: padding-left 0.2s, padding-right 0.2s;
 }
 
-.animated-stack__animation-trigger {
+.animated-stack__shrink-stopper {
     position: absolute;
     width: 100%;
 }

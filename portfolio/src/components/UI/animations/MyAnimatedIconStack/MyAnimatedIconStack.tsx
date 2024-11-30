@@ -1,10 +1,9 @@
-import MyIcon, { TMyIconName } from "@components/UI/MyIcon/MyIcon"
-import { FC, MouseEvent, useMemo, useRef, useState } from "react"
+import { FC, MouseEvent, ReactElement, useMemo, useRef, useState } from "react"
 import classes from "./MyAnimatedIconStack.module.css"
 import MyAnimatedIconStackItem from "./MyAnimatedIconStackItem"
 
 type TMyAnimatedIconStackProps = {
-    iconNameArr: TMyIconName[],
+    itemArr: ReactElement[],
 }
 
 export type TMouseCoordinates = {
@@ -12,13 +11,12 @@ export type TMouseCoordinates = {
     y: number
 } | null
 
-const MyAnimatedIconStack: FC<TMyAnimatedIconStackProps> = ({ iconNameArr }) => {
+const MyAnimatedIconStack: FC<TMyAnimatedIconStackProps> = ({ itemArr }) => {
 
     const containerRef = useRef<HTMLDivElement>(null)
     const [containerMousePosition, setContainerMousePosition] = useState<TMouseCoordinates>({ x: 0, y: 0 })
 
     const containerRect = useMemo(() => containerRef.current && containerRef.current.getBoundingClientRect(), [containerRef.current])
-
     const getMouseCoordinates = (event: MouseEvent<HTMLDivElement>) => {
         const container = containerRef.current
         if (!container) {
@@ -33,14 +31,14 @@ const MyAnimatedIconStack: FC<TMyAnimatedIconStackProps> = ({ iconNameArr }) => 
 
     return (
         <div className={classes["animated-stack"]} ref={containerRef} onMouseMove={getMouseCoordinates} onMouseLeave={mouseLeaveHandler}>
-            {iconNameArr.map((iconName) => {
+            {itemArr.map((icon) => {
                 return (
                     <MyAnimatedIconStackItem mousePosition={containerMousePosition} containerRect={containerRect}>
-                        <MyIcon name={iconName} size="50px" />
+                        {icon}
                     </MyAnimatedIconStackItem>
                 )
             })}
-            <div className={classes["animated-stack__animation-trigger"]}></div>
+            <div className={classes["animated-stack__shrink-stopper"]}></div>
         </div>
     )
 }

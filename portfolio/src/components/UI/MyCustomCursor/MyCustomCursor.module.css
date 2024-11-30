@@ -4,3 +4,33 @@
     pointer-events: none;
     z-index: 9999;
 }
+
+.custom-cursor__hover-container {
+    display: contents;
+}
+
+.custom-cursor__label {
+    --translate-initial: calc(50% + 20px), calc(-100% + 20px);
+    transform: translate(var(--translate-initial));
+    animation: custom-cursor__label---appear 0.15s
+}
+
+@keyframes custom-cursor__label---appear {
+    0% {
+        opacity: 0%;
+        transform: translate(var(--translate-initial)) scale(1, 0.2);
+    }
+
+    30% {
+        transform: translate(var(--translate-initial)) scale(1, 0.8);
+    }
+
+    70% {
+        opacity: 100%;
+        transform: translate(var(--translate-initial)) scale(1, 1.2);
+    }
+
+    100% {
+        transform: translate(var(--translate-initial)) scale(1, 1);
+    }
+}

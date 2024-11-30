@@ -32,9 +32,9 @@ const MyAnimatedIconStackItem: FC<TMyAnimatedIconStackItem> = ({ children, mouse
         const itemCenterToMouseFactorX = 1 - Math.abs(itemCenterToMouseXPx / containerRect.width);
 
         const marginX = Math.pow(3, itemCenterToMouseFactorX * 3.5) / 7;
-        const marginTop = -marginX * 2;
+        const marginBottom = -marginX * 2;
 
-        return { marginLeft: marginX, marginRight: marginX, transform: `translateY(${marginTop}px)` };
+        return { marginLeft: marginX, marginRight: marginX, transform: `translateY(${marginBottom}px)` };
     }, [mousePosition, containerRect, stackItemRef]);
 
     return (
