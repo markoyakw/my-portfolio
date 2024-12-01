@@ -1,13 +1,14 @@
 import { FC, ReactNode } from 'react'
 import classes from "./MyStack.module.css"
-import { TCssSizeVariables } from '../../../types/cssVariables'
+import { TCssSizeVariable } from '../../../types/cssVariables'
 
 type TMyStackProps = {
     children: ReactNode,
     direction?: "row" | "column",
-    gapSize?: null | TCssSizeVariables,
+    gapSize?: null | TCssSizeVariable,
     alignItems?: "center" | "flex-start" | "flex-end",
     justifyContent?: "center" | "flex-start" | "flex-end" | "space-around" | "space-between"
+    flexWrap?: "wrap" | "wrap-reverse";
 }
 
 const MyStack: FC<TMyStackProps> = ({
@@ -15,7 +16,8 @@ const MyStack: FC<TMyStackProps> = ({
     gapSize,
     direction = "row",
     alignItems = "flex-start",
-    justifyContent = "flex-start"
+    justifyContent = "flex-start",
+    flexWrap
 }) => {
 
     const directionClassname = classes[`stack--direction-${direction}`]
@@ -24,7 +26,7 @@ const MyStack: FC<TMyStackProps> = ({
     const gapSizeStyle = gapSize && { gap: `var(--spacing-${gapSize})` }
 
     return (
-        <div className={myStackClassName} style={{ alignItems, justifyContent, ...gapSizeStyle }}>
+        <div className={myStackClassName} style={{ alignItems, justifyContent, flexWrap, ...gapSizeStyle }}>
             {children}
         </div>
     )

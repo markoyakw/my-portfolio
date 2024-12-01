@@ -1,3 +1,10 @@
 .layout {
     background-color: var(--color-background);
+    padding: 0px var(--spacing-m);
+}
+
+.layout__body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

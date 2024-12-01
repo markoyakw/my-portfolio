@@ -1,0 +1,11 @@
+.container {
+    width: 100%;
+}
+
+.grid {
+    max-height: calc(100vh - 60px);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 0.5fr);
+    gap: var(--spacing-s)
+}

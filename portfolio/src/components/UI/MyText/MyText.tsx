@@ -1,11 +1,12 @@
 import { CSSProperties, FC, HTMLAttributes, ReactNode } from 'react'
-import { TCssSizeVariables } from '../../../types/cssVariables'
+import { TCssSizeVariable } from '../../../types/cssVariables'
 
 type TMyTextProps = {
     children: ReactNode,
-    size: TCssSizeVariables,
+    size: TCssSizeVariable,
     color?: keyof typeof textColorMap,
-    bold?: boolean
+    bold?: boolean,
+    textAlign?: CSSProperties["textAlign"]
 } & HTMLAttributes<HTMLSpanElement>
 
 const textColorMap = {
@@ -13,12 +14,12 @@ const textColorMap = {
     secondary: "var(--color-text-secondary)",
 } as const
 
-const MyText: FC<TMyTextProps> = ({ children, size, color = 'primary', bold, ...props }) => {
+const MyText: FC<TMyTextProps> = ({ textAlign, children, size, color = 'primary', ...props }) => {
 
     const myTextStyle: CSSProperties = {
         fontSize: `var(--font-size-${size})`,
         color: textColorMap[color],
-        fontWeight: bold ? "bold" : "normal"
+        textAlign
     }
 
     return (

@@ -14,7 +14,7 @@ import gitIcon from "@/assets/icons/techStack/git.svg"
 import githubIcon from "@/assets/icons/myLinks/github.png"
 import gmailIcon from "@/assets/icons/myLinks/gmail.svg"
 import linkedInIcon from "@/assets/icons/myLinks/linkedin.svg"
-import telegramIcon from "@/assets/icons/myLinks/telegram.svg"
+import telegramIcon from "@/assets/icons/myLinks/telegram.png"
 
 const techStackIconDictionary = {
     nextJs: nextJsIcon,
@@ -38,26 +38,42 @@ const myLinksIconDictionary = {
 
 export const myLinksIconNameArr = Object.keys(myLinksIconDictionary) as (keyof typeof myLinksIconDictionary)[];
 
-const SVGIconDictionary = {
+const IconNameDictionary = {
     ...myLinksIconDictionary,
     ...techStackIconDictionary
 } as const
 
-export type TMyIconName = keyof typeof SVGIconDictionary
+export type TMyIconName = keyof typeof IconNameDictionary
 
-type TMyIconProps = {
+export type TMyIconProps = {
     name: TMyIconName,
     size?: TCssSizeProp,
     addedClassName?: string,
+    rounded?: boolean,
+    withBorder?: boolean,
 }
 
-const MyIcon: FC<TMyIconProps> = ({ name, size, addedClassName }) => {
+const MyIcon: FC<TMyIconProps> = ({
+    name,
+    size = "1em",
+    addedClassName,
+    rounded,
+    withBorder,
+}) => {
 
-    const className = `${classes["svg-icon__container"]} ${addedClassName ? addedClassName : ""}`
+    const сlassName = `${classes["icon"]} 
+    ${addedClassName ? addedClassName : ""}
+    ${rounded ? classes["icon--rounded"] : ""}
+    ${withBorder ? classes["icon--with-border"] : ""}`
+
+    const iconStyle = {
+        width: size,
+        height: size,
+    }
 
     return (
-        <div className={className}>
-            <img src={SVGIconDictionary[name]} alt={`icon-${name}`} style={{ width: size, height: size }} />
+        <div className={сlassName}>
+            <img src={IconNameDictionary[name]} alt={`icon - ${name} `} style={iconStyle} />
         </div>
     )
 }

@@ -1,24 +1,30 @@
 import { CSSProperties, FC, ReactNode } from 'react'
 import classes from "./MyGrid.module.css"
-import { TCssSizeVariables } from '../../../types/cssVariables'
+import { TCssSizeVariable } from '../../../types/cssVariables'
 
 type TMyGridProps = {
     children: ReactNode,
-    rowsCount: number,
-    columnsCount: number,
-    gap?: TCssSizeVariables
+    gridTemplateRows?: CSSProperties["gridTemplateRows"],
+    gridTemplateColumns?: CSSProperties["gridTemplateColumns"],
+    gap?: TCssSizeVariable,
+    gridAutoRows?: CSSProperties["gridAutoRows"],
+    gridAutoColumns?: CSSProperties["gridAutoColumns"]
 }
 
 const MyGrid: FC<TMyGridProps> = ({
     children,
-    rowsCount,
-    columnsCount,
+    gridTemplateRows,
+    gridTemplateColumns,
+    gridAutoColumns,
+    gridAutoRows,
     gap
 }) => {
 
     const myGridStyles: CSSProperties = {
-        gridTemplateColumns: `repeat(${columnsCount}, minmax(0, 1fr))`,
-        gridTemplateRows: `repeat(${rowsCount}, minmax(0, 1fr))`,
+        gridTemplateRows,
+        gridTemplateColumns,
+        gridAutoColumns,
+        gridAutoRows,
         gap: gap ? `var(--spacing-${gap})` : "0px"
     }
 

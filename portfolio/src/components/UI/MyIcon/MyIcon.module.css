@@ -1,8 +1,21 @@
-.svg-icon__container {
+.icon {
     overflow: hidden;
-    box-shadow: 0px 0px 0px 3px black;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.icon--rounded {
+    border-radius: 20%;
+}
+
+.icon--with-border {
+    box-shadow: 0px 0px 0px 3px black;
+    background-color: white;
+}
+
+.icon--with-label {
+    background-color: var(--color-border);
+    border-radius: 15%;
 }

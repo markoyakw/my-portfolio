@@ -14,7 +14,6 @@ const MyAnimatedIconStackItem: FC<TMyAnimatedIconStackItem> = ({ children, mouse
     const getStackItemSpacing = useMemo((): CSSProperties => {
         const initialStyles: CSSProperties = {
             transition: "padding-left 0.2s, padding-right 0.2s, transform 0.2s",
-            paddingLeft: "var(--spacing-s)",
             transform: "translateY(0px)"
         };
 

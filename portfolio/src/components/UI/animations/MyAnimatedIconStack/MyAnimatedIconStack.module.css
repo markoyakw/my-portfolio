@@ -5,7 +5,11 @@
 .animated-stack-item {
     padding-left: calc(var(--spacing-s)/2);
     padding-right: calc(var(--spacing-s)/2);
-    transition: padding-left 0.2s, padding-right 0.2s;
+    transition: padding-left 0.4s, padding-right 0.4s;
+}
+
+.animated-stack-item:hover {
+    scale: 1.2;
 }
 
 .animated-stack__shrink-stopper {

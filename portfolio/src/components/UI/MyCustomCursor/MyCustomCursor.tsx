@@ -28,7 +28,7 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({ cursor, children, disableBas
     if (!portalRoot) return null;
 
     const showBasicCursorStyle: CSSProperties = disableBasicCursor
-        ? { cursor: "none !important" }
+        ? { cursor: "none" }
         : {}
 
     const cursorElement = cursor && mousePosition ? (
