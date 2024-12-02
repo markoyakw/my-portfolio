@@ -1,18 +1,26 @@
 .container {
+    gap: var(--spacing-s);
     height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: "space-between";
+    justify-content: space-between;
 }
 
 .my-pictire__container {
-    width: 150px;
-    height: 150px;
-    aspect-ratio: 1/1
+    flex-shrink: 0;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hello-and-picture__container {
+.my-picture {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+.greetings__container {
+    flex-grow: 1;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    flex-wrap: wrap-reverse;
 }

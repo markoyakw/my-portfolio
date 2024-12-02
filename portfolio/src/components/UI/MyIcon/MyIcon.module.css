@@ -8,6 +8,7 @@
 
 .icon--rounded {
     border-radius: 20%;
+    background-color: white
 }
 
 .icon--with-border {

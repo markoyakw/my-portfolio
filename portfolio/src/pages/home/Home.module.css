@@ -1,9 +1,11 @@
 .container {
     width: 100%;
+    height: calc(100vh - 60px);
+    overflow: hidden;
 }
 
 .grid {
-    max-height: calc(100vh - 60px);
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(8, 0.5fr);

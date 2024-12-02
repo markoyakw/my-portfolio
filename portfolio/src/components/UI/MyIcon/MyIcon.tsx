@@ -12,7 +12,7 @@ import nodeJsIcon from "@/assets/icons/techStack/nodejs.svg"
 import gitIcon from "@/assets/icons/techStack/git.svg"
 
 import githubIcon from "@/assets/icons/myLinks/github.png"
-import gmailIcon from "@/assets/icons/myLinks/gmail.svg"
+import gmailIcon from "@/assets/icons/myLinks/gmail.png"
 import linkedInIcon from "@/assets/icons/myLinks/linkedin.svg"
 import telegramIcon from "@/assets/icons/myLinks/telegram.png"
 
@@ -33,7 +33,7 @@ const myLinksIconDictionary = {
     github: githubIcon,
     telegram: telegramIcon,
     linkedIn: linkedInIcon,
-    gmail: gmailIcon
+    email: gmailIcon
 }
 
 export const myLinksIconNameArr = Object.keys(myLinksIconDictionary) as (keyof typeof myLinksIconDictionary)[];

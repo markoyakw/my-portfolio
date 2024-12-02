@@ -1,0 +1,16 @@
+.header {
+    height: 60px;
+}
+
+.header__row {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__center-row {
+    gap: var(--spacing-s);
+    display: flex;
+    justify-content: center;
+}

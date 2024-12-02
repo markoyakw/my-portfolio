@@ -7,7 +7,7 @@ const linkDictionary = {
     github: "https://github.com/markoyakw",
     telegram: "https://t.me/markoyakw",
     linkedIn: "https://www.linkedin.com/in/marko-yakovenko/",
-    gmail: "https://mailto:yakovenkomarko@gmail.com"
+    email: "mailto:yakovenkomarko@gmail.com"
 }
 
 const MyAnimatedLinks = myLinksIconNameArr.map(name => {
@@ -16,7 +16,7 @@ const MyAnimatedLinks = myLinksIconNameArr.map(name => {
     return (
         <MyCustomCursor cursor={<MyCursorLabel>{linkLabelText}</MyCursorLabel>}>
             <a href={linkDictionary[name]} target="_blank">
-                <MyIcon rounded withBorder name={name} size='50px' />
+                <MyIcon rounded name={name} size='40px' />
             </a>
         </MyCustomCursor >
     )

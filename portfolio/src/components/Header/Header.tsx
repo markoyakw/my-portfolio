@@ -1,26 +1,23 @@
 import { BrowserRouter, Routes } from 'react-router-dom'
 import MyLink from '../UI/MyLink/MyLink'
-import MyContainer from '../UI/MyContainer/MyContainer'
-import MyStack from '../UI/MyStack/MyStack'
+import classes from "./Header.module.css"
 
 const Header = () => {
     return (
         <BrowserRouter>
-            <nav>
-                <MyContainer height="60px">
-                    <MyStack justifyContent="space-between" alignItems='center'>
-                        <MyLink href='/'>Home</MyLink>
+            <header className={classes["header"]}>
+                <nav className={classes["header__row"]}>
+                    <MyLink href='/'>Home</MyLink>
 
-                        <MyStack justifyContent='center' alignItems='center' gapSize="s">
-                            <MyLink href='/about-me'>About me</MyLink>
-                            <MyLink href='/my-projects'>My projects</MyLink>
-                            <MyLink href='/contact-me'>Contact me</MyLink>
-                        </MyStack>
+                    <div className={classes["header__center-row"]}>
+                        <MyLink href='/about-me'>About me</MyLink>
+                        <MyLink href='/my-projects'>My projects</MyLink>
+                        <MyLink href='/contact-me'>Contact me</MyLink>
+                    </div>
 
-                        <MyLink href='/resume'>My resume</MyLink>
-                    </MyStack>
-                </MyContainer>
-            </nav>
+                    <MyLink href='/resume'>My resume</MyLink>
+                </nav>
+            </header>
             <Routes>
 
             </Routes>
