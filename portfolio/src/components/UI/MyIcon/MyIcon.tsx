@@ -1,6 +1,5 @@
-import { FC } from 'react'
+import { CSSProperties, FC } from 'react'
 import classes from "./MyIcon.module.css"
-import { TCssSizeProp } from '@/types/cssVariables'
 
 import htmlIcon from "@/assets/icons/techStack/html-5.svg"
 import cssIcon from "@/assets/icons/techStack/css-3.svg"
@@ -47,33 +46,25 @@ export type TMyIconName = keyof typeof IconNameDictionary
 
 export type TMyIconProps = {
     name: TMyIconName,
-    size?: TCssSizeProp,
     addedClassName?: string,
     rounded?: boolean,
-    withBorder?: boolean,
+    style?: CSSProperties
 }
 
 const MyIcon: FC<TMyIconProps> = ({
     name,
-    size = "1em",
     addedClassName,
     rounded,
-    withBorder,
+    style
 }) => {
 
     const сlassName = `${classes["icon"]} 
     ${addedClassName ? addedClassName : ""}
-    ${rounded ? classes["icon--rounded"] : ""}
-    ${withBorder ? classes["icon--with-border"] : ""}`
-
-    const iconStyle = {
-        width: size,
-        height: size,
-    }
+    ${rounded ? classes["icon--rounded"] : ""}`
 
     return (
-        <div className={сlassName}>
-            <img src={IconNameDictionary[name]} alt={`icon - ${name} `} style={iconStyle} />
+        <div className={сlassName} style={style}>
+            <img src={IconNameDictionary[name]} alt={`icon - ${name} `} />
         </div>
     )
 }

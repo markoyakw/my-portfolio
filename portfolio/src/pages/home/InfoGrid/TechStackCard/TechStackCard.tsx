@@ -1,14 +1,12 @@
-import MyIcon, { techStackIconNameArr } from '@components/UI/MyIcon/MyIcon'
-import MyCard from '../../../components/UI/MyCard/MyCard'
-import MyStack from '../../../components/UI/MyStack/MyStack'
+import { techStackIconNameArr } from '@components/UI/MyIcon/MyIcon'
 import MyIconWithLabel from '@components/UI/MyIcon/MyIconWithLabel'
-import MyGrid from '@components/UI/MyGrid/MyGrid'
+import classes from "./TechStackCard.module.css"
 
 const TechStackCard = () => {
 
     const displayNameMap = {
-        javascript: "JavaScript",
-        typescript: "TypeScript",
+        javascript: "Java\nScript",
+        typescript: "Type\nScript",
         react: "React",
         nextJs: "NextJs",
         html: "HTML5",
@@ -18,11 +16,9 @@ const TechStackCard = () => {
     }
 
     return (
-        <MyCard>
-            <MyGrid gridAutoRows={"1fr"} gridTemplateColumns={"repeat(auto-fit, minmax(60px,1fr))"} gap={"s"}>
-                {techStackIconNameArr.map(name => <MyIconWithLabel name={name} size='50px' label={displayNameMap[name] || name} />)}
-            </MyGrid>
-        </MyCard>
+        <div className={classes["container"]}>
+            {techStackIconNameArr.map(name => <MyIconWithLabel addedClassName={classes["tech-stack-icon"]} name={name} label={displayNameMap[name] || name} />)}
+        </div>
     )
 }
 

@@ -1,36 +1,28 @@
-import { FC, ReactNode } from 'react'
+import { CSSProperties, FC } from 'react'
 import MyIcon, { TMyIconProps } from './MyIcon'
-import MyStack from '../MyStack/MyStack'
-import MyContainer from '../MyContainer/MyContainer'
 import MyText from '../MyText/MyText'
+import classes from "./MyIcon.module.css"
 
 type TMyIconWithLabelProps = TMyIconProps & {
-    label: string
+    label: string,
+    iconStyle?: CSSProperties
 }
 
 const MyIconWithLabel: FC<TMyIconWithLabelProps> = ({
-    name,
-    size = "1em",
+    label,
+    style,
+    iconStyle,
     addedClassName,
-    rounded,
-    withBorder,
-    label
+    ...props
 }) => {
+
     return (
-        <MyContainer>
-            < MyStack direction='column' justifyContent='center' alignItems='center' gapSize={"xs"}>
-                <MyIcon
-                    name={name}
-                    size={size}
-                    addedClassName={addedClassName}
-                    rounded={rounded}
-                    withBorder={withBorder}
-                />
-                <MyText size='xs' textAlign='center' bold color='secondary'>
-                    {label}
-                </MyText>
-            </MyStack >
-        </MyContainer >
+        <div className={`${classes["icon--with-label__container"]} ${addedClassName}`} style={style}>
+            <MyIcon {...props} style={iconStyle} addedClassName={classes["icon--with-label"]} />
+            <MyText size='xs' textAlign='center' color='secondary'>
+                <b>{label}</b>
+            </MyText>
+        </div>
     )
 }
 

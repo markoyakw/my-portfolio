@@ -1,9 +1,16 @@
 .icon {
+    width: 40px;
+    height: 40px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.icon:not(.icon--with-label) {
+    width: 45px;
+    height: 45px;
 }
 
 .icon--rounded {
@@ -17,6 +24,13 @@
 }
 
 .icon--with-label {
-    background-color: var(--color-border);
-    border-radius: 15%;
+    height: 60%;
+}
+
+.icon--with-label__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
 }

@@ -5,7 +5,6 @@ type TMyTextProps = {
     children: ReactNode,
     size?: TCssSizeVariable,
     color?: keyof typeof textColorMap,
-    bold?: boolean,
     textAlign?: CSSProperties["textAlign"]
 } & HTMLAttributes<HTMLSpanElement>
 

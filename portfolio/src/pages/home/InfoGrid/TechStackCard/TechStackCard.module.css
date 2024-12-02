@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.tech-stack-icon {
+    width: 45px;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
