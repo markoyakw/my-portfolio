@@ -6,12 +6,15 @@ import WorkPositionCard from './InfoGrid/WorkPositionCard/WorkPositionCard'
 import WorkExperienceCard from './InfoGrid/WorkExperienceCard/WorkExperienceCard'
 import TechStackCard from './InfoGrid/TechStackCard/TechStackCard'
 import MyButton from '@components/UI/MyButton/MyButton'
+import MyText from '@components/UI/MyText/MyText'
+import EducationCard from './InfoGrid/EducationCard/EducationCard'
+import PulsingOnlineIcon from '@components/UI/animations/PulsingOnlineIcon/PulsingOnlineIcon'
 
 const HomePage = () => {
   return (
     <MainLayout>
       <div className={classes["container"]}>
-        <div className={classes["grid"]}>
+        {/* <div className={classes["grid"]}>
 
           <div style={{ "gridRow": "1/span 3", "gridColumn": "1/span 4" }}>
             <HelloCard />
@@ -32,18 +35,34 @@ const HomePage = () => {
           <div style={{ "gridArea": "5/5/span 1/span 4" }}>
           </div>
 
-          {/* <div style={{ "gridArea": "1/9/6/span 4" }}>
-            <EducationCard /
-          </div> */}
+          <div style={{ "gridArea": "1/9/6/span 4" }}>
+            <EducationCard />
+          </div>
 
           <div style={{ "gridArea": "8/1/span 1/span 8" }}>
             <TechStackCard />
           </div>
 
-          <div style={{ "gridArea": "6/5/span 1/span 4" }}>
-            <MyButton>Contact me</MyButton>
-          </div>
+          <div style={{ "gridArea": "5/5/span 2/span 3" }}>
+            <MyButton>Let's connect</MyButton>
+          </div> 
 
+        </div>*/}
+        <div className={classes["main-row"]}>
+          <div className={classes["left-column"]}>
+            <HelloCard />
+            <div className={classes["location-and-connect-row"]}>
+              <LocationCard />
+              <MyButton>
+                <PulsingOnlineIcon />Let's connect
+              </MyButton>
+            </div>
+            <WorkPositionCard />
+          </div>
+          <div className={classes["right-column"]}>
+            <WorkExperienceCard />
+            <TechStackCard />
+          </div>
         </div>
       </div>
     </MainLayout >

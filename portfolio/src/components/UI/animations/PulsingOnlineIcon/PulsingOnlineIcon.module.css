@@ -1,0 +1,45 @@
+.online-icon {
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-success);
+    border-radius: 50%;
+    margin-right: var(--spacing-s);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.online-icon::after {
+    display: block;
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+
+    background-color: var(--color-success);
+    border-radius: 50%;
+
+    animation: sonar-pulsing 1s infinite;
+}
+
+
+@keyframes sonar-pulsing {
+    0% {}
+
+    50% {
+        opacity: 30%;
+    }
+
+    60% {
+        width: 40px;
+        height: 40px;
+    }
+
+    80% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 0%;
+    }
+}

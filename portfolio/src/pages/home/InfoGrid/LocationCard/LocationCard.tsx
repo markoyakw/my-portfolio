@@ -6,9 +6,12 @@ const LocationCard = () => {
     return (
         <MyText size='m' color='primary'>
             <div className={classes["container"]}>
+                <div className={classes["location-pin-circle"]}>
+                </div>
                 <FaLocationDot size={"45px"} />
-                Based in: <br />
-                Germany, Düsseldorf - Duisburg
+                Germany, <br />
+                &nbsp; Düsseldorf/ <br />
+                Duisburg
             </div>
         </MyText>
     )

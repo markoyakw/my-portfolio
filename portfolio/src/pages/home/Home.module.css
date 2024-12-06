@@ -1,7 +1,6 @@
 .container {
-    width: 70%;
+    width: 1080px;
     height: calc(100vh - 60px);
-    overflow: hidden;
 }
 
 .grid {
@@ -10,4 +9,28 @@
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 0.5fr);
     gap: var(--spacing-s)
+}
+
+.main-row {
+    display: flex;
+    gap: var(--spacing-s)
+}
+
+.left-column {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-s)
+}
+
+.right-colum {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-s)
+}
+
+.location-and-connect-row {
+    display: flex;
+    justify-content: space-between;
 }
