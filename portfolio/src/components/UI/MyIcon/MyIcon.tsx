@@ -1,14 +1,14 @@
 import { CSSProperties, FC } from 'react'
 import classes from "./MyIcon.module.css"
 
-import htmlIcon from "@/assets/icons/techStack/html-5.svg"
-import cssIcon from "@/assets/icons/techStack/css-3.svg"
-import javascriptIcon from "@/assets/icons/techStack/javascript.svg"
+import htmlIcon from "@/assets/icons/techStack/html-5.png"
+import cssIcon from "@/assets/icons/techStack/css-3.png"
+import javascriptIcon from "@/assets/icons/techStack/javascript.png"
 import nextJsIcon from "@/assets/icons/techStack/nextjs.svg"
-import reactIcon from "@/assets/icons/techStack/react.svg"
-import typescriptIcon from "@/assets/icons/techStack/typescript.svg"
-import nodeJsIcon from "@/assets/icons/techStack/nodejs.svg"
-import gitIcon from "@/assets/icons/techStack/git.svg"
+import reactIcon from "@/assets/icons/techStack/react.png"
+import typescriptIcon from "@/assets/icons/techStack/typescript.png"
+import nodeJsIcon from "@/assets/icons/techStack/nodejs.png"
+import gitIcon from "@/assets/icons/techStack/git.png"
 
 import githubIcon from "@/assets/icons/myLinks/github.png"
 import gmailIcon from "@/assets/icons/myLinks/gmail.png"

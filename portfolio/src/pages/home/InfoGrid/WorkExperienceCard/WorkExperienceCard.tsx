@@ -6,13 +6,12 @@ import TechStackCard from "../TechStackCard/TechStackCard"
 
 const workExperienceComponentArr = [
     <>
-        <strong>Junior web developer (3 month)</strong>
-        <br /> Odesa / 2023
-        Web studio
+        <strong>Intern web developer (1 month)</strong>
+        <br /> Odesa / 2023 / ONUT prj. semester.
     </>,
     <>
-        <strong>Intern web developer (1 semester)</strong>
-        <br /> Odesa / 2022 / ONUT
+        <strong>Junior web developer (3 month)</strong>
+        <br /> Odesa / 2024 Web studio
     </>,
     <>
         <strong>Your company? :)</strong>
@@ -22,15 +21,14 @@ const workExperienceComponentArr = [
 
 const WorkExperienceCard = () => {
     return (
-        <MyCard backgroundColor='#edede9'>
+        <MyCard backgroundColor="#262B40">
             <div className={classes["container"]}>
                 <h2>
-                    <MyText size='l' color='secondary'>Work experience</MyText>
+                    <MyText size='l' color='primary'>Work experience</MyText>
                 </h2>
-                <MyText color='secondary'>
+                <MyText color='primary'>
                     {<MyListWithTimeline listItemArr={workExperienceComponentArr} />}
                 </MyText>
-                <TechStackCard />
             </div>
         </MyCard>
     )

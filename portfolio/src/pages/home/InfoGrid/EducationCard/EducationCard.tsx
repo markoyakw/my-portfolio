@@ -20,7 +20,7 @@ const educationComponentArr = [
 
 const EducationCard = () => {
     return (
-        <MyCard backgroundColor='#edede9'>
+        <MyCard>
             <div className={classes["container"]}>
                 <h2>
                     <MyText size='l' color='secondary'>Education</MyText>

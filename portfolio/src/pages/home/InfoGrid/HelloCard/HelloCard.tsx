@@ -12,27 +12,27 @@ const HelloCard = () => {
     const [isHelloCardHovered, setIsHelloCardHovered] = useState(false)
 
     return (
-        <MyCard backgroundColor='#EFEFEF' onMouseEnter={() => setIsHelloCardHovered(true)} onMouseLeave={() => setIsHelloCardHovered(false)}>
-            <div className={classes["container"]}>
+        <div>
+            <MyCard backgroundColor='#C3423F' onMouseEnter={() => setIsHelloCardHovered(true)} onMouseLeave={() => setIsHelloCardHovered(false)}>
+                <div className={classes["container"]}>
 
-                <div className={classes["greetings__container"]}>
-                    <MyText size='l' color='secondary'>
-                        <h1>
+                    <div className={classes["greetings__container"]}>
+                        <MyText size='l' color='primary'>
                             Hello <WavyHand isHovered={isHelloCardHovered} />
                             , <br />I'm Marko
-                        </h1>
-                    </MyText>
-                    <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
-                </div>
+                        </MyText>
+                        <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
+                    </div>
 
-                <div className={classes["my-pictire__container"]}>
-                    <AddMLGGlassesOnHover isHovered={isHelloCardHovered}>
-                        <img className={classes["my-picture"]} src={resumePhoto} />
-                    </AddMLGGlassesOnHover>
-                </div>
+                    <div className={classes["my-pictire__container"]}>
+                        <AddMLGGlassesOnHover isHovered={isHelloCardHovered}>
+                            <img className={classes["my-picture"]} src={resumePhoto} />
+                        </AddMLGGlassesOnHover>
+                    </div>
 
-            </div>
-        </MyCard>
+                </div>
+            </MyCard>
+        </div>
     )
 }
 

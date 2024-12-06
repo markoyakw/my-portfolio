@@ -1,7 +1,6 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-s)
 }
 
 .item {
@@ -9,10 +8,18 @@
     display: flex;
 }
 
+.text-container {
+    padding-bottom: var(--spacing-s);
+}
+
+.item:last-child>.text-container {
+    padding-bottom: 0px;
+}
+
 .timeline-container {
-    --bullet-point-size: 0.8em;
-    --timeline-width: 25%;
-    --timeline-y-margin: 0.2em;
+    --bullet-point-size: 0.5em;
+    --timeline-width: 15%;
+    --timeline-y-margin: 0.15em;
     --bullet-point-color: var(--color-accent);
     --timeline-color: var(--color-border);
 
@@ -30,7 +37,7 @@
     display: block;
     content: "";
 
-    margin-top: 0.15em;
+    margin-top: 30%;
     width: var(--bullet-point-size);
     height: var(--bullet-point-size);
     border-radius: 50%;

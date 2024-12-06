@@ -8,10 +8,6 @@
     transition: padding-left 0.4s, padding-right 0.4s;
 }
 
-.animated-stack-item:hover {
-    scale: 1.2;
-}
-
 .animated-stack__shrink-stopper {
     position: absolute;
     width: 100%;

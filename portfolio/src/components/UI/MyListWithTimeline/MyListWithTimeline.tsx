@@ -7,18 +7,16 @@ type TMyListWithTimelineProps = {
 
 const MyListWithTimeline: FC<TMyListWithTimelineProps> = ({ listItemArr }) => {
     return (
-        <div className={classes["container"]}>
+        <ul className={classes["container"]}>
             {listItemArr.map(item => (
-                <ul>
-                    <li className={classes["item"]}>
-                        <div className={classes["timeline-container"]} />
-                        <p>
-                            {item}
-                        </p>
-                    </li>
-                </ul>
+                <li className={classes["item"]}>
+                    <div className={classes["timeline-container"]} />
+                    <p className={classes["text-container"]}>
+                        {item}
+                    </p>
+                </li>
             ))}
-        </div>
+        </ul>
     )
 }
 

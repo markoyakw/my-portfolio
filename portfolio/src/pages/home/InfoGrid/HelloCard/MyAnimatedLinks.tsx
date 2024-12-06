@@ -16,7 +16,7 @@ const MyAnimatedLinks = myLinksIconNameArr.map(name => {
     return (
         <MyCustomCursor cursor={<MyCursorLabel>{linkLabelText}</MyCursorLabel>}>
             <a href={linkDictionary[name]} target="_blank">
-                <MyIcon rounded name={name} size='40px' />
+                <MyIcon rounded name={name} />
             </a>
         </MyCustomCursor >
     )

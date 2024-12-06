@@ -19,7 +19,7 @@ const MyIconWithLabel: FC<TMyIconWithLabelProps> = ({
     return (
         <div className={`${classes["icon--with-label__container"]} ${addedClassName}`} style={style}>
             <MyIcon {...props} style={iconStyle} addedClassName={classes["icon--with-label"]} />
-            <MyText size='xs' textAlign='center' color='secondary'>
+            <MyText size='xs' textAlign='center'>
                 <b>{label}</b>
             </MyText>
         </div>

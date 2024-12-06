@@ -1,5 +1,5 @@
 .container {
-    width: 100%;
+    width: 70%;
     height: calc(100vh - 60px);
     overflow: hidden;
 }
@@ -7,7 +7,7 @@
 .grid {
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 0.5fr);
     gap: var(--spacing-s)
 }

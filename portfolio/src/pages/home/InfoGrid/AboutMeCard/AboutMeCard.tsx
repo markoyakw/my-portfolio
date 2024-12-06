@@ -1,5 +1,5 @@
-import MyCard from '../../../components/UI/MyCard/MyCard'
-import MyText from '../../../components/UI/MyText/MyText'
+import MyCard from "@components/UI/MyCard/MyCard"
+import MyText from "@components/UI/MyText/MyText"
 
 const AboutMeCard = () => {
     return (

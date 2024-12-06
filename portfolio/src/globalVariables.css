@@ -1,5 +1,5 @@
 html {
-    --color-background: #1E173A;
+    --color-background: #001011;
 
     --spacing-xs: 6px;
     --spacing-s: 12px;
@@ -13,7 +13,7 @@ html {
     --font-size-m: 24px;
     --font-size-l: 36px;
     --font-size-xl: 50px;
-    --font-size-xxl: 110px
+    --font-size-xxl: 80px
 }
 
 html {
@@ -25,15 +25,16 @@ html {
     --color-secondary-light: #a1a5aa;
     --color-secondary-dark: #495057;
 
-    --color-accent: #CF9CE7;
-    --color-accent-light: #F7EFFB;
-    --color-accent-dark: #9D3BCE;
+    --color-accent: #
+    ;
+    --color-accent-light: #F47E3E;
+    --color-accent-dark: #F47E3E;
 
-    --color-surface: white;
-    --color-border: #dee2e6;
+    --color-surface: #c8c8c8;
+    --color-border: #545454;
 
     --color-text-primary: #f8f9fa;
-    --color-text-secondary: #1E173A;
+    --color-text-secondary: #001011;
     --color-text-link: white;
 
     --color-success: #28a745;

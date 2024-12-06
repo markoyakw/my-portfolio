@@ -3,9 +3,7 @@ import HelloCard from '@pages/home/InfoGrid/HelloCard/HelloCard'
 import classes from "./Home.module.css"
 import LocationCard from './InfoGrid/LocationCard/LocationCard'
 import WorkPositionCard from './InfoGrid/WorkPositionCard/WorkPositionCard'
-import EducationCard from './InfoGrid/EducationCard/EducationCard'
 import WorkExperienceCard from './InfoGrid/WorkExperienceCard/WorkExperienceCard'
-import MyCard from '@components/UI/MyCard/MyCard'
 import TechStackCard from './InfoGrid/TechStackCard/TechStackCard'
 
 const HomePage = () => {
@@ -18,27 +16,31 @@ const HomePage = () => {
             <HelloCard />
           </div>
 
-          <div style={{ gridArea: "5/5/span 1/span 4" }}>
-          </div>
-
-          <div style={{ "gridArea": "5/1/span 1/span 4" }}>
+          <div style={{ "gridArea": "4/1/span 1/span 4" }}>
             <LocationCard />
           </div>
 
-          <div style={{ gridArea: "6/1/span 3/ span 8" }}>
+          <div style={{ gridArea: "5/1/span 3/ span 8" }}>
             <WorkPositionCard />
           </div>
 
-          <div style={{ "gridArea": "1/5/6/span 4" }}>
+          <div style={{ "gridArea": "1/5/5/span 4" }}>
             <WorkExperienceCard />
           </div>
 
-          <div style={{ "gridArea": "1/9/6/span 4" }}>
-            <EducationCard />
+          <div style={{ "gridArea": "5/5/span 1/span 4" }}>
           </div>
 
-          <div style={{ "gridArea": "6/7/span 4/span 6" }}>
-            <MyCard>b</MyCard>
+          {/* <div style={{ "gridArea": "1/9/6/span 4" }}>
+            <EducationCard /
+          </div> */}
+
+          <div style={{ "gridArea": "8/1/span 1/span 8" }}>
+            <TechStackCard />
+          </div>
+
+          <div style={{ "gridArea": "6/5/span 1/span 4" }}>
+            <h1>Stuff i work with</h1>
           </div>
 
         </div>
