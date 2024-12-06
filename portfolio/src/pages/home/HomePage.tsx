@@ -5,6 +5,7 @@ import LocationCard from './InfoGrid/LocationCard/LocationCard'
 import WorkPositionCard from './InfoGrid/WorkPositionCard/WorkPositionCard'
 import WorkExperienceCard from './InfoGrid/WorkExperienceCard/WorkExperienceCard'
 import TechStackCard from './InfoGrid/TechStackCard/TechStackCard'
+import MyButton from '@components/UI/MyButton/MyButton'
 
 const HomePage = () => {
   return (
@@ -40,7 +41,7 @@ const HomePage = () => {
           </div>
 
           <div style={{ "gridArea": "6/5/span 1/span 4" }}>
-            <h1>Stuff i work with</h1>
+            <MyButton>Contact me</MyButton>
           </div>
 
         </div>

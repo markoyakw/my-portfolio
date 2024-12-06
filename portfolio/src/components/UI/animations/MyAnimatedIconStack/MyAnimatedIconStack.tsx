@@ -31,9 +31,9 @@ const MyAnimatedIconStack: FC<TMyAnimatedIconStackProps> = ({ itemArr }) => {
 
     return (
         <div className={classes["animated-stack"]} ref={containerRef} onMouseMove={getMouseCoordinates} onMouseLeave={mouseLeaveHandler}>
-            {itemArr.map((icon) => {
+            {itemArr.map((icon, iconId) => {
                 return (
-                    <MyAnimatedIconStackItem mousePosition={containerMousePosition} containerRect={containerRect}>
+                    <MyAnimatedIconStackItem mousePosition={containerMousePosition} containerRect={containerRect} key={iconId}>
                         {icon}
                     </MyAnimatedIconStackItem>
                 )

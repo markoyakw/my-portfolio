@@ -17,7 +17,7 @@ const TechStackCard = () => {
 
     return (
         <div className={classes["container"]}>
-            {techStackIconNameArr.map(name => <MyIconWithLabel addedClassName={classes["tech-stack-icon"]} name={name} label={displayNameMap[name] || name} />)}
+            {techStackIconNameArr.map(name => <MyIconWithLabel key={name} addedClassName={classes["tech-stack-icon"]} name={name} label={displayNameMap[name] || name} />)}
         </div>
     )
 }

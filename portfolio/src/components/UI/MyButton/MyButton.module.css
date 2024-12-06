@@ -1,0 +1,84 @@
+.button {
+    --animation-duration: 0.4s;
+    --animation-color: var(--color-accent);
+    position: relative;
+    padding: var(--spacing-s);
+    border: 3px solid var(--color-accent);
+    border-radius: 35px;
+    color: var(--color-text-primary);
+    background-color: transparent;
+    font-size: var(--font-size-l);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 99;
+}
+
+.button::after {
+    z-index: -1;
+    position: absolute;
+    display: block;
+    content: "";
+    background-color: var(--animation-color);
+    width: 100px;
+    height: 160px;
+    border-radius: 50%;
+    top: 100%
+}
+
+.button--hover-start::after {
+    animation-name: hover;
+    animation-duration: var(--animation-duration);
+    animation-fill-mode: forwards;
+}
+
+.button--mouse-left::after {
+    animation: mouse-leave;
+    animation-duration: var(--animation-duration);
+    animation-fill-mode: forwards;
+}
+
+.button--hovered {
+    background-color: var(--animation-color);
+}
+
+@keyframes hover {
+    0% {
+        top: 100%;
+        width: 20px;
+        height: 100px;
+        border-radius: 50%
+    }
+
+    40% {
+        height: 200px;
+        width: 70%;
+        border-radius: 40%;
+    }
+
+    100% {
+        top: -20px;
+        width: 120%;
+        border-radius: 30%
+    }
+}
+
+@keyframes mouse-leave {
+    0% {
+        top: -10px;
+        width: 120%;
+        border-radius: 30%
+    }
+
+    40% {
+        width: 90%;
+    }
+
+    100% {
+        top: -200%;
+        width: 20px;
+        height: 100px;
+        border-radius: 50%
+    }
+}
