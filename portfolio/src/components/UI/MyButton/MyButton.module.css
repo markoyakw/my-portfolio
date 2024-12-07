@@ -81,7 +81,7 @@
 
     100% {
         top: -150%;
-        width: 20px;
+        width: 100px;
         height: 100px;
         border-radius: 50%
     }

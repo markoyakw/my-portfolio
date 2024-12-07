@@ -4,11 +4,11 @@ import classes from "./LocationCard.module.css"
 
 const LocationCard = () => {
     return (
-        <MyText size='m' color='primary'>
+        <MyText size='s' color='primary'>
             <div className={classes["container"]}>
                 <div className={classes["location-pin-circle"]}>
+                    <FaLocationDot size={"45px"} />
                 </div>
-                <FaLocationDot size={"45px"} />
                 Germany, <br />
                 &nbsp; Düsseldorf/ <br />
                 Duisburg

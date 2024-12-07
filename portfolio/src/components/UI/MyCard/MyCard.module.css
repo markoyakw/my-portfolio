@@ -1,6 +1,6 @@
 .card {
     color: var(--color-text-secondary);
-    border-radius: 35px;
+    border-radius: 25px;
     position: relative;
 }
 

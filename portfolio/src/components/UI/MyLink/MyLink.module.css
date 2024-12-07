@@ -3,9 +3,7 @@
     align-items: center;
     justify-content: center;
     color: var(--color-text-link);
-    min-width: 100px;
-    height: 30px;
-    border-radius: 7px;
+    border-radius: 15px;
     transition: color 0.15s;
     transition: background-color 0.2s;
     transition: margin-bottom 0.2s;
@@ -13,7 +11,6 @@
 
 .link--active {
     background-color: color-mix(in srgb, var(--color-background) 80%, white 20%);
-    margin-bottom: 5px;
 }
 
 .link:hover {

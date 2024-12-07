@@ -1,12 +1,18 @@
 .container {
     width: 100%;
     display: grid;
-    grid-template-rows: 2;
-    grid-template-columns: auto;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-s);
+    flex-grow: 1;
 }
 
-.tech-stack-icon {
-    height: 85px;
-    flex-grow: 0;
-    flex-shrink: 1;
+.icon__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    width: 45px;
 }

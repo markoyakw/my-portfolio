@@ -9,6 +9,8 @@ import reactIcon from "@/assets/icons/techStack/react.png"
 import typescriptIcon from "@/assets/icons/techStack/typescript.png"
 import nodeJsIcon from "@/assets/icons/techStack/nodejs.png"
 import gitIcon from "@/assets/icons/techStack/git.png"
+import reduxIcon from "@/assets/icons/techStack/redux.png"
+import apiIcon from "@/assets/icons/techStack/api.png"
 
 import githubIcon from "@/assets/icons/myLinks/github.png"
 import gmailIcon from "@/assets/icons/myLinks/gmail.png"
@@ -23,7 +25,9 @@ const techStackIconDictionary = {
     html: htmlIcon,
     css: cssIcon,
     nodeJs: nodeJsIcon,
-    git: gitIcon
+    git: gitIcon,
+    redux: reduxIcon,
+    api: apiIcon
 }
 
 export const techStackIconNameArr = Object.keys(techStackIconDictionary) as (keyof typeof techStackIconDictionary)[];

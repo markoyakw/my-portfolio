@@ -6,7 +6,6 @@ import WorkPositionCard from './InfoGrid/WorkPositionCard/WorkPositionCard'
 import WorkExperienceCard from './InfoGrid/WorkExperienceCard/WorkExperienceCard'
 import TechStackCard from './InfoGrid/TechStackCard/TechStackCard'
 import MyButton from '@components/UI/MyButton/MyButton'
-import MyText from '@components/UI/MyText/MyText'
 import EducationCard from './InfoGrid/EducationCard/EducationCard'
 import PulsingOnlineIcon from '@components/UI/animations/PulsingOnlineIcon/PulsingOnlineIcon'
 
@@ -58,10 +57,11 @@ const HomePage = () => {
               </MyButton>
             </div>
             <WorkPositionCard />
+            <TechStackCard />
           </div>
           <div className={classes["right-column"]}>
             <WorkExperienceCard />
-            <TechStackCard />
+            <EducationCard />
           </div>
         </div>
       </div>

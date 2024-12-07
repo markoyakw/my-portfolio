@@ -1,6 +1,9 @@
 .container {
     width: 1080px;
-    height: calc(100vh - 60px);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .grid {
@@ -17,17 +20,17 @@
 }
 
 .left-column {
-    width: 70%;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-s)
+    gap: var(--spacing-m)
 }
 
-.right-colum {
-    width: 30%;
+.right-column {
+    width: 50%;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-s)
+    gap: var(--spacing-m)
 }
 
 .location-and-connect-row {

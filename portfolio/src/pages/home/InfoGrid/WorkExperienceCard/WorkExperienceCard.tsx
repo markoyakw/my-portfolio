@@ -7,7 +7,7 @@ import TechStackCard from "../TechStackCard/TechStackCard"
 const workExperienceComponentArr = [
     <>
         <strong>Intern web developer (1 month)</strong>
-        <br /> Odesa / 2023 / ONUT prj. semester.
+        <br /> Odesa / 2023 / ONUT project semester
     </>,
     <>
         <strong>Junior web developer (3 month)</strong>

@@ -1,6 +1,6 @@
 .layout {
+    display: flex;
     background-color: var(--color-background);
-    padding: 0px var(--spacing-m);
 }
 
 .layout__body {

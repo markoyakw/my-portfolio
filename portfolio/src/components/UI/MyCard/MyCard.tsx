@@ -5,10 +5,13 @@ import { TCssSizeVariable } from '@/types/cssVariables';
 interface IMyCardProps extends HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
     backgroundColor?: string;
-    padding?: TCssSizeVariable
+    padding?: TCssSizeVariable;
+    addedClassName?: string
 }
 
-const MyCard: React.FC<IMyCardProps> = ({ children,
+const MyCard: React.FC<IMyCardProps> = ({
+    addedClassName,
+    children,
     backgroundColor = "var(--color-surface)",
     padding = "m",
     ...props }) => {
@@ -18,8 +21,10 @@ const MyCard: React.FC<IMyCardProps> = ({ children,
         padding: `var(--spacing-${padding})`
     }
 
+    const myCardClassName = `${classes["card"]} ${addedClassName}`
+
     return (
-        <div className={classes["card"]} {...props} style={myCardStyle}>
+        <div className={myCardClassName} {...props} style={myCardStyle}>
             {children}
         </div>
     )

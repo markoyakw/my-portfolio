@@ -1,14 +1,11 @@
 .container {
-    position: relative;
     display: flex;
-    gap: var(--spacing-s);
     align-items: center;
+    flex-grow: 0;
+    gap: var(--spacing-s);
 }
 
 .location-pin-circle {
-    opacity: 50%;
-    left: -12.5px;
-    position: absolute;
     background-color: var(--color-accent);
     width: 70px;
     height: 70px;
