@@ -1,5 +1,4 @@
 .size-dummy {
-    background-color: aqua;
     --header-width: 70px;
     --header-width-with-padding: calc(var(--header-width) + var(--spacing-s) * 2);
     --header-width-with-margins: calc(var(--header-width-with-padding) + var(--spacing-s) * 2);
@@ -7,17 +6,33 @@
 }
 
 .header {
+    height: calc(100vh - var(--spacing-s) * 2);
     width: var(--header-width-with-padding);
     position: fixed;
-    background-color: var(--color-secondary-light);
+    background-color: var(--color-secondary-dark);
     margin: var(--spacing-s);
+    padding: var(--spacing-s);
     border-radius: 25px;
 }
 
 .main-column {
-    height: calc(100vh - var(--spacing-s) * 4);
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.center-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-s);
+}
+
+.active-nav-link-highlight {
+    position: fixed;
+    background-color: var(--color-secondary);
+    pointer-events: none;
+    transition: 0.2s;
+    border-radius: 20px;
 }

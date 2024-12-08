@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     color: var(--color-text-link);
-    border-radius: 15px;
+    border-radius: 25px;
     transition: color 0.15s;
     transition: background-color 0.2s;
     transition: margin-bottom 0.2s;

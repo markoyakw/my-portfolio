@@ -19,9 +19,9 @@ const TechStackCard = () => {
     }
 
     return (
-        <MyCard backgroundColor='#551117' addedClassName={classes["container"]}>
+        <MyCard backgroundColor='var(--color-accent-dark)' addedClassName={classes["container"]}>
             {techStackIconNameArr.map(name =>
-                <div className={classes["icon__container"]}>
+                <div key={name} className={classes["icon__container"]}>
                     <MyIconWithLabel key={name} addedClassName={classes["icon"]} name={name} label={displayNameMap[name] || name} />
                 </div>
             )}

@@ -21,12 +21,12 @@ const workExperienceComponentArr = [
 
 const WorkExperienceCard = () => {
     return (
-        <MyCard backgroundColor="#262B40">
+        <MyCard>
             <div className={classes["container"]}>
                 <h2>
-                    <MyText size='l' color='primary'>Work experience</MyText>
+                    <MyText size='l' color='secondary'>Work experience</MyText>
                 </h2>
-                <MyText color='primary'>
+                <MyText color='secondary'>
                     {<MyListWithTimeline listItemArr={workExperienceComponentArr} />}
                 </MyText>
             </div>

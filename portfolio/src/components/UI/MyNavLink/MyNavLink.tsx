@@ -1,21 +1,38 @@
 import { FC, ReactElement } from "react"
 import classes from "./MyNavLink.module.css"
-import MyLink from "../MyLink/MyLink"
+import { NavLink } from "react-router-dom"
 
 type TNavLinkProps = {
     icon: ReactElement,
     children: string,
-    href: string
+    href: string,
+    className?: string
 }
 
-const MyNavLink: FC<TNavLinkProps> = ({ icon, children, href }) => {
+const MyNavLink: FC<TNavLinkProps> = ({ icon, children, href, className }) => {
+
+    const getLinkClasses = (isActive: boolean) => {
+        return isActive
+            ? `${classes["container"]} ${classes["container--active"]} ${className}`
+            : `${classes["container"]} ${className}`
+    }
+
     return (
-        <MyLink href={href} addedClassName={classes["container"]}>
+        <NavLink to={href}
+            className={({ isActive }) => {
+                if (isActive) {
+                    console.log(href)
+                }
+                return getLinkClasses(isActive)
+            }}
+        >
             <div className={classes["icon"]}>
                 {icon}
             </div>
-            {children}
-        </MyLink>
+            <span className={classes["label"]}>
+                {children}
+            </span>
+        </NavLink>
     )
 }
 

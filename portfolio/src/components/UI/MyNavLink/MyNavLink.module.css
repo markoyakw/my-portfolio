@@ -1,19 +1,44 @@
 .container {
-    width: 95px;
     aspect-ratio: 1/1;
-    font-size: var(--font-size-xs);
-    text-align: center;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-xs);
+    padding: var(--spacing-s);
+
+    font-size: var(--font-size-xs);
+    text-align: center;
+    color: var(--color-text-link);
+    border-radius: 25px;
+
+    transition: color 0.15s;
+    transition: background-color 0.2s;
+    transition: margin-bottom 0.2s;
 }
 
 .icon {
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 25px;
     font-size: 30px;
+}
+
+.label{
+    z-index: 1;
+}
+
+/* .container--active {
+    background-color: color-mix(in srgb, var(--color-background) 80%, white 20%);
+} */
+
+.container:hover {
+    color: var(--color-accent);
+}
+
+.container--active:hover {
+    color: var(--color-text-link);
 }

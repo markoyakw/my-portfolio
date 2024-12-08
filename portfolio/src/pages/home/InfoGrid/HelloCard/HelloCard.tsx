@@ -13,7 +13,7 @@ const HelloCard = () => {
 
     return (
         <div>
-            <MyCard backgroundColor='#C3423F' onMouseEnter={() => setIsHelloCardHovered(true)} onMouseLeave={() => setIsHelloCardHovered(false)}>
+            <MyCard backgroundColor='var(--color-accent)' onMouseEnter={() => setIsHelloCardHovered(true)} onMouseLeave={() => setIsHelloCardHovered(false)}>
                 <div className={classes["container"]}>
 
                     <div className={classes["greetings__container"]}>
