@@ -29,10 +29,19 @@
     gap: var(--spacing-s);
 }
 
-.active-nav-link-highlight {
+.nav-link-highlight {
     position: fixed;
-    background-color: var(--color-secondary);
     pointer-events: none;
     transition: 0.2s;
     border-radius: 20px;
+}
+
+.nav-link-highlight--hovered {
+    background-color: white;
+    opacity: 30%;
+}
+
+.nav-link-highlight--active {
+    background-color: black;
+    opacity: 30%;
 }
