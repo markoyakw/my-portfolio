@@ -28,7 +28,10 @@ const MyNavLink: FC<TNavLinkProps> = ({
     }
     const handleMouseLeave = () => {
         if (!setHoveredLinkRect) return
-        setHoveredLinkRect(new DOMRect((rect?.x || 0) + ((rect?.width || 0) / 2), (rect?.y || 0) + ((rect?.height || 0) / 2), 0, 0))
+        const newRectCenteredX = (rect?.x || 0) + ((rect?.width || 0) / 2)
+        const newRectCenteredY = (rect?.y || 0) + ((rect?.height || 0) / 2)
+        const newRect = new DOMRect(newRectCenteredX, newRectCenteredY, 0, 0)
+        setHoveredLinkRect(newRect)
     }
 
     return (

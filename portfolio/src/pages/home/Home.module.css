@@ -6,14 +6,6 @@
     align-items: center;
 }
 
-.grid {
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 0.5fr);
-    gap: var(--spacing-s)
-}
-
 .main-row {
     display: flex;
     gap: var(--spacing-s)

@@ -33,8 +33,8 @@ const NavBar = () => {
             <MyNavLink href='/resume' icon={<PiReadCvLogoFill />} setHoveredLinkRect={setHoveredLinkRect}>
                 Resume
             </MyNavLink>
-            {hoveredLinkRect && <ActiveNavLinkHighlight highlightedRect={hoveredLinkRect} addedClassName={classes["nav-link-highlight--hovered"]} />}
             {activeLinkRect && <ActiveNavLinkHighlight highlightedRect={activeLinkRect} addedClassName={classes["nav-link-highlight--active"]} />}
+            {hoveredLinkRect && <ActiveNavLinkHighlight highlightedRect={hoveredLinkRect} addedClassName={classes["nav-link-highlight--hovered"]} />}
         </nav>
     )
 }

@@ -31,6 +31,7 @@ const techStackIconDictionary = {
 }
 
 export const techStackIconNameArr = Object.keys(techStackIconDictionary) as (keyof typeof techStackIconDictionary)[];
+export type TTechStackIcon = typeof techStackIconNameArr
 
 const myLinksIconDictionary = {
     github: githubIcon,
