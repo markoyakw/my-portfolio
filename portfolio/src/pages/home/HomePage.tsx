@@ -1,6 +1,5 @@
-import MainLayout from '@components/MainLayout/MainLayout'
 import HelloCard from '@pages/home/InfoGrid/HelloCard/HelloCard'
-import classes from "./Home.module.css"
+import classes from "./HomePage.module.css"
 import LocationCard from './InfoGrid/LocationCard/LocationCard'
 import WorkPositionCard from './InfoGrid/WorkPositionCard/WorkPositionCard'
 import WorkExperienceCard from './InfoGrid/WorkExperienceCard/WorkExperienceCard'

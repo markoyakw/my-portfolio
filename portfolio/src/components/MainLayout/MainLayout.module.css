@@ -1,10 +1,13 @@
 .layout {
     display: flex;
     background-color: var(--color-background);
+    justify-content: center;
 }
 
 .layout__body {
-    width: 100%;
+    margin-top: var(--spacing-s);
+    gap: var(--spacing-s);
+    width: 1080px;
     display: flex;
     flex-direction: column;
     justify-content: center;

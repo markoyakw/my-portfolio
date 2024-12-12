@@ -3,9 +3,9 @@ import classes from "./ProjectsPage.module.css"
 
 const ProjectsPage = () => {
 
-    const technologiesUsed: TTechStackIcon[] = [
-        "nextJs", "react"
-    ]
+    // const technologiesUsed: TTechStackIcon[] = [
+    //     "nextJs", "react"
+    // ]
 
     return (
         <div className={classes["container"]}>

@@ -1,7 +1,7 @@
 .size-dummy {
     --header-width: 70px;
     --header-width-with-padding: calc(var(--header-width) + var(--spacing-s) * 2);
-    --header-width-with-margins: calc(var(--header-width-with-padding) + var(--spacing-s) * 2);
+    --header-width-with-margins: calc(var(--header-width-with-padding) + var(--spacing-m) * 2);
     width: var(--header-width-with-margins);
 }
 
