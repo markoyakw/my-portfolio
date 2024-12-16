@@ -7,9 +7,11 @@ const LocationCard = () => {
             <div className={classes["location-pin-circle"]}>
                 <FaLocationDot size={"45px"} />
             </div>
-            Germany, <br />
-            &nbsp; Düsseldorf/ <br />
-            Duisburg
+            <div className={classes["text-row"]}>
+                <p>Germany,</p>
+                <p>&nbsp; Düsseldorf/</p>
+                <p>Duisburg</p>
+            </div>
         </div>
     )
 }

@@ -10,8 +10,14 @@
     background-color: var(--color-accent);
     width: 70px;
     height: 70px;
+    border-radius: 50%;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.text-row {
+    flex-shrink: 0;
 }

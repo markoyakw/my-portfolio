@@ -1,4 +1,10 @@
-.work-position{
+.work-position {
     font-size: var(--font-size-xxl);
     color: var(--color-text-primary);
+}
+
+@media(max-width:1130px) {
+    .work-position {
+        font-size: calc(var(--font-size-xxl) * 0.8);
+    }
 }

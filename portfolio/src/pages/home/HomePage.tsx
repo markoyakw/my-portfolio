@@ -7,6 +7,7 @@ import TechStackCard from './InfoGrid/TechStackCard/TechStackCard'
 import MyButton from '@components/UI/MyButton/MyButton'
 import EducationCard from './InfoGrid/EducationCard/EducationCard'
 import PulsingOnlineIcon from '@components/UI/animations/PulsingOnlineIcon/PulsingOnlineIcon'
+import LetsConnectButton from './InfoGrid/LetsConnectButton/LetsConnectButton'
 
 const HomePage = () => {
   return (
@@ -16,9 +17,7 @@ const HomePage = () => {
           <HelloCard />
           <div className={classes["location-and-connect-row"]}>
             <LocationCard />
-            <MyButton>
-              <PulsingOnlineIcon />Let's connect
-            </MyButton>
+            <LetsConnectButton />
           </div>
           <WorkPositionCard />
           <TechStackCard />

@@ -19,15 +19,13 @@ const educationComponentArr = [
 
 const EducationCard = () => {
     return (
-        <MyCard>
-            <div className={classes["container"]}>
-                <h2 className={classes["heading"]}>
-                    <span>Education</span>
-                </h2>
-                <span className={classes["list"]}>
-                    {<MyListWithTimeline listItemArr={educationComponentArr} />}
-                </span>
-            </div>
+        <MyCard addedClassName={classes["container"]}>
+            <h2 className={classes["heading"]}>
+                <span>Education</span>
+            </h2>
+            <span className={classes["list"]}>
+                {<MyListWithTimeline listItemArr={educationComponentArr} />}
+            </span>
         </MyCard>
     )
 }

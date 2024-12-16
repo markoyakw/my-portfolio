@@ -19,15 +19,13 @@ const workExperienceComponentArr = [
 
 const WorkExperienceCard = () => {
     return (
-        <MyCard>
-            <div className={classes["container"]}>
-                <h2 className={classes["heading"]}>
-                    <span >Work experience</span>
-                </h2>
-                <span className={classes["list"]}>
-                    {<MyListWithTimeline listItemArr={workExperienceComponentArr} />}
-                </span>
-            </div>
+        <MyCard addedClassName={classes["container"]}>
+            <h2 className={classes["heading"]}>
+                <span >Work experience</span>
+            </h2>
+            <span className={classes["list"]}>
+                {<MyListWithTimeline listItemArr={workExperienceComponentArr} />}
+            </span>
         </MyCard>
     )
 }
