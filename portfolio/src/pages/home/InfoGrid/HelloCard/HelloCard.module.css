@@ -24,3 +24,8 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.greetings__text{
+    font-size: var(--font-size-l);
+    color: var(--color-text-primary);
+}

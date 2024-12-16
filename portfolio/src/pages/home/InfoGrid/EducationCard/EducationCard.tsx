@@ -1,4 +1,3 @@
-import MyText from '../../../../components/UI/MyText/MyText'
 import MyCard from '../../../../components/UI/MyCard/MyCard'
 import classes from "../ListCard.module.css"
 import MyListWithTimeline from '@components/UI/MyListWithTimeline/MyListWithTimeline'
@@ -22,12 +21,12 @@ const EducationCard = () => {
     return (
         <MyCard>
             <div className={classes["container"]}>
-                <h2>
-                    <MyText size='l' color='secondary'>Education</MyText>
+                <h2 className={classes["heading"]}>
+                    <span>Education</span>
                 </h2>
-                <MyText color='secondary' size='m'>
+                <span className={classes["list"]}>
                     {<MyListWithTimeline listItemArr={educationComponentArr} />}
-                </MyText>
+                </span>
             </div>
         </MyCard>
     )

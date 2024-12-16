@@ -15,6 +15,10 @@
     animation: custom-cursor__label---appear 0.15s
 }
 
+.custom-cursor__label-text {
+    color: var(--color-text-primary);
+}
+
 @keyframes custom-cursor__label---appear {
     0% {
         transform: translate(var(--translate-initial)) scale(1, 0.2);

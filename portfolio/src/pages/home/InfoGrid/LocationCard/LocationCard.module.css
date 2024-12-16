@@ -3,6 +3,7 @@
     align-items: center;
     flex-grow: 0;
     gap: var(--spacing-s);
+    color: var(--color-text-primary);
 }
 
 .location-pin-circle {

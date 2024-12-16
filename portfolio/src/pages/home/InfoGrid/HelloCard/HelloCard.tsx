@@ -3,7 +3,6 @@ import MyCard from '@components/UI/MyCard/MyCard'
 import AddMLGGlassesOnHover from '@components/UI/animations/AddMLGGlassesOnHover/AddMLGGlassesOnHover'
 import WavyHand from '@components/UI/animations/WavyHand/WavyHand'
 import resumePhoto from "@assets/resume-photo.jpg"
-import MyText from '@components/UI/MyText/MyText'
 import MyAnimatedIconStack from '@components/UI/animations/MyAnimatedIconStack/MyAnimatedIconStack'
 import MyAnimatedLinks from './MyAnimatedLinks'
 import classes from "./HelloCard.module.css"
@@ -17,10 +16,10 @@ const HelloCard = () => {
                 <div className={classes["container"]}>
 
                     <div className={classes["greetings__container"]}>
-                        <MyText size='l' color='primary'>
+                        <div className={classes["greetings__text"]}>
                             Hello <WavyHand isHovered={isHelloCardHovered} />
                             , <br />I'm Marko
-                        </MyText>
+                        </div>
                         <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
                     </div>
 

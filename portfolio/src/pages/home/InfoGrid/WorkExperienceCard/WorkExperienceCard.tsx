@@ -1,8 +1,6 @@
 import MyCard from "@components/UI/MyCard/MyCard"
 import MyListWithTimeline from "@components/UI/MyListWithTimeline/MyListWithTimeline"
-import MyText from "@components/UI/MyText/MyText"
 import classes from "../ListCard.module.css"
-import TechStackCard from "../TechStackCard/TechStackCard"
 
 const workExperienceComponentArr = [
     <>
@@ -23,12 +21,12 @@ const WorkExperienceCard = () => {
     return (
         <MyCard>
             <div className={classes["container"]}>
-                <h2>
-                    <MyText size='l' color='secondary'>Work experience</MyText>
+                <h2 className={classes["heading"]}>
+                    <span >Work experience</span>
                 </h2>
-                <MyText color='secondary'>
+                <span className={classes["list"]}>
                     {<MyListWithTimeline listItemArr={workExperienceComponentArr} />}
-                </MyText>
+                </span>
             </div>
         </MyCard>
     )

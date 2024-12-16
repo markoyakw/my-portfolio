@@ -2,7 +2,6 @@ import { FC, ReactNode } from 'react'
 import MyCard from '../MyCard/MyCard'
 import classes from "./MyCustomCursor.module.css"
 import { getRandomNumber } from '@/utils/getRandomNumber'
-import MyText from '../MyText/MyText'
 
 type TMyCursorLabelProps = {
     children: ReactNode
@@ -15,9 +14,9 @@ const MyCursorLabel: FC<TMyCursorLabelProps> = ({ children }) => {
     return (
         <div className={classes["custom-cursor__label"]}>
             <MyCard padding='xs' backgroundColor={getRandomColor()}>
-                <MyText size={"s"} color='primary'>
+                <span className={classes["custom-cursor__label-text"]}>
                     {children}
-                </MyText>
+                </span>
             </MyCard>
         </div>
     )
