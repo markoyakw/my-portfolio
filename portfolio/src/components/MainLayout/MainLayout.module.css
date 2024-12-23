@@ -2,14 +2,15 @@
     display: flex;
     background-color: var(--color-background);
     justify-content: center;
+    height: 100%;
+    min-height: 100vh;
 }
 
 .layout__body {
     margin-top: var(--spacing-s);
     gap: var(--spacing-s);
-    width: 1080px;
+    max-width: 1080px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }

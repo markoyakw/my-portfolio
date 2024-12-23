@@ -44,3 +44,13 @@
 .nav-link-highlight--active {
     background-color: var(--color-accent);
 }
+
+/* min-height = --max-home-page-height + --spacing-s * 2 */
+@media(min-height: 724px) {
+    .header {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        margin-top: 0px;
+        height: calc(var(--max-home-page-height) + var(--spacing-s))
+    }
+}

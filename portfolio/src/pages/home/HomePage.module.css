@@ -1,7 +1,9 @@
 .container {
     --height-without-margins: calc(100vh - var(--spacing-s) * 2);
-    height: min(var(--height-without-margins), 700px);
+    height: min(var(--height-without-margins), var( ));
     display: flex;
+    flex-grow: 0;
+    flex-shrink: 1;
 }
 
 .main-row {
@@ -11,7 +13,6 @@
 }
 
 .left-column {
-    width: 50%;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-m);
@@ -19,14 +20,16 @@
 }
 
 .right-column {
-    width: 50%;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-m);
     height: 100%;
+    overflow: hidden;
+    max-width: 50%;
 }
 
 .location-and-connect-row {
     display: flex;
     justify-content: space-between;
+    gap: var(--spacing-s);
 }
