@@ -1,12 +1,14 @@
 .container {
+    height: 150px;
     gap: var(--spacing-s);
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .my-pictire__container {
-    flex-shrink: 0;
-    width: 150px;
+    flex-shrink: 1;
+    max-width: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,12 +22,13 @@
 .greetings__container {
     flex-grow: 0;
     flex-shrink: 0;
+    gap: var(--spacing-s);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.greetings__text{
+.greetings__text {
     font-size: var(--font-size-l);
     color: var(--color-text-primary);
 }

@@ -8,16 +8,25 @@
 
 .location-pin-circle {
     background-color: var(--color-accent);
-    width: 70px;
-    height: 70px;
+    min-height: 70px;
+    max-height: 95px;
+    max-width: 95px;
+    aspect-ratio: 1/1;
     border-radius: 50%;
 
     display: flex;
+    flex-grow: 1;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
 
+.location-pin {
+    flex-grow: 1;
+    padding: 20%;
+}
+
 .text-row {
     flex-shrink: 0;
+    font-size: var(--font-size-s);
 }

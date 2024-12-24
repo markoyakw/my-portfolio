@@ -8,13 +8,12 @@
     justify-content: center;
 }
 
-@media(max-width:1165px) {
+@media(max-width:1265px) {
     .text {
         font-size: var(--font-size-m);
     }
 
     .container {
-        margin-left: var(--spacing-s);
         flex-grow: 1;
         flex-shrink: 1;
     }

@@ -23,7 +23,7 @@ const HelloCard = () => {
                         <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
                     </div>
 
-                    <div className={classes["my-pictire__container"]}>
+                    <div className={`${classes["my-pictire__container"]} ${classes["my-picture-container--smaller-screen"]}`}>
                         <AddMLGGlassesOnHover isHovered={isHelloCardHovered}>
                             <img className={classes["my-picture"]} src={resumePhoto} />
                         </AddMLGGlassesOnHover>

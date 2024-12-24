@@ -1,9 +1,7 @@
 .container {
     --height-without-margins: calc(100vh - var(--spacing-s) * 2);
-    height: min(var(--height-without-margins), var( ));
+    height: min(var(--height-without-margins), var(--max-home-page-height));
     display: flex;
-    flex-grow: 0;
-    flex-shrink: 1;
 }
 
 .main-row {
@@ -17,6 +15,13 @@
     flex-direction: column;
     gap: var(--spacing-m);
     justify-content: stretch;
+    width: 45%;
+}
+
+.hello-location-and-connect-flexbox {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-m);
 }
 
 .right-column {
@@ -24,12 +29,40 @@
     flex-direction: column;
     gap: var(--spacing-m);
     height: 100%;
-    overflow: hidden;
-    max-width: 50%;
+    width: 55%;
 }
 
 .location-and-connect-row {
     display: flex;
     justify-content: space-between;
     gap: var(--spacing-s);
+}
+
+@media(max-width: 1025px) {
+    .main-row {
+        flex-direction: column;
+    }
+
+    .left-column {
+        width: 100%;
+    }
+
+    .right-column {
+        width: 100%;
+    }
+
+    .hello-location-and-connect-flexbox {
+        flex-direction: row;
+        max-height: 190px;
+    }
+
+    .location-and-connect-row {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .location-and-connect-row>div,
+    .location-and-connect-row>button {
+        height: 50%;
+    }
 }

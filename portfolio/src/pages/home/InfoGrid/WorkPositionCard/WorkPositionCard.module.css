@@ -3,7 +3,7 @@
     color: var(--color-text-primary);
 }
 
-@media(max-width:1130px) {
+@media(max-width:1265px) {
     .work-position {
         font-size: calc(var(--font-size-xxl) * 0.8);
     }

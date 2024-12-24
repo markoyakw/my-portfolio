@@ -9,7 +9,6 @@
 .layout__body {
     margin-top: var(--spacing-s);
     gap: var(--spacing-s);
-    max-width: 1080px;
     display: flex;
     flex-direction: column;
     align-items: center;

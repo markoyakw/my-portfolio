@@ -5,7 +5,7 @@ const LocationCard = () => {
     return (
         <div className={classes["container"]}>
             <div className={classes["location-pin-circle"]}>
-                <FaLocationDot size={"45px"} />
+                <FaLocationDot className={classes["location-pin"]} />
             </div>
             <div className={classes["text-row"]}>
                 <p>Germany,</p>

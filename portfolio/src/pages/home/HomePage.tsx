@@ -4,9 +4,7 @@ import LocationCard from './InfoGrid/LocationCard/LocationCard'
 import WorkPositionCard from './InfoGrid/WorkPositionCard/WorkPositionCard'
 import WorkExperienceCard from './InfoGrid/WorkExperienceCard/WorkExperienceCard'
 import TechStackCard from './InfoGrid/TechStackCard/TechStackCard'
-import MyButton from '@components/UI/MyButton/MyButton'
 import EducationCard from './InfoGrid/EducationCard/EducationCard'
-import PulsingOnlineIcon from '@components/UI/animations/PulsingOnlineIcon/PulsingOnlineIcon'
 import LetsConnectButton from './InfoGrid/LetsConnectButton/LetsConnectButton'
 
 const HomePage = () => {
@@ -14,10 +12,12 @@ const HomePage = () => {
     <div className={classes["container"]}>
       <div className={classes["main-row"]}>
         <div className={classes["left-column"]}>
-          <HelloCard />
-          <div className={classes["location-and-connect-row"]}>
-            <LocationCard />
-            <LetsConnectButton />
+          <div className={classes["hello-location-and-connect-flexbox"]}>
+            <HelloCard />
+            <div className={classes["location-and-connect-row"]}>
+              <LocationCard />
+              <LetsConnectButton />
+            </div>
           </div>
           <WorkPositionCard />
           <TechStackCard />
