@@ -2,12 +2,14 @@ import classes from "./WorkPositionCard.module.css"
 
 const WorkPositionCard = () => {
     return (
-        <h1 className={classes["work-position"]}>
-            <strong>
-                FRONT <i>end</i> <br />
+        <strong>
+            <h1 className={classes["work-position"]}>
+                <div>
+                    FRONT <i>end</i>&nbsp;
+                </div>
                 DEVELOPER
-            </strong>
-        </h1>
+            </h1>
+        </strong>
     )
 }
 

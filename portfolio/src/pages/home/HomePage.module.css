@@ -57,6 +57,7 @@
     }
 
     .location-and-connect-row {
+        flex-grow: 1;
         flex-direction: column;
         justify-content: center;
     }
@@ -64,5 +65,22 @@
     .location-and-connect-row>div,
     .location-and-connect-row>button {
         height: 50%;
+    }
+}
+
+@media(max-width: 800px) {
+    .hello-location-and-connect-flexbox {
+        flex-direction: column;
+        max-height: none;
+        gap: var(--spacing-m);
+    }
+
+    .location-and-connect-row {
+        flex-direction: row;
+    }
+
+    .location-and-connect-row>div,
+    .location-and-connect-row>button {
+        height: 100%;
     }
 }

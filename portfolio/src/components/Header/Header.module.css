@@ -13,6 +13,7 @@
     margin: var(--spacing-s);
     padding: var(--spacing-s);
     border-radius: 25px;
+    z-index: 100;
 }
 
 .main-column {
@@ -52,5 +53,16 @@
         border-top-right-radius: 0px;
         margin-top: 0px;
         height: calc(var(--max-home-page-height) + var(--spacing-s))
+    }
+}
+
+@media(max-width: 660px) {
+    .size-dummy {
+        width: 0px;
+        height: 0px;
+    }
+
+    .main-column>div:first-child {
+        background-color: aqua;
     }
 }
