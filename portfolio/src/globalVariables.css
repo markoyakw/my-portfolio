@@ -1,7 +1,7 @@
 html {
     --color-background: #001011;
     --max-home-page-height: 700px;
-
+    
     --spacing-xs: 6px;
     --spacing-s: 12px;
     --spacing-m: 20px;
@@ -14,7 +14,9 @@ html {
     --font-size-m: 24px;
     --font-size-l: 36px;
     --font-size-xl: 50px;
-    --font-size-xxl: 80px
+    --font-size-xxl: 80px;
+
+    --mobile-header-height: 60px 
 }
 
 html {

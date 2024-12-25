@@ -13,3 +13,9 @@
     flex-direction: column;
     align-items: center;
 }
+
+@media(max-width: 660px) {
+    .layout__body {
+        margin-top: calc(var(--mobile-header-height) + var(--spacing-m) * 2)
+    }
+}
