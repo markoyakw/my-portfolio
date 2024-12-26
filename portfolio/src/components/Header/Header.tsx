@@ -1,13 +1,20 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import classes from "./Header.module.css"
 import NavBar from './NavBar/NavBar'
+import { FC } from 'react'
 
-const Header = () => {
+type THeaderProps = {
+    isHeaderOpenOnMobile: boolean
+}
+
+const Header: FC<THeaderProps> = ({ isHeaderOpenOnMobile }) => {
+
+    const headerClassName = `${classes["header"]} ${isHeaderOpenOnMobile ? classes["header--open-on-mobile"] : ""}`
 
     return (
         <BrowserRouter>
             <div className={classes["size-dummy"]}>
-                <header className={classes["header"]}>
+                <header className={headerClassName}>
                     <NavBar />
                 </header>
             </div>
