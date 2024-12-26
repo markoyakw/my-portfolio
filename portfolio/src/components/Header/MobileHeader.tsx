@@ -3,7 +3,6 @@ import classes from "./Header.module.css"
 import { FaChevronUp } from "react-icons/fa6"
 import { AiFillMessage } from "react-icons/ai"
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
-import { IoClose } from "react-icons/io5"
 import CircularText from "@components/UI/CircularText/CircularText"
 
 type TMobileHeaderProps = {
@@ -57,6 +56,9 @@ const MobileHeader: FC<TMobileHeaderProps> = ({ isHeaderOpenOnMobile, setIsHeade
                         <FaChevronUp style={{ zIndex: 100 }} size={"70%"} />
                     </button>
                     <div className={classes["mobile-header__tap-to-close-circle"]}>
+                        <CircularText>
+                            Tap to close the menu
+                        </CircularText>
                     </div>
                 </>
             }

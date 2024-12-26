@@ -93,13 +93,29 @@
 }
 
 .mobile-header__tap-to-close-circle {
+    font-weight: bold;
+    color: black;
+    font-size: var(--font-size-m);
     position: fixed;
-    height: 100px;
-    width: 100px;
+    display: flex;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
     background-color: azure;
     top: calc(50% - 50px);
     left: calc(50% - 50px);
     border-radius: 50%;
+    animation: rotate-tap-to-close-circle 10s infinite linear;
+}
+
+@keyframes rotate-tap-to-close-circle {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: -360deg;
+    }
 }
 
 /* breakpoints */
