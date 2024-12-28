@@ -7,7 +7,6 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    z-index: 99;
 
     padding: var(--spacing-s);
 

@@ -9,7 +9,7 @@ type TCircularText = {
 const CircularText: FC<TCircularText> = ({ children, addedClassName }) => {
     const text = children + " "
     const textLength = text.length
-    const circularTextClassName = `${classes["char-container"]} ${addedClassName && ""}`
+    const circularTextClassName = `${classes["char-container"]} ${addedClassName || ""}`
 
     const charsInCircularStringShape = useMemo(() => {
         return text.split("").map((char, charId) =>
