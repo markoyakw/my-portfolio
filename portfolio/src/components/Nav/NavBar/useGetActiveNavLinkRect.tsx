@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom"
 
 const useGetActiveNavLinkRect = (navBarRef: RefObject<HTMLElement>) => {
     const [activeLinkRect, setActiveLinkRect] = useState<DOMRectReadOnly>()
+    const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
     const URIToHTMLAnchorMap = useMemo(() => new Map<string, HTMLAnchorElement>(), [])
     const params = useLocation()
 
@@ -35,6 +36,24 @@ const useGetActiveNavLinkRect = (navBarRef: RefObject<HTMLElement>) => {
         })
     }
 
+    //Handle updating window size state on window size change
+    //to trigger calculating new active link highlight rect 
+    useEffect(() => {
+        const resizeObserver = new ResizeObserver(() => {
+            console.log("bebra")
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight
+            });
+        });
+        resizeObserver.observe(document.body);
+
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, [])
+
+    //Handle adding pathnames to HTML <a> element map on mount
     useEffect(() => {
         const navBar = navBarRef.current
         if (!navBar) return
@@ -42,12 +61,13 @@ const useGetActiveNavLinkRect = (navBarRef: RefObject<HTMLElement>) => {
         addPathnamesToHTMLAncorMap(navChildrenArr)
     }, [navBarRef])
 
+    //Changes active link highlight rect on params change
     useEffect(() => {
         const activeAnchorHTML = URIToHTMLAnchorMap.get(params.pathname)
         if (!activeAnchorHTML) return
         const activeLinkRect = activeAnchorHTML.getBoundingClientRect()
         setActiveLinkRect(activeLinkRect)
-    }, [params])
+    }, [params, windowSize])
 
     return { activeLinkRect }
 }
