@@ -1,13 +1,14 @@
-import { FC, ReactElement, useRef } from "react"
+import { FC, ReactElement, useEffect, useRef } from "react"
 import classes from "./MyNavLink.module.css"
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 
 type TNavLinkProps = {
     icon: ReactElement,
     children: string,
     href: string,
     addedClassName?: string,
-    setHoveredLinkRect?: (rect: DOMRectReadOnly | null) => void,
+    setHoveredLinkRect: (rect: DOMRectReadOnly | null) => void,
+    isHoverAnimationSource?: boolean
 }
 
 const MyNavLink: FC<TNavLinkProps> = ({
@@ -15,12 +16,13 @@ const MyNavLink: FC<TNavLinkProps> = ({
     children,
     href,
     addedClassName,
-    setHoveredLinkRect
+    setHoveredLinkRect,
 }) => {
 
     const NavLinkRef = useRef<HTMLAnchorElement>(null)
     const rect = NavLinkRef?.current?.getBoundingClientRect()
     const linkClasses = `${classes["container"]} ${addedClassName}`
+    const params = useLocation()
 
     const handleMouseEnter = () => {
         if (!NavLinkRef.current || !setHoveredLinkRect) return
@@ -33,6 +35,20 @@ const MyNavLink: FC<TNavLinkProps> = ({
         const newRect = new DOMRect(newRectCenteredX, newRectCenteredY, 0, 0)
         setHoveredLinkRect(newRect)
     }
+
+    //set active link as animation source (highlight block will move from its position)
+    useEffect(() => {
+        if (href === params.pathname && rect) {
+            setHoveredLinkRect(rect)
+            setHoveredLinkRect({
+                ...rect,
+                height: 0,
+                width: 0,
+                x: rect.x + rect.width / 2,
+                y: rect.y + rect.height / 2,
+            })
+        }
+    }, [NavLinkRef.current])
 
     return (
         <NavLink to={href}

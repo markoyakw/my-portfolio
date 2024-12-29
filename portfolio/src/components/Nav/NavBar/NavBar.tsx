@@ -1,6 +1,6 @@
 import { FC, useRef, useState } from "react"
 import classes from "../Nav.module.css"
-import MyNavLink from "@components/UI/MyNavLink/MyNavLink"
+import MyNavLink from "@components/Nav/NavBar/MyNavLink/MyNavLink"
 import { IoHomeSharp } from "react-icons/io5"
 import { BsEmojiSunglassesFill } from "react-icons/bs"
 import { MdOutlineWork } from "react-icons/md"
@@ -22,7 +22,7 @@ const NavBar: FC<TNavBar> = ({ className }) => {
     return (
         <nav className={className}>
             <div className={classes["nav-bar__main-column"]} ref={navBarRef}>
-                <MyNavLink href='/' icon={<IoHomeSharp />} setHoveredLinkRect={setHoveredLinkRect}>
+                <MyNavLink href='/' icon={<IoHomeSharp />} isHoverAnimationSource setHoveredLinkRect={setHoveredLinkRect}>
                     Home
                 </MyNavLink>
                 <div className={classes["nav-bar__center-column"]}>
