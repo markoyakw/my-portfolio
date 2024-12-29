@@ -4,13 +4,14 @@
     flex-grow: 0;
     gap: var(--spacing-s);
     color: var(--color-text-primary);
+    margin-right: var(--spacing-s);
 }
 
 .location-pin-circle {
     background-color: var(--color-accent);
-    min-height: 70px;
-    max-height: 95px;
-    max-width: 95px;
+    height: 100%;
+    max-height: 80px;
+    max-width: 80px;
     aspect-ratio: 1/1;
     border-radius: 50%;
 
@@ -23,10 +24,23 @@
 
 .location-pin {
     flex-grow: 1;
+    flex-shrink: 1;
     padding: 20%;
 }
 
 .text-row {
     flex-shrink: 0;
     font-size: var(--font-size-m);
+}
+
+@media(max-width: 1200px) {
+    .text-row {
+        font-size: var(--font-size-s);
+    }
+}
+
+@media(min-width: 1200px) {
+    .text-row {
+        font-size: var(--font-size-m);
+    }
 }

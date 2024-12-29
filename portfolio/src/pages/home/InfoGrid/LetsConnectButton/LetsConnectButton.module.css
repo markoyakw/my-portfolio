@@ -1,3 +1,8 @@
+.container {
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
 .text {
     font-size: var(--font-size-l);
 }
@@ -8,7 +13,7 @@
     justify-content: center;
 }
 
-@media(max-width:1265px) {
+@media(max-width:1380px) {
     .text {
         font-size: var(--font-size-m);
     }

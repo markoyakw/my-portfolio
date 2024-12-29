@@ -53,7 +53,9 @@ const MyButton: FC<TMyButtonProps> = ({ children, addedClassName, ...props }) =>
             onMouseEnter={handleMouseEnter}
             className={buttonClasses}
         >
-            {children}&nbsp;<FaArrowRight />
+            <span className={classes["button__text"]}>
+                {children}&nbsp;<FaArrowRight />
+            </span>
         </button>
     )
 }

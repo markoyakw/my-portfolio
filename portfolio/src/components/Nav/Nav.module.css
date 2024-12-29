@@ -109,7 +109,7 @@
 }
 
 .mobile-nav-bar__tap-to-close-text {
-    animation: rotate-tap-to-close-circle 10s infinite linear;
+    animation: rotate-tap-to-close-circle 20s infinite linear;
 }
 
 .mobile-nav-bar__tap-to-close-circle {

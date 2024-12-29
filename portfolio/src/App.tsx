@@ -1,4 +1,4 @@
-import ProjectsPage from '@pages/Projects/ProjectsPage'
+import ProjectsPage from '@pages/projects/ProjectsPage'
 import HomePage from './pages/home/HomePage'
 import MainLayout from '@components/MainLayout/MainLayout'
 

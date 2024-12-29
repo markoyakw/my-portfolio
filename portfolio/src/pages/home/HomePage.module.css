@@ -1,6 +1,6 @@
 .container {
     --height-without-margins: calc(100vh - var(--spacing-s) * 2);
-    height: min(var(--height-without-margins), var(--max-home-page-height));
+    min-height: min(var(--height-without-margins), var(--max-home-page-height));
     display: flex;
 }
 
@@ -18,18 +18,18 @@
     width: 45%;
 }
 
-.hello-location-and-connect-flexbox {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-m);
-}
-
 .right-column {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-m);
     height: 100%;
     width: 55%;
+}
+
+.hello-location-and-connect-flexbox {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-m);
 }
 
 .location-and-connect-row {
