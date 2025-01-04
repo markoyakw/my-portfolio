@@ -21,7 +21,9 @@ const MyNavLink: FC<TNavLinkProps> = ({
 
     const NavLinkRef = useRef<HTMLAnchorElement>(null)
     const rect = NavLinkRef?.current?.getBoundingClientRect()
-    const linkClasses = `${classes["container"]} ${addedClassName}`
+    const getNavLinkClasses = (isActive: boolean) => {
+        return `${classes["container"]} ${addedClassName} ${isActive ? classes["container--active"] : ""}`
+    }
     const params = useLocation()
 
     const handleMouseEnter = () => {
@@ -53,7 +55,7 @@ const MyNavLink: FC<TNavLinkProps> = ({
     return (
         <NavLink to={href}
             ref={NavLinkRef}
-            className={linkClasses}
+            className={({ isActive }) => getNavLinkClasses(isActive)}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >

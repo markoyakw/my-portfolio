@@ -5,11 +5,10 @@ import { AiFillMessage } from "react-icons/ai"
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
 
 type TMobileHeaderProps = {
-    isSideBarOpenOnMobile: boolean,
     setIsSideBarOpenOnMobile: Dispatch<SetStateAction<boolean>>
 }
 
-const MobileHeader: FC<TMobileHeaderProps> = ({ isSideBarOpenOnMobile, setIsSideBarOpenOnMobile }) => {
+const MobileHeader: FC<TMobileHeaderProps> = ({ setIsSideBarOpenOnMobile }) => {
 
     const [scrollTopState, setScrollTopState] = useState(0)
     const [isMobileHeaderVisible, setIsMobileHeaderVisible] = useState(true)
@@ -40,21 +39,19 @@ const MobileHeader: FC<TMobileHeaderProps> = ({ isSideBarOpenOnMobile, setIsSide
     }
 
     return (
-        isSideBarOpenOnMobile
-            ? <></>
-            : <div className={mobileHeaderClassName}>
-                <div className={classes["mobile-header__main-row"]}>
-                    <button className={classes["mobile-header__button"]} onClick={handleMobileHeaderTogge}>
-                        <TiThMenu size={"70%"} />
-                    </button>
-                    <button className={classes["mobile-header__button"]} >
-                        <AiFillMessage size={"70%"} />
-                    </button>
-                </div>
-                <button className={classes["mobile-header__button"]} onClick={() => scrollTo(0, 0)}>
-                    <FaChevronUp style={{ zIndex: 100 }} size={"70%"} />
+        <div className={mobileHeaderClassName}>
+            <div className={classes["mobile-header__main-row"]}>
+                <button className={classes["mobile-header__button"]} onClick={handleMobileHeaderTogge}>
+                    <TiThMenu size={"70%"} />
+                </button>
+                <button className={classes["mobile-header__button"]} >
+                    <AiFillMessage size={"70%"} />
                 </button>
             </div>
+            <button className={classes["mobile-header__button"]} onClick={() => scrollTo(0, 0)}>
+                <FaChevronUp style={{ zIndex: 100 }} size={"70%"} />
+            </button>
+        </div>
     )
 }
 

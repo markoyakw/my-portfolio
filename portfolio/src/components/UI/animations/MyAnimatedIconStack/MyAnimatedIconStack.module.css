@@ -1,11 +1,39 @@
-.animated-stack {
+.animated-stack__container {
+    width: 230px;
+    height: 70px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.animated-stack {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .animated-stack-item {
     padding-left: calc(var(--spacing-s)/2);
     padding-right: calc(var(--spacing-s)/2);
     transition: padding-left 0.4s, padding-right 0.4s;
+}
+
+.animated-stack-item::before {
+    pointer-events: none;
+    display: block;
+    content: "";
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background-color: white;
+    opacity: 0;
+    border-radius: 10px;
+}
+
+.animated-stack-item:hover::before {
+    opacity: 0.3;
 }
 
 .animated-stack__shrink-stopper {

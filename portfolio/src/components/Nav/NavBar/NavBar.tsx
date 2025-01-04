@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import classes from "../Nav.module.css"
 import MyNavLink from "@components/Nav/NavBar/MyNavLink/MyNavLink"
 import { IoHomeSharp } from "react-icons/io5"
@@ -11,21 +11,30 @@ import useGetActiveNavLinkRect from "./useGetActiveNavLinkRect"
 
 type TNavBar = {
     className: string,
+    isMobileSideBarTransitionHappening: boolean
 }
 
-const NavBar: FC<TNavBar> = ({ className }) => {
+const NavBar: FC<TNavBar> = ({ className, isMobileSideBarTransitionHappening }) => {
 
     const navBarRef = useRef<HTMLDivElement>(null)
-    const { activeLinkRect } = useGetActiveNavLinkRect(navBarRef)
+    const navBarItemAligmentRef = useRef<HTMLDivElement>(null)
+    const { activeLinkRect, recalculateHighlightRect, isNavBarMutationObserved } = useGetActiveNavLinkRect(navBarRef, navBarItemAligmentRef)
     const [hoveredLinkRect, setHoveredLinkRect] = useState<DOMRectReadOnly | null>(null)
 
+    useEffect(() => {
+        if (isMobileSideBarTransitionHappening) {
+
+        }
+    }, [isMobileSideBarTransitionHappening])
+
     return (
-        <nav className={className}>
-            <div className={classes["nav-bar__main-column"]} ref={navBarRef}>
+        <nav className={className} ref={navBarRef}>
+            {/* <nav className={className} ref={navBarRef} onTransitionEnd={recalculateHighlightRect}> */}
+            <div className={classes["nav-bar__main-column"]} >
                 <MyNavLink href='/' icon={<IoHomeSharp />} isHoverAnimationSource setHoveredLinkRect={setHoveredLinkRect}>
                     Home
                 </MyNavLink>
-                <div className={classes["nav-bar__center-column"]}>
+                <div ref={navBarItemAligmentRef} className={classes["nav-bar__center-column"]}>
                     <MyNavLink href='/about-me' icon={<BsEmojiSunglassesFill />} setHoveredLinkRect={setHoveredLinkRect}>
                         About me
                     </MyNavLink>
@@ -39,8 +48,8 @@ const NavBar: FC<TNavBar> = ({ className }) => {
                 <MyNavLink href='/resume' icon={<PiReadCvLogoFill />} setHoveredLinkRect={setHoveredLinkRect}>
                     Resume
                 </MyNavLink>
-                {activeLinkRect && <ActiveNavLinkHighlight highlightedRect={activeLinkRect} addedClassName={classes["nav-link-highlight--active"]} />}
-                {hoveredLinkRect && <ActiveNavLinkHighlight highlightedRect={hoveredLinkRect} addedClassName={classes["nav-link-highlight--hovered"]} />}
+                {(!isNavBarMutationObserved && activeLinkRect) && <ActiveNavLinkHighlight highlightedRect={activeLinkRect} addedClassName={`${classes["nav-link-highlight--active"]} `} />}
+                {(!isNavBarMutationObserved && hoveredLinkRect) && <ActiveNavLinkHighlight highlightedRect={hoveredLinkRect} addedClassName={classes["nav-link-highlight--hovered"]} />}
             </div>
         </nav>
     )

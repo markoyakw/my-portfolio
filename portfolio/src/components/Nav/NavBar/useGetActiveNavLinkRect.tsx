@@ -1,10 +1,13 @@
 import { RefObject, useEffect, useMemo, useState } from "react"
 import { useLocation } from "react-router-dom"
 
+const useGetActiveNavLinkRect = (
+    navBarRef: RefObject<HTMLElement>,
+    navBarItemAligmentRef: RefObject<HTMLElement>
+) => {
 
-const useGetActiveNavLinkRect = (navBarRef: RefObject<HTMLElement>) => {
     const [activeLinkRect, setActiveLinkRect] = useState<DOMRectReadOnly>()
-    const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+    const [isNavBarMutationObserved, setIsNavBarMutationObserved] = useState(false)
     const URIToHTMLAnchorMap = useMemo(() => new Map<string, HTMLAnchorElement>(), [])
     const params = useLocation()
 
@@ -36,15 +39,13 @@ const useGetActiveNavLinkRect = (navBarRef: RefObject<HTMLElement>) => {
         })
     }
 
-    //Handle updating window size state on window size change
-    //to trigger calculating new active link highlight rect 
+    //Recalculate active link highlight rect ow window size change 
     useEffect(() => {
+        if (isNavBarMutationObserved) {
+            return
+        }
         const resizeObserver = new ResizeObserver(() => {
-            console.log("bebra")
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight
-            });
+            recalculateHighlightRect()
         });
         resizeObserver.observe(document.body);
 
@@ -62,14 +63,44 @@ const useGetActiveNavLinkRect = (navBarRef: RefObject<HTMLElement>) => {
     }, [navBarRef])
 
     //Changes active link highlight rect on params change
-    useEffect(() => {
+    const recalculateHighlightRect = () => {
         const activeAnchorHTML = URIToHTMLAnchorMap.get(params.pathname)
         if (!activeAnchorHTML) return
         const activeLinkRect = activeAnchorHTML.getBoundingClientRect()
         setActiveLinkRect(activeLinkRect)
-    }, [params, windowSize])
+    }
+    useEffect(() => {
+        recalculateHighlightRect()
+    }, [params])
 
-    return { activeLinkRect }
+
+    useEffect(() => {
+        // const navBarItemAligment = navBarItemAligmentRef.current
+        if (!navBarRef.current) {
+            return
+        }
+        const mutationObserver = new MutationObserver(() => {
+            setIsNavBarMutationObserved(true)
+        });
+
+        mutationObserver.observe(navBarRef.current,
+            {
+                attributes: true, // Watch for style or class changes
+                attributeFilter: ['style', 'class'], // Specific attributes
+                subtree: false,
+            }
+        );
+
+        navBarRef.current.addEventListener("transitionend", () => {
+            setIsNavBarMutationObserved(false)
+        })
+
+        return () => {
+            mutationObserver.disconnect();
+        };
+    }, [])
+
+    return { activeLinkRect, recalculateHighlightRect, isNavBarMutationObserved }
 }
 
 export default useGetActiveNavLinkRect

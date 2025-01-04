@@ -14,6 +14,7 @@ const CircularText: FC<TCircularText> = ({ children, addedClassName }) => {
     const charsInCircularStringShape = useMemo(() => {
         return text.split("").map((char, charId) =>
             <div
+                key={charId}
                 className={circularTextClassName}
                 style={{
                     transform: `rotate(${360 / textLength * charId + "deg"})`,
