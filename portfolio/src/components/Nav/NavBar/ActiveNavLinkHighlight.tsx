@@ -16,7 +16,6 @@ const ActiveNavLinkHighlight: FC<TActiveNavLinkHighlightProps> = ({ highlightedR
                 width: highlightedRect?.width,
                 height: highlightedRect?.height,
                 top: highlightedRect?.y,
-                left: highlightedRect?.x,
             }} />
     )
 }

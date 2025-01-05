@@ -3,11 +3,9 @@ import { useLocation } from "react-router-dom"
 
 const useGetActiveNavLinkRect = (
     navBarRef: RefObject<HTMLElement>,
-    navBarItemAligmentRef: RefObject<HTMLElement>
 ) => {
 
     const [activeLinkRect, setActiveLinkRect] = useState<DOMRectReadOnly>()
-    const [isNavBarMutationObserved, setIsNavBarMutationObserved] = useState(false)
     const URIToHTMLAnchorMap = useMemo(() => new Map<string, HTMLAnchorElement>(), [])
     const params = useLocation()
 
@@ -39,11 +37,25 @@ const useGetActiveNavLinkRect = (
         })
     }
 
-    //Recalculate active link highlight rect ow window size change 
+    const recalculateHighlightRect = () => {
+        const activeAnchorHTML = URIToHTMLAnchorMap.get(params.pathname)
+        const navBar = navBarRef.current
+        if (!activeAnchorHTML || !navBar) return
+        const activeLinkRect = activeAnchorHTML.getBoundingClientRect()
+        const navBarRect = navBar.getBoundingClientRect()
+
+        const relativeActiveLinkRect = new DOMRectReadOnly(
+            activeLinkRect.x - navBarRect.x,
+            activeLinkRect.y - navBarRect.y,
+            activeLinkRect.width,
+            activeLinkRect.height
+        )
+
+        setActiveLinkRect(relativeActiveLinkRect)
+    }
+
+    // //Recalculate active link highlight rect ow window size change 
     useEffect(() => {
-        if (isNavBarMutationObserved) {
-            return
-        }
         const resizeObserver = new ResizeObserver(() => {
             recalculateHighlightRect()
         });
@@ -63,44 +75,11 @@ const useGetActiveNavLinkRect = (
     }, [navBarRef])
 
     //Changes active link highlight rect on params change
-    const recalculateHighlightRect = () => {
-        const activeAnchorHTML = URIToHTMLAnchorMap.get(params.pathname)
-        if (!activeAnchorHTML) return
-        const activeLinkRect = activeAnchorHTML.getBoundingClientRect()
-        setActiveLinkRect(activeLinkRect)
-    }
     useEffect(() => {
         recalculateHighlightRect()
     }, [params])
 
-
-    useEffect(() => {
-        // const navBarItemAligment = navBarItemAligmentRef.current
-        if (!navBarRef.current) {
-            return
-        }
-        const mutationObserver = new MutationObserver(() => {
-            setIsNavBarMutationObserved(true)
-        });
-
-        mutationObserver.observe(navBarRef.current,
-            {
-                attributes: true, // Watch for style or class changes
-                attributeFilter: ['style', 'class'], // Specific attributes
-                subtree: false,
-            }
-        );
-
-        navBarRef.current.addEventListener("transitionend", () => {
-            setIsNavBarMutationObserved(false)
-        })
-
-        return () => {
-            mutationObserver.disconnect();
-        };
-    }, [])
-
-    return { activeLinkRect, recalculateHighlightRect, isNavBarMutationObserved }
+    return { activeLinkRect }
 }
 
 export default useGetActiveNavLinkRect

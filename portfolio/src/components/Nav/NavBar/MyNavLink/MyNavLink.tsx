@@ -8,7 +8,6 @@ type TNavLinkProps = {
     href: string,
     addedClassName?: string,
     setHoveredLinkRect: (rect: DOMRectReadOnly | null) => void,
-    isHoverAnimationSource?: boolean
 }
 
 const MyNavLink: FC<TNavLinkProps> = ({

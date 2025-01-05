@@ -17,8 +17,7 @@ type TNavBar = {
 const NavBar: FC<TNavBar> = ({ className, isMobileSideBarTransitionHappening }) => {
 
     const navBarRef = useRef<HTMLDivElement>(null)
-    const navBarItemAligmentRef = useRef<HTMLDivElement>(null)
-    const { activeLinkRect, recalculateHighlightRect, isNavBarMutationObserved } = useGetActiveNavLinkRect(navBarRef, navBarItemAligmentRef)
+    const { activeLinkRect } = useGetActiveNavLinkRect(navBarRef)
     const [hoveredLinkRect, setHoveredLinkRect] = useState<DOMRectReadOnly | null>(null)
 
     useEffect(() => {
@@ -29,12 +28,11 @@ const NavBar: FC<TNavBar> = ({ className, isMobileSideBarTransitionHappening }) 
 
     return (
         <nav className={className} ref={navBarRef}>
-            {/* <nav className={className} ref={navBarRef} onTransitionEnd={recalculateHighlightRect}> */}
             <div className={classes["nav-bar__main-column"]} >
-                <MyNavLink href='/' icon={<IoHomeSharp />} isHoverAnimationSource setHoveredLinkRect={setHoveredLinkRect}>
+                <MyNavLink href='/' icon={<IoHomeSharp />} setHoveredLinkRect={setHoveredLinkRect}>
                     Home
                 </MyNavLink>
-                <div ref={navBarItemAligmentRef} className={classes["nav-bar__center-column"]}>
+                <div className={classes["nav-bar__center-column"]}>
                     <MyNavLink href='/about-me' icon={<BsEmojiSunglassesFill />} setHoveredLinkRect={setHoveredLinkRect}>
                         About me
                     </MyNavLink>
@@ -48,8 +46,8 @@ const NavBar: FC<TNavBar> = ({ className, isMobileSideBarTransitionHappening }) 
                 <MyNavLink href='/resume' icon={<PiReadCvLogoFill />} setHoveredLinkRect={setHoveredLinkRect}>
                     Resume
                 </MyNavLink>
-                {(!isNavBarMutationObserved && activeLinkRect) && <ActiveNavLinkHighlight highlightedRect={activeLinkRect} addedClassName={`${classes["nav-link-highlight--active"]} `} />}
-                {(!isNavBarMutationObserved && hoveredLinkRect) && <ActiveNavLinkHighlight highlightedRect={hoveredLinkRect} addedClassName={classes["nav-link-highlight--hovered"]} />}
+                {activeLinkRect && <ActiveNavLinkHighlight highlightedRect={activeLinkRect} addedClassName={`${classes["nav-link-highlight--active"]} `} />}
+                {hoveredLinkRect && <ActiveNavLinkHighlight highlightedRect={hoveredLinkRect} addedClassName={classes["nav-link-highlight--hovered"]} />}
             </div>
         </nav>
     )

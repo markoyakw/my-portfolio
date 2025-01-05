@@ -30,11 +30,3 @@
 .label {
     z-index: 1;
 }
-
-.container--active {
-    background-color: var(--color-accent);
-    transition: background-color 0.2s;
-    transition-timing-function: step-end;
-}
-
-.container:hover {}
