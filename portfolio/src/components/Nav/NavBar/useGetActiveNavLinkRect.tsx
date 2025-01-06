@@ -1,3 +1,4 @@
+import getRelativeRect from "@utils/getRelativeRect"
 import { RefObject, useEffect, useMemo, useState } from "react"
 import { useLocation } from "react-router-dom"
 
@@ -44,12 +45,7 @@ const useGetActiveNavLinkRect = (
         const activeLinkRect = activeAnchorHTML.getBoundingClientRect()
         const navBarRect = navBar.getBoundingClientRect()
 
-        const relativeActiveLinkRect = new DOMRectReadOnly(
-            activeLinkRect.x - navBarRect.x,
-            activeLinkRect.y - navBarRect.y,
-            activeLinkRect.width,
-            activeLinkRect.height
-        )
+        const relativeActiveLinkRect = getRelativeRect(activeLinkRect, navBarRect)
 
         setActiveLinkRect(relativeActiveLinkRect)
     }

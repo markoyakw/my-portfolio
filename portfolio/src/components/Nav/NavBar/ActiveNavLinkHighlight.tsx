@@ -2,7 +2,7 @@ import { FC } from "react"
 import classes from "../Nav.module.css"
 
 type TActiveNavLinkHighlightProps = {
-    highlightedRect: DOMRectReadOnly,
+    highlightedRect: DOMRectReadOnly | null,
     addedClassName?: string
 }
 

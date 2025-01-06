@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, useRef, useState } from "react"
 import classes from "../Nav.module.css"
 import MyNavLink from "@components/Nav/NavBar/MyNavLink/MyNavLink"
 import { IoHomeSharp } from "react-icons/io5"
@@ -8,23 +8,24 @@ import { AiFillMessage } from "react-icons/ai"
 import { PiReadCvLogoFill } from "react-icons/pi"
 import ActiveNavLinkHighlight from "./ActiveNavLinkHighlight"
 import useGetActiveNavLinkRect from "./useGetActiveNavLinkRect"
+import getRelativeRect from "@utils/getRelativeRect"
 
 type TNavBar = {
     className: string,
-    isMobileSideBarTransitionHappening: boolean
 }
 
-const NavBar: FC<TNavBar> = ({ className, isMobileSideBarTransitionHappening }) => {
+const NavBar: FC<TNavBar> = ({ className }) => {
 
     const navBarRef = useRef<HTMLDivElement>(null)
     const { activeLinkRect } = useGetActiveNavLinkRect(navBarRef)
     const [hoveredLinkRect, setHoveredLinkRect] = useState<DOMRectReadOnly | null>(null)
 
-    useEffect(() => {
-        if (isMobileSideBarTransitionHappening) {
-
-        }
-    }, [isMobileSideBarTransitionHappening])
+    const getRelativeHoveredLinkRect = () => {
+        const navBar = navBarRef.current
+        if (!navBar || !hoveredLinkRect) return null
+        const navBarRect = navBar.getBoundingClientRect()
+        return getRelativeRect(hoveredLinkRect, navBarRect)
+    }
 
     return (
         <nav className={className} ref={navBarRef}>
@@ -47,7 +48,7 @@ const NavBar: FC<TNavBar> = ({ className, isMobileSideBarTransitionHappening }) 
                     Resume
                 </MyNavLink>
                 {activeLinkRect && <ActiveNavLinkHighlight highlightedRect={activeLinkRect} addedClassName={`${classes["nav-link-highlight--active"]} `} />}
-                {hoveredLinkRect && <ActiveNavLinkHighlight highlightedRect={hoveredLinkRect} addedClassName={classes["nav-link-highlight--hovered"]} />}
+                {hoveredLinkRect && <ActiveNavLinkHighlight highlightedRect={getRelativeHoveredLinkRect()} addedClassName={classes["nav-link-highlight--hovered"]} />}
             </div>
         </nav>
     )
