@@ -1,5 +1,5 @@
 import getRelativeRect from "@utils/getRelativeRect"
-import { RefObject, useEffect, useMemo, useState } from "react"
+import { RefObject, useEffect, useMemo, useRef, useState } from "react"
 import { useLocation } from "react-router-dom"
 
 const useGetActiveNavLinkRect = (
@@ -9,6 +9,7 @@ const useGetActiveNavLinkRect = (
     const [activeLinkRect, setActiveLinkRect] = useState<DOMRectReadOnly>()
     const URIToHTMLAnchorMap = useMemo(() => new Map<string, HTMLAnchorElement>(), [])
     const params = useLocation()
+    const paramsRef = useRef(params)
 
     const addHTMLAnchorToMap = (HTMLAnchor: HTMLAnchorElement) => {
         const href = HTMLAnchor.href
@@ -39,7 +40,7 @@ const useGetActiveNavLinkRect = (
     }
 
     const recalculateHighlightRect = () => {
-        const activeAnchorHTML = URIToHTMLAnchorMap.get(params.pathname)
+        const activeAnchorHTML = URIToHTMLAnchorMap.get(paramsRef.current.pathname)
         const navBar = navBarRef.current
         if (!activeAnchorHTML || !navBar) return
         const activeLinkRect = activeAnchorHTML.getBoundingClientRect()
@@ -50,7 +51,14 @@ const useGetActiveNavLinkRect = (
         setActiveLinkRect(relativeActiveLinkRect)
     }
 
-    // //Recalculate active link highlight rect ow window size change 
+    // //Changes active link highlight rect on params change
+    useEffect(() => {
+        paramsRef.current = params
+        recalculateHighlightRect()
+    }, [params])
+
+    //Recalculate active link highlight rect ow window size change 
+    //and Change active link highlight rect on params change
     useEffect(() => {
         const resizeObserver = new ResizeObserver(() => {
             recalculateHighlightRect()
@@ -69,11 +77,6 @@ const useGetActiveNavLinkRect = (
         const navChildrenArr = Array.from(navBar.children)
         addPathnamesToHTMLAncorMap(navChildrenArr)
     }, [navBarRef])
-
-    //Changes active link highlight rect on params change
-    useEffect(() => {
-        recalculateHighlightRect()
-    }, [params])
 
     return { activeLinkRect }
 }
