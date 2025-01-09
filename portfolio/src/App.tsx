@@ -8,8 +8,8 @@ function App() {
   return (
     <MainLayout>
       <HomePage />
-      <ProjectsPage />
       <AboutMePage />
+      <ProjectsPage />
     </MainLayout>
   )
 }

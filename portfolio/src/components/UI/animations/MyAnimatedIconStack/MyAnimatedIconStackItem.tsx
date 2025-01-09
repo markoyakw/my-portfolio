@@ -5,10 +5,11 @@ import { TMouseCoordinates } from './MyAnimatedIconStack'
 type TMyAnimatedIconStackItem = {
     children: ReactNode,
     mousePosition: TMouseCoordinates,
-    containerRect: DOMRectReadOnly | null
+    containerRect: DOMRectReadOnly | null,
+    iconId: number
 }
 
-const MyAnimatedIconStackItem: FC<TMyAnimatedIconStackItem> = ({ children, mousePosition, containerRect }) => {
+const MyAnimatedIconStackItem: FC<TMyAnimatedIconStackItem> = ({ children, mousePosition, containerRect, iconId }) => {
 
     const stackItemRef = useRef<HTMLDivElement>(null)
     const getStackItemSpacing = useMemo((): CSSProperties => {
@@ -33,7 +34,7 @@ const MyAnimatedIconStackItem: FC<TMyAnimatedIconStackItem> = ({ children, mouse
         const marginX = Math.pow(3, itemCenterToMouseFactorX * 3.5) / 7;
         const marginBottom = -marginX * 2;
 
-        return { marginLeft: marginX, marginRight: marginX, transform: `translateY(${marginBottom}px)` };
+        return { marginLeft: iconId === 0 ? 0 : marginX, marginRight: marginX, transform: `translateY(${marginBottom}px)` };
     }, [mousePosition, containerRect, stackItemRef]);
 
     return (
