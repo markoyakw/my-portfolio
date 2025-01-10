@@ -1,5 +1,5 @@
 .container {
-    height: 150px;
+    background-color: var(--color-accent);
     gap: var(--spacing-s);
     display: flex;
     justify-content: space-between;

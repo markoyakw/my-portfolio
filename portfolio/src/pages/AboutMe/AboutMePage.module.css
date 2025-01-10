@@ -1,46 +1,95 @@
 .container {
-    color: var(--color-text-primary);
     font-size: var(--font-size-m);
     padding: 0px var(--spacing-s);
     display: flex;
     width: 100%;
     flex-direction: column;
     gap: var(--spacing-m);
+    max-width: 1430px;
 }
 
 .about-me-text {
+    color: var(--color-text-primary);
     font-size: var(--font-size-xl);
 }
 
 .cards-flexbox {
-    gap: var(--spacing-m);
+    color: var(--color-text-primary);
+    gap: var(--spacing-s);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+    background-color: #70CDFF;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-m);
+    gap: var(--spacing-l);
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: 1/4;
+}
+
+.card:last-child{
+    background-color: #F9C04E;
+}
+
+.card:first-child{
+    background-color: #A485D6;
+}
+
+.small {
+    font-size: var(--font-size-s);
+    font-weight: bold;
+}
+
+.card h2 {
     display: flex;
+    align-items: center;
+    font-size: var(--font-size-l);
+    border-radius: 20px;
+    width: 100%;
+}
+
+.react-inline-logo {
+    display: inline-flex;
+    height: 1em;
+    width: 1em;
+    animation: spin 10s infinite linear;
+}
+
+.react-highligted-span {
+    color: #61DBFB;
+}
+
+@keyframes spin {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 360deg;
+    }
 }
 
 .list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-s);
+    gap: var(--spacing-m);
 }
 
 .list li::before {
+    flex-shrink: 0;
     display: block;
     content: "";
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: var(--color-background);
-    align-self: center;
-    margin-right: var(--spacing-xs);
+    background-color: var(--color-text-secondary);
+    margin-top: 8px;
+    margin-right: var(--spacing-s);
 }
 
 .list li {
     display: flex;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-s);
-    width: 33%;
 }

@@ -68,9 +68,9 @@ const MyIcon: FC<TMyIconProps> = ({
     ${rounded ? classes["icon--rounded"] : ""}`
 
     return (
-        <div className={сlassName} style={style}>
+        <span className={сlassName} style={style}>
             <img src={IconNameDictionary[name]} alt={`icon - ${name} `} />
-        </div>
+        </span>
     )
 }
 

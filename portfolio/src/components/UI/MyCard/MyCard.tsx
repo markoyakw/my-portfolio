@@ -1,32 +1,32 @@
-import React, { HTMLAttributes } from 'react'
+import React, { CSSProperties, HTMLAttributes } from 'react'
 import classes from "./MyCard.module.css"
 import { TCssSizeVariable } from '@/types/cssVariables';
 
 interface IMyCardProps extends HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
-    backgroundColor?: string;
     padding?: TCssSizeVariable;
-    addedClassName?: string
+    addedClassName?: string;
+    addedStyle?: CSSProperties;
 }
 
 const MyCard: React.FC<IMyCardProps> = ({
     addedClassName,
     children,
-    backgroundColor = "var(--color-surface)",
     padding = "m",
-    ...props }) => {
+    addedStyle,
+    ...props
+}) => {
 
     const myCardStyle = {
-        backgroundColor,
         padding: `var(--spacing-${padding})`
     }
 
     const myCardClassName = `${classes["card"]} ${addedClassName}`
 
     return (
-        <div className={myCardClassName} {...props} style={myCardStyle}>
+        <div className={myCardClassName} {...props} style={{ ...myCardStyle, ...addedStyle }}>
             {children}
-        </div>
+        </div >
     )
 }
 

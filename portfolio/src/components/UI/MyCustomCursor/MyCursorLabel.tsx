@@ -13,7 +13,7 @@ const getRandomColor = () => randomColors[getRandomNumber(0, randomColors.length
 const MyCursorLabel: FC<TMyCursorLabelProps> = ({ children }) => {
     return (
         <div className={classes["custom-cursor__label"]}>
-            <MyCard padding='xs' backgroundColor={getRandomColor()}>
+            <MyCard padding='xs' addedStyle={{ backgroundColor: getRandomColor() }}>
                 <span className={classes["custom-cursor__label-text"]}>
                     {children}
                 </span>
