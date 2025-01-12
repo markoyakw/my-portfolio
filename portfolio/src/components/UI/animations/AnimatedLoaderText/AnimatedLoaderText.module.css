@@ -1,0 +1,22 @@
+.container span {
+    position: relative;
+}
+
+.char {
+    animation: elipsies-dot-animation 1.5s infinite linear;
+    animation-delay: calc(0.1s * var(--char-id));
+}
+
+@keyframes elipsies-dot-animation {
+    0% {
+        top: 0px
+    }
+
+    12.5% {
+        top: -3px
+    }
+
+    25% {
+        top: 0px
+    }
+}

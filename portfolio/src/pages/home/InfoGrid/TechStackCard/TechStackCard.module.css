@@ -16,4 +16,25 @@
 
 .icon {
     width: 45px;
+    font-size: var(--font-size-xs);
+}
+
+@media(max-width: 1025px) {
+    .container {
+        grid-template-columns: repeat(10, 1fr);
+    }
+
+    .icon {
+        font-size: 1.4vw;
+    }
+}
+
+@media(max-width: 760px) {
+    .container {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .icon {
+        font-size: var(--font-size-xs);
+    }
 }

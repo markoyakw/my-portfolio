@@ -1,20 +1,20 @@
-.nav-bar__size-dummy {
-    --header-width: 70px;
-    --header-width-with-padding: calc(var(--header-width) + var(--spacing-s) * 2);
-    --header-width-with-margins: calc(var(--header-width-with-padding) + var(--spacing-m) * 2);
-    width: var(--header-width-with-margins);
-}
+/*  
+    !!! NavBar width is defined in the globalVariables.css file
+    and space for NavBar is defined as margin from 
+    main layout body in MainLayout.module.css !!!   
+*/
 
 .nav-bar {
     --nav-bar-border-radius: 25px;
     z-index: 99;
     height: calc(100vh - var(--spacing-s) * 2);
-    width: var(--header-width-with-padding);
+    width: var(--nav-bar-width-with-padding);
     position: fixed;
     background-color: var(--color-secondary-dark);
     margin: var(--spacing-s);
     padding: var(--spacing-s);
     border-radius: var(--nav-bar-border-radius);
+    left: 0px;
 }
 
 .nav-bar__main-column {
@@ -85,6 +85,8 @@
     background-color: var(--color-accent);
 }
 
+/* mobile screen nav-bar */
+
 .nav-bar--mobile {
     transition: all 0.2s;
     width: calc(var(--mobile-header-height) + var(--spacing-m) *2);
@@ -95,7 +97,7 @@
 }
 
 .nav-bar--mobile-closed {
-    left: calc(-1 * var(--header-width-with-margins));
+    left: calc(-1 * var(--nav-bar-width-with-margins));
 }
 
 .mobile-nav-bar__not-nav-bar-area {
@@ -172,11 +174,6 @@
         border-top-left-radius: 0px;
         margin: 20px 0px;
         height: calc(100% - var(--spacing-m) * 2);
-    }
-
-    .nav-bar__size-dummy {
-        width: 0px;
-        height: 0px;
     }
 
     .mobile-header {

@@ -13,17 +13,22 @@ const HomePage = () => {
       <div className={classes["main-row"]}>
         <div className={classes["left-column"]}>
           <div className={classes["hello-location-and-connect-flexbox"]}>
+
             <HelloCard />
+
             <div className={classes["location-and-connect-row"]}>
               <LocationCard />
               <LetsConnectButton />
             </div>
+
           </div>
           <WorkPositionCard />
+
           <TechStackCard />
         </div>
         <div className={classes["right-column"]}>
           <WorkExperienceCard />
+
           <EducationCard />
         </div>
       </div>

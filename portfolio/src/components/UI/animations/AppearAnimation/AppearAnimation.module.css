@@ -1,0 +1,46 @@
+/* .container {
+    position: relative;
+    display: block;
+    animation: appear 0.5s ease-out;
+    animation-delay: var(--animation-delay);
+    animation-fill-mode: forwards;
+    left: var(--appear-from-x);
+    top: var(--appear-from-y)
+}
+
+.container--from-left {
+    --appear-from-x: -100vw
+}
+
+.container--from-right {
+    --appear-from-x: 100vw
+}
+
+.container--from-top {
+    --appear-from-y: -100vh
+}
+
+.container--from-bottom {
+    --appear-from-y: 100vh
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0%;
+        filter: blur(3px);
+        left: var(--appear-from-x);
+        top: var(--appear-from-y)
+    }
+
+    99% {
+        display: block;
+        opacity: 100%;
+        filter: blur(0px);
+        left: 0px;
+        top: 0px;
+    }
+
+    100% {
+        display: contents;
+    }
+} */

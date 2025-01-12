@@ -17,10 +17,8 @@ const Header: FC<THeaderProps> = ({ isSideBarOpenOnMobile, setIsSideBarOpenOnMob
 
     return (
         <BrowserRouter>
-            <div className={classes["nav-bar__size-dummy"]}>
-                <NavBar className={sideBarClassName} />
-                <NavBar className={mobileSideBarClassName} />
-            </div>
+            <NavBar className={sideBarClassName} />
+            <NavBar className={mobileSideBarClassName} />
             {isSideBarOpenOnMobile
                 ? <AroundMobileNavBarArea setIsSideBarOpenOnMobile={setIsSideBarOpenOnMobile} />
                 : <MobileHeader setIsSideBarOpenOnMobile={setIsSideBarOpenOnMobile} />

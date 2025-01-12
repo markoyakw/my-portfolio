@@ -28,24 +28,13 @@ const MyAnimatedIconStack: FC<TMyAnimatedIconStackProps> = ({ itemArr }) => {
         })
     }
 
-    const getContainerTranslateX = () => {
-        if (!containerRect || !mousePosition) return "0px"
-        const relativeToContainerMousePosition = mousePosition.x - containerRect.x
-        const containerCenter = containerRect.width / 2
-        const mouseToContainerCenterOffset = relativeToContainerMousePosition - containerCenter
-        return (mouseToContainerCenterOffset / 10) + "px"
-    }
-    const iconStackStyle = useMemo(() => {
-        return { transform: `translateX(${getContainerTranslateX()})` }
-    }, [mousePosition, containerRect])
-
     const mouseLeaveHandler = () => {
         setMousePosition(null)
     }
 
     return (
         <div className={classes["animated-stack__container"]} ref={containerRef} >
-            <div className={classes["animated-stack"]} onMouseMove={getMouseCoordinates} onMouseLeave={mouseLeaveHandler} style={iconStackStyle}>
+            <div className={classes["animated-stack"]} onMouseMove={getMouseCoordinates} onMouseLeave={mouseLeaveHandler}>
                 {itemArr.map((icon, iconId) => {
                     return (
                         <MyAnimatedIconStackItem mousePosition={mousePosition} containerRect={containerRect} key={iconId} iconId={iconId} >

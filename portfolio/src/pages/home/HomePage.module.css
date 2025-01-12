@@ -5,7 +5,6 @@
 }
 
 .main-row {
-    margin: 0px var(--spacing-s);
     display: flex;
     gap: var(--spacing-s);
 }
@@ -39,7 +38,12 @@
 }
 
 @media(max-width: 1025px) {
+    .container {
+        width: 100%;
+    }
+
     .main-row {
+        width: 100%;
         flex-direction: column;
         gap: var(--spacing-m);
     }
