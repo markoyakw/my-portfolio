@@ -6,10 +6,11 @@ import WorkExperienceCard from './InfoGrid/WorkExperienceCard/WorkExperienceCard
 import TechStackCard from './InfoGrid/TechStackCard/TechStackCard'
 import EducationCard from './InfoGrid/EducationCard/EducationCard'
 import LetsConnectButton from './InfoGrid/LetsConnectButton/LetsConnectButton'
+import { forwardRef } from 'react'
 
-const HomePage = () => {
+const HomePage = forwardRef<HTMLDivElement>((_, ref) => {
   return (
-    <div className={classes["container"]}>
+    <div className={classes["container"]} ref={ref}>
       <div className={classes["main-row"]}>
         <div className={classes["left-column"]}>
           <div className={classes["hello-location-and-connect-flexbox"]}>
@@ -34,6 +35,6 @@ const HomePage = () => {
       </div>
     </div>
   )
-}
+})
 
 export default HomePage

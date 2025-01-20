@@ -2,7 +2,7 @@ import { useState } from 'react'
 import MyCard from '@components/UI/MyCard/MyCard'
 import AddMLGGlassesOnHover from '@components/UI/animations/AddMLGGlassesOnHover/AddMLGGlassesOnHover'
 import WavyHand from '@components/UI/animations/WavyHand/WavyHand'
-import resumePhoto from "@assets/resume-photo.jpg"
+import resumePhoto from "@assets/resume/resume-photo.jpg"
 import MyAnimatedIconStack from '@components/UI/animations/MyAnimatedIconStack/MyAnimatedIconStack'
 import MyAnimatedLinks from './MyAnimatedLinks'
 import classes from "./HelloCard.module.css"

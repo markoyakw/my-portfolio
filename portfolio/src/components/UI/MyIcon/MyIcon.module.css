@@ -5,9 +5,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-
-.icon:not(.icon--with-label) {
     width: 45px;
     height: 45px;
 }
@@ -23,13 +20,13 @@
 }
 
 .icon--with-label {
-    height: 60%;
+    width: 80%;
 }
 
 .icon--with-label__container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     gap: var(--spacing-xs);
 }
@@ -37,4 +34,5 @@
 .icon-with-label__label {
     font-weight: bold;
     color: var(--color-text-primary);
+    max-height: calc(1em + 2 * var(--spacing-xs));
 }

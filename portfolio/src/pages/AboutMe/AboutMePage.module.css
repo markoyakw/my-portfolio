@@ -25,7 +25,6 @@
 }
 
 .card {
-    background-color: #70CDFF;
     color: var(--color-text-secondary);
     font-size: var(--font-size-m);
     gap: var(--spacing-l);
@@ -35,12 +34,16 @@
     grid-column: span 2;
 }
 
-.card:last-child {
-    background-color: #F9C04E;
+.card:first-child {
+    background-color: var(--color-variety-2);
 }
 
-.card:first-child {
-    background-color: #A485D6;
+.card:nth-child(2){
+    background-color: var(--color-variety-1);
+}
+
+.card:last-child {
+    background-color: var(--color-variety-3);
 }
 
 .card__list {

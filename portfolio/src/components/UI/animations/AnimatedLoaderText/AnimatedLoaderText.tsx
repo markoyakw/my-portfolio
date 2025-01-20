@@ -23,7 +23,7 @@ const AnimatedCharacter = (props: { char: string, charId: number }) => {
     )
 }
 
-const AnimatedElipsies: FC<TAnimatedElipsiesProps> = ({ children }) => {
+const AnimatedLoaderText: FC<TAnimatedElipsiesProps> = ({ children }) => {
     return (
         <span className={classes["container"]}>
             {children.split("").map((char, charId) => {
@@ -35,4 +35,4 @@ const AnimatedElipsies: FC<TAnimatedElipsiesProps> = ({ children }) => {
     )
 }
 
-export default AnimatedElipsies
+export default AnimatedLoaderText

@@ -69,7 +69,7 @@ const MyIcon: FC<TMyIconProps> = ({
 
     return (
         <span className={сlassName} style={style}>
-            <img src={IconNameDictionary[name]} alt={`icon - ${name} `} />
+            <img src={IconNameDictionary[name]} alt={`icon - ${name}`} />
         </span>
     )
 }

@@ -4,11 +4,12 @@ import { MdWorkOutline } from "react-icons/md"
 import { BsEmojiSunglassesFill } from "react-icons/bs"
 import AnimatedLoaderText from "@components/UI/animations/AnimatedLoaderText/AnimatedLoaderText"
 import AboutMeCard from "./AboutMeCard"
+import { forwardRef } from "react"
 
-const AboutMePage = () => {
+const AboutMePage = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
-    <div className={classes["container"]}>
+    <div className={classes["container"]} ref={ref}>
 
       <div className={classes["about-me-text"]}>
         <p>
@@ -60,6 +61,6 @@ const AboutMePage = () => {
 
     </div >
   )
-}
+})
 
 export default AboutMePage

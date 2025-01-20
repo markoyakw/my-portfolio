@@ -17,7 +17,6 @@ const MobileHeader: FC<TMobileHeaderProps> = ({ setIsSideBarOpenOnMobile }) => {
         const handleHeaderVisibilityAndScrollTopValue = () => {
             const scrollTop = document.documentElement.scrollTop
             setScrollTopState(oldValue => {
-                console.log(oldValue, scrollTop)
                 if (oldValue > scrollTopState) {
                     setIsMobileHeaderVisible(false)
                 }

@@ -12,10 +12,11 @@ const MainLayout: FC<TMainLayoutProps> = ({ children }) => {
 
   return (
     <div className={classes["layout"]}>
-      <Nav isSideBarOpenOnMobile={isSideBarOpenOnMobile} setIsSideBarOpenOnMobile={setIsSideBarOpenOnMobile} />
-      <div className={classes["layout__body"]}>
-        {children}
-      </div>
+      <Nav isSideBarOpenOnMobile={isSideBarOpenOnMobile} setIsSideBarOpenOnMobile={setIsSideBarOpenOnMobile} >
+        <div className={classes["layout__body"]}>
+          {children}
+        </div>
+      </Nav>
     </div>
   )
 }

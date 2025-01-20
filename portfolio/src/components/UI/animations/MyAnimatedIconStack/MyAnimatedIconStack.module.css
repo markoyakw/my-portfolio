@@ -1,7 +1,7 @@
 .animated-stack__container {
     width: 230px;
     height: 70px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 }
