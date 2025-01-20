@@ -6,8 +6,8 @@ import gradingFeatureImg from "@assets/project-screenshots/quizz-app/features/gr
 import sharingFeatureImg from "@assets/project-screenshots/quizz-app/features/sharing.png"
 import aiHighlightFeatureImg from "@assets/project-screenshots/quizz-app/features/ai-highlight.png"
 import newTestFeatureVideo from "@assets/project-screenshots/quizz-app/features/new-test-video.mp4"
-import MyProject from "../MyProject/MyProject"
-import { TMyProjectInfoButton } from "../MyProject/MyProjectInfoButton"
+import MyProject from "../MyProjectItem/MyProjectItem"
+import { TMyProjectInfoButton } from "../MyProjectItem/MyProjectInfoButton"
 import backgroundImageUrl from "@assets/project-screenshots/quizz-app/preview.png"
 
 const QuizzApp = () => {

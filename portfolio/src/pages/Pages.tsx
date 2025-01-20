@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import AboutMePage from "./aboutMe/AboutMePage.tsx"
 import HomePage from "./home/HomePage"
-import ProjectsPage from "./projects/ProjectsPage.tsx"
+import ProjectsPage from "./myProjects/ProjectsPage.tsx"
 import { useLocation, useNavigate } from "react-router-dom"
 import ResumePage from "./resume/ResumePage"
 import openResumePage from "@utils/openResumePage"
