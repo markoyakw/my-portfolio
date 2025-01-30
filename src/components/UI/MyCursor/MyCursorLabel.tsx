@@ -10,7 +10,7 @@ type TMyCursorLabelProps = {
 const MyCursorLabel: FC<TMyCursorLabelProps> = ({ children }) => {
     return (
         <div className={classes["custom-cursor__label"]}>
-            <MyCard padding='xs' addedStyle={{ backgroundColor: getRandomColor() }}>
+            <MyCard addedClassName={classes["custom-cursor__card"]} addedStyle={{ backgroundColor: getRandomColor() }}>
                 <div className={classes["custom-cursor__label-text"]}>
                     {children}
                 </div>

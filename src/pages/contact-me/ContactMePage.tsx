@@ -11,15 +11,14 @@ const ContactMePage = forwardRef<HTMLDivElement>((_, ref) => {
 
     const [value, setValue] = useState("")
     return (
-        <form>
-            <div ref={ref} className={classes["container"]}>
-                <h2>
-                    <p>Feel free to reach out, and I'll get back to you ASAP! 😊</p>
-                    <p>
-                        Or contact me via: <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
-                    </p>
-                </h2>
-                <MyCard addedClassName={classes["card"]}>
+        <form className={classes["container"]}>
+            <h2>Contact me:</h2>
+            <MyCard ref={ref} addedClassName={classes["main-card"]}>
+                <h3>
+                    Feel free to reach out, and I'll get back to you ASAP! 😊
+                    Or contact me via: <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
+                </h3>
+                <MyCard addedClassName={classes["form-card"]}>
                     <MyInput label="Name" addedClassName={classes["input"]} />
                     <MyInput label="Email/ Telephone number" addedClassName={classes["input"]} />
                     <MyTextArea
@@ -34,7 +33,7 @@ const ContactMePage = forwardRef<HTMLDivElement>((_, ref) => {
                         </MyButton>
                     </div>
                 </MyCard>
-            </div>
+            </MyCard>
         </form >
     )
 })

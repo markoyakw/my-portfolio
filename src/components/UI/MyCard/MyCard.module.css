@@ -3,6 +3,7 @@
     color: var(--color-text-secondary);
     border-radius: 35px;
     position: relative;
+    padding: var(--spacing-m);
 }
 
 .card a {

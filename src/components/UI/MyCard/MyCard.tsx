@@ -1,33 +1,26 @@
-import React, { CSSProperties, HTMLAttributes } from 'react'
+import React, { CSSProperties, forwardRef, HTMLAttributes } from 'react'
 import classes from "./MyCard.module.css"
-import { TCssSizeVariable } from '@/types/cssVariables';
 
-interface IMyCardProps extends HTMLAttributes<HTMLDivElement> {
+interface IMyCardProps extends Omit<HTMLAttributes<HTMLDivElement>, "className"> {
     children: React.ReactNode;
-    padding?: TCssSizeVariable;
     addedClassName?: string;
     addedStyle?: CSSProperties;
 }
 
-const MyCard: React.FC<IMyCardProps> = ({
+const MyCard = forwardRef<HTMLDivElement, IMyCardProps>(({
     addedClassName,
     children,
-    padding = "m",
     addedStyle,
     ...props
-}) => {
-
-    const myCardStyle = {
-        padding: `var(--spacing-${padding})`
-    }
+}, ref) => {
 
     const myCardClassName = `${classes["card"]} ${addedClassName}`
 
     return (
-        <div className={myCardClassName} {...props} style={{ ...myCardStyle, ...addedStyle }}>
+        <div ref={ref} className={myCardClassName} {...props} style={{ ...addedStyle }}>
             {children}
         </div >
     )
-}
+})
 
 export default MyCard

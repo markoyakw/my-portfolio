@@ -8,7 +8,12 @@
     display: contents;
 }
 
+.custom-cursor__card {
+    padding: var(--spacing-xs);
+}
+
 .custom-cursor__label {
+    font-size: var(--font-size-m);
     animation: custom-cursor__label---appear 0.15s
 }
 

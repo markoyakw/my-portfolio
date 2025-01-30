@@ -15,7 +15,7 @@
 
     max-width: calc(100% - var(--nav-bar-width-with-margins) - var(--spacing-s));
     margin-top: var(--spacing-s);
-    gap: var(--spacing-m);
+    gap: var(--spacing-l);
     display: flex;
     flex-direction: column;
     align-items: center;
