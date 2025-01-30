@@ -9,8 +9,6 @@
 }
 
 .custom-cursor__label {
-    --translate-initial: calc(50% + 20px), calc(-100% + 20px);
-    transform: translate(var(--translate-initial));
     animation: custom-cursor__label---appear 0.15s
 }
 
@@ -20,18 +18,18 @@
 
 @keyframes custom-cursor__label---appear {
     0% {
-        transform: translate(var(--translate-initial)) scale(1, 0.2);
+        transform: scale(1, 0.2);
     }
 
     30% {
-        transform: translate(var(--translate-initial)) scale(1, 0.8);
+        transform: scale(1, 0.8);
     }
 
     70% {
-        transform: translate(var(--translate-initial)) scale(1, 1.2);
+        transform: scale(1, 1.2);
     }
 
     100% {
-        transform: translate(var(--translate-initial)) scale(1, 1);
+        transform: scale(1, 1);
     }
 }

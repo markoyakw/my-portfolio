@@ -27,7 +27,7 @@ const MyCursor = forwardRef<HTMLDivElement, TMyCursor>((
         <div
             ref={cursorContainerRef}
             style={{
-                transform: `translate(${translateXPercent}%, ${translateYPercent}%)`,
+                translate: `${translateXPercent}% ${translateYPercent}%`,
                 top: mousePosition.y + 'px',
                 left: mousePosition.x + 'px',
                 ...showBasicCursorStyle

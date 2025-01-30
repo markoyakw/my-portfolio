@@ -1,6 +1,7 @@
 import classes from "../ProjectsPage.module.css"
 
-type TMyProjectFeaturesProps = 
+
+
 const MyProjectFeatures = () => {
     return (
         <div className={classes["card__feature-buttons-container"]}>

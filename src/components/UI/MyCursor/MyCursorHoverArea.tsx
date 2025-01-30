@@ -1,4 +1,4 @@
-import { FC, MouseEvent, ReactNode, useState, CSSProperties, useRef, useEffect } from 'react';
+import { FC, MouseEvent, ReactNode, useState, CSSProperties, useRef, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import classes from "./MyCursor.module.css"
 import MyCursor from './MyCursor';
@@ -26,6 +26,18 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
     const [mousePosition, setMousePosition] = useState<TMouseCoordinates>(null);
     const cursorContainerRef = useRef<HTMLDivElement>(null)
     const cursorPivot = useRef({ x: 0, y: 0 })
+    const portalRoot = document.getElementById('portal-root');
+    if (!portalRoot) return null;
+
+    const fromScreenBorderToCursorMargin = useMemo(() => {
+        const rootStyles = getComputedStyle(document.documentElement)
+        const spacingValue = rootStyles.getPropertyValue("--spacing-s").trim().slice(0, -2);
+        return Number(spacingValue)
+    }, [])
+
+    const showBasicCursorStyle: CSSProperties = disableBasicCursor
+        ? { cursor: "none" }
+        : {}
 
     const handleMouseMove = (e: MouseEvent) => {
         setMousePosition({
@@ -38,20 +50,6 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
         setMousePosition(null);
     };
 
-    const portalRoot = document.getElementById('portal-root');
-    if (!portalRoot) return null;
-
-    const showBasicCursorStyle: CSSProperties = disableBasicCursor
-        ? { cursor: "none" }
-        : {}
-
-    useEffect(() => {
-        if (!cursorContainerRef.current || !mousePosition) return
-        const { left, top } = cursorContainerRef.current.getBoundingClientRect();
-        cursorPivot.current.x = mousePosition.x - left
-        cursorPivot.current.y = mousePosition.y - top
-    }, [cursorContainerRef.current])
-
     const getNormalizedX = (x: number) => {
         if (!normalizeOverflowOutsideOfScreen) return x;
         const cursorContainer = cursorContainerRef.current;
@@ -60,7 +58,10 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
         const documentWidth = document.documentElement.clientWidth;
         const { width } = cursorContainer.getBoundingClientRect();
 
-        return Math.max(cursorPivot.current.x, Math.min(x, documentWidth - width * (1 + translateXPercent / 100)));
+        const minXWithMargin = cursorPivot.current.x + fromScreenBorderToCursorMargin
+        const maxXWithMargin = documentWidth - width * (1 + translateXPercent / 100) - fromScreenBorderToCursorMargin
+
+        return Math.max(minXWithMargin, Math.min(x, maxXWithMargin));
     };
 
     const getNormalizedY = (y: number) => {
@@ -71,8 +72,18 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
         const documentHeight = document.documentElement.clientHeight;
         const { height } = cursorContainer.getBoundingClientRect();
 
-        return Math.max(cursorPivot.current.y, Math.min(y, documentHeight - height * (1 + translateYPercent / 100)));
+        const minYWithMargin = cursorPivot.current.y + fromScreenBorderToCursorMargin
+        const maxYWithMargin = documentHeight - height * (1 + translateYPercent / 100) - fromScreenBorderToCursorMargin
+
+        return Math.max(minYWithMargin, Math.min(y, maxYWithMargin));
     };
+
+    useEffect(() => {
+        if (!cursorContainerRef.current || !mousePosition) return
+        const { left, top } = cursorContainerRef.current.getBoundingClientRect();
+        cursorPivot.current.x = mousePosition.x - left
+        cursorPivot.current.y = mousePosition.y - top
+    }, [cursorContainerRef.current])
 
     return (
         <div

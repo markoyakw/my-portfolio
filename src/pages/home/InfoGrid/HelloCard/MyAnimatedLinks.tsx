@@ -14,7 +14,7 @@ const MyAnimatedLinks = myLinksIconNameArr.map(name => {
 
     const linkLabelText = <>My {name} <HiExternalLink /></>
     return (
-        <MyCustomCursor cursor={<MyCursorLabel>{linkLabelText}</MyCursorLabel>}>
+        <MyCustomCursor cursor={<MyCursorLabel>{linkLabelText}</MyCursorLabel>} translateXPercent={25}>
             <a href={linkDictionary[name]} target="_blank">
                 <MyIcon rounded name={name} />
             </a>
