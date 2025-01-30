@@ -1,8 +1,7 @@
 .custom-cursor {
     position: fixed;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
     z-index: 9999;
+    pointer-events: none;
 }
 
 .custom-cursor__hover-container {

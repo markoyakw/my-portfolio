@@ -6,9 +6,8 @@ import gradingFeatureImg from "@assets/project-screenshots/quizz-app/features/gr
 import sharingFeatureImg from "@assets/project-screenshots/quizz-app/features/sharing.png"
 import aiHighlightFeatureImg from "@assets/project-screenshots/quizz-app/features/ai-highlight.png"
 import newTestFeatureVideo from "@assets/project-screenshots/quizz-app/features/new-test-video.mp4"
-import MyProject from "../MyProjectItem/MyProjectItem"
-import { TMyProjectInfoButton } from "../MyProjectItem/MyProjectInfoButton"
-import backgroundImageUrl from "@assets/project-screenshots/quizz-app/preview.png"
+import MyProject from "./MyProjectItem/MyProjectItem"
+import { TMyProjectInfoButton } from "./MyProjectItem/MyProjectFeatureButton"
 
 const QuizzApp = () => {
 
@@ -44,8 +43,6 @@ const QuizzApp = () => {
 
     return (
         <MyProject
-            href="https://github.com/markoyakw/diploma_frontend"
-            backgroundImageUrl={backgroundImageUrl}
             techStack={techStack}
             title="Quizz app for Master's degree final project"
             projectInfoButtonArr={projectInfoButtonArr}

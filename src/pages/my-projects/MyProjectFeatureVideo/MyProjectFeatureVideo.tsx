@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react'
 import classes from './MyProjectFeatureVideo.module.css'
 import getRandomColor from '@utils/getRandomColor'
 import AnimatedLoaderText from '@components/UI/animations/AnimatedLoaderText/AnimatedLoaderText';
-import MyCursorLabel from '@components/UI/MyCustomCursor/MyCursorLabel';
+import MyCursorLabel from '@components/UI/MyCursor/MyCursorLabel';
 
 type TPreviewVideo = {
     src?: string;

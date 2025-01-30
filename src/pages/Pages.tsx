@@ -1,12 +1,12 @@
-import { useEffect } from "react"
-import AboutMePage from "./aboutMe/AboutMePage"
+import { RefObject, useEffect } from "react"
+import AboutMePage from "./about-me/AboutMePage"
 import HomePage from "./home/HomePage"
-import ProjectsPage from "./myProjects/ProjectsPage"
+import ProjectsPage from "./my-projects/ProjectsPage"
 import { useLocation, useNavigate } from "react-router-dom"
 import ResumePage from "./resume/ResumePage"
 import openResumePage from "@utils/openResumePage"
 import useObserver from "@hooks/useObserveIntersection"
-import ContactMePage from "./contactMe/ContactMePage"
+import ContactMePage from "./contact-me/ContactMePage"
 
 const Pages = () => {
 
@@ -28,6 +28,14 @@ const Pages = () => {
     const [resumePageRef, isResumePageInView] = useObserver({
         threshold: 0.9,
     })
+
+    const pageToUrlDictionary: Record<string, RefObject<HTMLDivElement>> = {
+        "/": homePageRef,
+        "/about-me": aboutMePageRef,
+        "/my-projects": projectsPageRef,
+        "/contact-me": contactMePageRef,
+        "/resume": resumePageRef
+    }
 
     useEffect(() => {
         if (isHomePageInView) {
@@ -59,37 +67,23 @@ const Pages = () => {
         }
     }, [isResumePageInView])
 
+    const scrollToCorrespondingToPathnameElement = (pathname: string) => {
+        const pageRef = pageToUrlDictionary[pathname]
+        if (!pageRef || !pageRef.current) return
+        pageRef.current.scrollIntoView()
+    }
+
     useEffect(() => {
-        switch (location.pathname) {
-            case "/": {
-                homePageRef.current?.scrollIntoView()
-                break
-            }
-            case "/about-me": {
-                aboutMePageRef.current?.scrollIntoView()
-                break
-            }
-            case "/my-projects": {
-                projectsPageRef.current?.scrollIntoView()
-                break
-            }
-            case "/contact-me": {
-                contactMePageRef.current?.scrollIntoView()
-                break
-            }
-            case "/resume": {
-                resumePageRef.current?.scrollIntoView()
-                openResumePage()
-                break
-            }
-            default: {
-                break
-            }
+        const pathname = location.pathname as string
+        scrollToCorrespondingToPathnameElement(pathname)
+        if (pathname === "/resume") {
+            openResumePage()
         }
     }, [location])
 
     useEffect(() => {
         if (location.pathname.endsWith("*") || location.pathname.endsWith("/")) {
+            scrollToCorrespondingToPathnameElement(location.pathname.slice(0, -1))
             navigate(location.pathname.slice(0, -1))
         }
     }, [])
@@ -100,7 +94,7 @@ const Pages = () => {
             <AboutMePage ref={aboutMePageRef} />
             <ProjectsPage ref={projectsPageRef} />
             <ContactMePage ref={contactMePageRef} />
-            < ResumePage />
+            <ResumePage ref={resumePageRef} />
         </>
     )
 }

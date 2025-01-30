@@ -1,5 +1,4 @@
 .container {
-    --whole-card-hover-animation-time: 0.5s;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-m);
@@ -17,33 +16,16 @@ a {
     font-size: var(--font-size-xl);
 }
 
-.card__plain-color-background {
-    background-color: var(--color-accent-dark);
-    border-radius: 35px;
-}
-
 .card {
     cursor: pointer;
-    --card-height: 450px;
-    border-radius: inherit;
+    --card-height: 480px;
+    border-radius: 35px;
     overflow: hidden;
     padding: var(--spacing-s);
     display: flex;
     align-items: flex-start;
     height: var(--card-height);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    transition: all calc(var(--whole-card-hover-animation-time)/2);
-}
-
-.card--hovered {
-    background-position-x: 100vw;
-}
-
-.card__project-info-row {
-    height: 100%;
-    width: 100%;
+    background-color: var(--color-accent-dark);
     display: flex;
     gap: var(--spacing-s);
 }
@@ -53,48 +35,11 @@ a {
     background-color: var(--color-accent);
     border-radius: 35px;
     width: 40%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: var(--spacing-m);
-}
-
-.card__project-feature-list {
-    left: 0px;
-}
-
-.card--hovered .card__project-info-row {
-    --info-disappear-animation-time: calc(var(--whole-card-hover-animation-time)/2);
-    animation: card-hover-project-info var(--info-disappear-animation-time) forwards;
-}
-
-.card:not(.card--hovered) .card__project-info-row {
-    --info-disappear-animation-time: calc(var(--whole-card-hover-animation-time)/2);
-    animation: card-mouse-leave-project-info var(--info-disappear-animation-time) forwards;
-}
-
-@keyframes card-mouse-leave-project-info {
-    0% {
-        display: none;
-        opacity: 0%;
-    }
-
-    99% {
-        opacity: 100%;
-    }
-
-    100% {
-        display: flex;
-    }
-}
-
-@keyframes card-hover-project-info {
-    99% {
-        opacity: 0%;
-    }
-
-    100% {
-        display: none;
-    }
 }
 
 .card__project-feature-list ul {
@@ -123,13 +68,9 @@ a {
 }
 
 .card__tech-stack {
-    top: calc(100% - 95px);
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     gap: var(--spacing-xs);
-    flex-wrap: wrap;
-    padding: var(--spacing-m);
     background-color: var(--color-accent);
     border-radius: 35px;
 }
@@ -145,48 +86,13 @@ a {
 }
 
 .card__feature-buttons-container {
+    width: 60%;
     display: grid;
-    overflow: hidden;
-    height: 0%;
-    width: 0%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, minmax(auto, calc(var(--card-height)/4)));
     row-gap: var(--spacing-m);
     column-gap: var(--spacing-s);
-}
-
-@media(max-width: 700px) {
-    .card {
-        --card-height: 600px
-    }
-
-    .card__feature-buttons-container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(6, minmax(auto, calc(var(--card-height)/6)));
-    }
-}
-
-@keyframes card-hover-feature-buttons {
-    49% {
-        width: 0%;
-        height: 0%;
-    }
-
-    50% {
-        opacity: 0%;
-        width: 100%;
-        height: 100%;
-    }
-
-    100% {
-        width: 100%;
-        height: 100%;
-        opacity: 100%;
-    }
-}
-
-.card--hovered .card__feature-buttons-container {
-    animation: card-hover-feature-buttons var(--whole-card-hover-animation-time) forwards;
+    height: 100%;
 }
 
 .card__feature-button {

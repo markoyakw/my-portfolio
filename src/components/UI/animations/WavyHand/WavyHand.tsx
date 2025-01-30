@@ -1,6 +1,6 @@
 import { FC } from "react"
 import classes from "./WavyHand.module.css"
-import MyCustomCursor from "@components/UI/MyCustomCursor/MyCustomCursor"
+import MyCustomCursor from "@components/UI/MyCursor/MyCursorHoverArea"
 
 type TWavyHandProps = {
     isHovered?: boolean

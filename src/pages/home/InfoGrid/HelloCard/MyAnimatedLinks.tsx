@@ -1,5 +1,5 @@
-import MyCursorLabel from "@components/UI/MyCustomCursor/MyCursorLabel"
-import MyCustomCursor from "@components/UI/MyCustomCursor/MyCustomCursor"
+import MyCursorLabel from "@components/UI/MyCursor/MyCursorLabel"
+import MyCustomCursor from "@components/UI/MyCursor/MyCursorHoverArea"
 import MyIcon, { myLinksIconNameArr } from "@components/UI/MyIcon/MyIcon"
 import { HiExternalLink } from "react-icons/hi"
 

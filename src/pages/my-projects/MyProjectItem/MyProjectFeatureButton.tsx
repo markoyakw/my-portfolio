@@ -1,4 +1,4 @@
-import MyCustomCursor from '@components/UI/MyCustomCursor/MyCustomCursor'
+import MyCustomCursor from '@components/UI/MyCursor/MyCursorHoverArea'
 import { FC } from 'react'
 import PreviewVideo from '../MyProjectFeatureVideo/MyProjectFeatureVideo'
 import classes from "../ProjectsPage.module.css"
@@ -9,7 +9,7 @@ export type TMyProjectInfoButton = {
     title: string
 }
 
-const MyProjectInfoButton: FC<TMyProjectInfoButton> = ({ title, previewVideoSrc, previewImgSrc }) => {
+const MyProjectFeatureButton: FC<TMyProjectInfoButton> = ({ title, previewVideoSrc, previewImgSrc }) => {
     return (
         <MyCustomCursor cursor={
             <PreviewVideo title={title} src={previewVideoSrc} />
@@ -22,4 +22,4 @@ const MyProjectInfoButton: FC<TMyProjectInfoButton> = ({ title, previewVideoSrc,
     )
 }
 
-export default MyProjectInfoButton
+export default MyProjectFeatureButton
