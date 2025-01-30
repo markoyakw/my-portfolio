@@ -7,7 +7,7 @@
 
 .container label {
     color: var(--color-text-primary);
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-m);
     padding: var(--spacing-xs);
     background-color: var(--color-background);
     border-radius: 25px;

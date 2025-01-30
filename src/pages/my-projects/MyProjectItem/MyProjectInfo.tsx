@@ -12,17 +12,19 @@ type TMyProject = {
 
 const MyProjectInfo: FC<TMyProject> = ({ techStack, title, projectInfoButtonArr }) => {
     return (
-        <div className={classes["card__project-info-column"]}>
-            <h3 className={classes["card__project-title"]}>
-                {title}
-            </h3>
-            <div className={classes["card__project-feature-list"]}>
-                <h3>Functionality:</h3>
-                <ul>
-                    {projectInfoButtonArr.map(({ title }, featureId) => {
-                        return <li key={featureId}>{title}</li>
-                    })}
-                </ul>
+        <div className={classes["card__project-info-container"]}>
+            <div className={classes["card__project-title-and-feature-list-flexbox"]}>
+                <h3 className={classes["card__project-title"]}>
+                    {title}
+                </h3>
+                <div className={classes["card__project-feature-list"]}>
+                    <h3>Functionality:</h3>
+                    <ul>
+                        {projectInfoButtonArr.map(({ title }, featureId) => {
+                            return <li key={featureId}>{title}</li>
+                        })}
+                    </ul>
+                </div>
             </div>
             <div className={classes["card__tech-stack"]}>
                 {techStack.map((iconName, iconId) => <MyIconWithLabel

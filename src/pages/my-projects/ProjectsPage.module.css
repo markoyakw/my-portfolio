@@ -30,7 +30,7 @@ a {
     gap: var(--spacing-s);
 }
 
-.card__project-info-column {
+.card__project-info-container {
     padding: var(--spacing-m);
     background-color: var(--color-accent);
     border-radius: 35px;
@@ -40,6 +40,12 @@ a {
     flex-direction: column;
     justify-content: space-between;
     gap: var(--spacing-m);
+}
+
+.card__project-title-and-feature-list-flexbox {
+    display: flex;
+    gap: var(--spacing-m);
+    flex-direction: column;
 }
 
 .card__project-feature-list ul {
@@ -86,13 +92,13 @@ a {
 }
 
 .card__feature-buttons-container {
+    height: 100%;
     width: 60%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, minmax(auto, calc(var(--card-height)/4)));
     row-gap: var(--spacing-m);
     column-gap: var(--spacing-s);
-    height: 100%;
 }
 
 .card__feature-button {
@@ -120,12 +126,52 @@ a {
 }
 
 .card__arrow-icon {
-    font-size: 100px;
+    transition: all 0.1s;
+    font-size: 80px;
     align-self: center;
-    mix-blend-mode: exclusion;
     margin-left: var(--spacing-s);
+    opacity: 50%;
 }
 
 .card__arrow-icon:hover {
-    mix-blend-mode: normal;
+    opacity: 100%;
+}
+
+@media(max-width: 1300px) {
+    .card {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .card__feature-buttons-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .card__project-info-container {
+        width: 100%;
+        flex-direction: row-reverse;
+        gap: var(--spacing-xl);
+        justify-content: flex-end;
+        height: auto;
+    }
+
+    .card__tech-stack {
+        flex-direction: column;
+    }
+
+    .card__project-title-and-feature-list-flexbox {
+        gap: var(--spacing-m);
+    }
+
+    .card__project-feature-list ul {
+        height: 100%;
+        display: flex;
+        font-size: var(--font-size-m);
+    }
+
+    .card__arrow-icon {
+        rotate: 90deg;
+        margin: 0px;
+    }
 }

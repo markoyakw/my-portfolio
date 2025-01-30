@@ -36,7 +36,7 @@ const QuizzApp = () => {
             previewImgSrc: sharingFeatureImg,
         },
         {
-            title: "AI-assisted materials on failed questions topic",
+            title: "AI-assisted materials highlight",
             previewImgSrc: aiHighlightFeatureImg,
         }
     ]

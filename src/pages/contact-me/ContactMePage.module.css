@@ -11,16 +11,37 @@
 }
 
 .main-card {
+    min-height: 650px;
     display: flex;
     width: 100%;
     gap: var(--spacing-m);
     background-color: var(--color-variety-2-dark);
 }
 
-.main-card h3 {
+.main-card__contact-text {
+    display: flex;
+    flex-direction: column;
     width: 50%;
     color: var(--color-text-primary);
     font-size: var(--font-size-xl);
+    gap: var(--spacing-s);
+}
+
+.main-card__contact-text-icon {
+    display: flex;
+    margin: auto auto;
+    width: 70px;
+    height: 70px;
+    animation: phone-vibration 1s infinite;
+}
+
+.main-card__contact-text-icon-container {
+    display: flex;
+    margin: auto auto;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: pulsation 1s infinite;
 }
 
 .form-card {
@@ -30,7 +51,6 @@
     gap: var(--spacing-m);
     color: var(--color-text-secondary);
     background-color: var(--color-variety-2);
-    max-width: 600px;
     min-height: 550px;
 }
 
@@ -56,4 +76,71 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+}
+
+@media(max-width: 960px) {
+    .main-card {
+        flex-direction: column;
+    }
+
+    .form-card {
+        width: 100%;
+    }
+
+    .main-card__contact-text{
+        width: 100%;
+    }
+
+    .main-card__contact-text-icon-container{
+        display: none;
+    }
+}
+
+@keyframes phone-vibration {
+    0% {
+        rotate: 5deg;
+    }
+
+    10% {
+        rotate: -5deg;
+    }
+
+    20% {
+        rotate: 5deg;
+    }
+
+    30% {
+        rotate: -5deg;
+    }
+
+    40% {
+        rotate: 5deg;
+    }
+
+    60% {
+        rotate: -10deg;
+    }
+
+    100% {
+        rotate: 0deg;
+    }
+}
+
+@keyframes pulsation {
+    0% {
+        width: 100px;
+        background-color: #11c048;
+    }
+
+    60% {
+        width: 150px;
+        height: 150px;
+        background-color: transparent;
+    }
+
+    100% {
+        width: 100px;
+        height: 100px;
+        background-color: transparent;
+    }
 }

@@ -6,6 +6,7 @@ import { forwardRef, useState } from "react"
 import MyButton from "@components/UI/MyButton/MyButton"
 import MyAnimatedIconStack from "@components/UI/animations/MyAnimatedIconStack/MyAnimatedIconStack"
 import MyAnimatedLinks from "@pages/home/InfoGrid/HelloCard/MyAnimatedLinks"
+import { FaPhoneVolume } from "react-icons/fa6"
 
 const ContactMePage = forwardRef<HTMLDivElement>((_, ref) => {
 
@@ -14,10 +15,14 @@ const ContactMePage = forwardRef<HTMLDivElement>((_, ref) => {
         <form className={classes["container"]}>
             <h2>Contact me:</h2>
             <MyCard ref={ref} addedClassName={classes["main-card"]}>
-                <h3>
-                    Feel free to reach out, and I'll get back to you ASAP! 😊
-                    Or contact me via: <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
-                </h3>
+                <div className={classes["main-card__contact-text"]}>
+                    <p>Feel free to reach out, and I'll get back to you ASAP! 😊</p>
+                    <p>Or contact me via:</p>
+                    <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
+                    <div className={classes["main-card__contact-text-icon-container"]}>
+                        <FaPhoneVolume className={classes["main-card__contact-text-icon"]} />
+                    </div>
+                </div>
                 <MyCard addedClassName={classes["form-card"]}>
                     <MyInput label="Name" addedClassName={classes["input"]} />
                     <MyInput label="Email/ Telephone number" addedClassName={classes["input"]} />
