@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import QuizzApp from "./QuizzApp"
+import QuizzApp from "./projects/QuizzApp"
 import classes from "./ProjectsPage.module.css"
 
 const ProjectsPage = forwardRef<HTMLDivElement>((_, ref) => {

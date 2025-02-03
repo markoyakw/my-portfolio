@@ -23,7 +23,7 @@
     flex-direction: column;
     width: 50%;
     color: var(--color-text-primary);
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-l);
     gap: var(--spacing-s);
 }
 

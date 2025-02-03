@@ -2,7 +2,7 @@ import { TTechStackIcon } from '@components/UI/MyIcon/MyIcon'
 import classes from '../ProjectsPage.module.css'
 import { FC } from 'react';
 import MyIconWithLabel from '@components/UI/MyIcon/MyIconWithLabel';
-import { TMyProjectInfoButton } from './MyProjectFeatureButton';
+import { TMyProjectInfoButton } from './MyProjectFeatures/MyProjectFeatureButton';
 
 type TMyProject = {
     techStack: TTechStackIcon;

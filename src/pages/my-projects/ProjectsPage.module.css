@@ -4,6 +4,7 @@
     gap: var(--spacing-m);
     color: var(--color-text-primary);
     width: 100%;
+    transition: all 0.3s;
 }
 
 .container a:visited,
@@ -18,16 +19,16 @@ a {
 
 .card {
     cursor: pointer;
-    --card-height: 480px;
+    /* --card-height: 480px; */
     border-radius: 35px;
     overflow: hidden;
     padding: var(--spacing-s);
     display: flex;
     align-items: flex-start;
-    height: var(--card-height);
+    /* height: var(--card-height); */
     background-color: var(--color-accent-dark);
     display: flex;
-    gap: var(--spacing-s);
+    gap: var(--spacing-m);
 }
 
 .card__project-info-container {
@@ -91,14 +92,21 @@ a {
     font-size: var(--font-size-l);
 }
 
-.card__feature-buttons-container {
+.card__dropdown-container {
     height: 100%;
     width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-m);
+}
+
+.card__feature-buttons-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, minmax(auto, calc(var(--card-height)/4)));
-    row-gap: var(--spacing-m);
-    column-gap: var(--spacing-s);
+    /* grid-template-rows: repeat(4, minmax(auto, calc(var(--card-height)/4))); */
+    grid-template-rows: repeat(4, 1fr);
+    gap: var(--spacing-s);
+    overflow: hidden;
 }
 
 .card__feature-button {
@@ -128,13 +136,26 @@ a {
 .card__arrow-icon {
     transition: all 0.1s;
     font-size: 80px;
-    align-self: center;
-    margin-left: var(--spacing-s);
     opacity: 50%;
+}
+
+.card__arrow-icon--link {
+    align-self: center;
+}
+
+.card__arrow-icon--link:hover {
+    rotate: -45deg;
+}
+
+.card__arrow-icon--dropdown {
+    display: none;
+    align-self: center;
+    rotate: 90deg;
 }
 
 .card__arrow-icon:hover {
     opacity: 100%;
+    scale: 1.2;
 }
 
 @media(max-width: 1300px) {
@@ -143,9 +164,18 @@ a {
         height: auto;
     }
 
-    .card__feature-buttons-container {
+    .card__dropdown-container {
+        max-height: 0px;
+        overflow: hidden;
+    }
+
+    .card__dropdown-container--mobile-open {
         width: 100%;
-        height: auto;
+        animation: feature-buttons-menu-mobile-opening 0.3s forwards;
+    }
+
+    .card__dropdown-container--mobile-close {
+        animation: feature-buttons-menu-mobile-closing 0.3s forwards;
     }
 
     .card__project-info-container {
@@ -170,8 +200,58 @@ a {
         font-size: var(--font-size-m);
     }
 
-    .card__arrow-icon {
-        rotate: 90deg;
-        margin: 0px;
+    .card__arrow-icon--link {
+        display: none;
+    }
+
+    .card__arrow-icon--dropdown {
+        transition: rotate 0.3s;
+        display: flex;
+        margin-top: calc(var(--spacing-m) * -1);
+    }
+
+    .card__arrow-icon--dropdown-is-open {
+        display: flex;
+        rotate: -90deg;
+        margin-top: 0px;
     }
 }
+
+@media(max-width:600px) {
+    .card__feature-buttons-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+@keyframes feature-buttons-menu-mobile-opening {
+    0% {
+        max-height: 0px;
+    }
+
+    100% {
+        max-height: 1000px;
+    }
+}
+
+@keyframes feature-buttons-menu-mobile-closing {
+
+    0% {
+        width: 100%;
+        max-height: 1000px;
+    }
+
+    99% {
+        width: 100%;
+        max-height: 0px;
+    }
+
+    100% {
+        width: 60%;
+    }
+}
+
+
+/* @media (hover: none) {
+    .card__feature-buttons-container {}
+} */

@@ -23,6 +23,6 @@
 
 .input--text-area {
     overflow: hidden;
-    resize: vertical;
+    resize: none;
     font-size: var(--font-size-m);
 }

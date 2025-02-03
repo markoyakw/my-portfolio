@@ -1,6 +1,6 @@
 import { FC } from "react"
 import classes from "../ProjectsPage.module.css"
-import MyProjectFeatureButton, { TMyProjectInfoButton } from "./MyProjectFeatures/MyProjectFeatureButton";
+import MyProjectFeatureButton, { TMyProjectInfoButton } from "./MyProjectFeatureButton";
 import MyCursorLabel from "@components/UI/MyCursor/MyCursorLabel";
 import AnimatedLoaderText from "@components/UI/animations/AnimatedLoaderText/AnimatedLoaderText";
 
@@ -8,7 +8,7 @@ type TMyProjectFeaturesProps = {
     projectInfoButtonArr: TMyProjectInfoButton[];
 }
 
-const MyProjectFeatureInProgress = () => (
+const Test = () => (
     <MyCursorLabel>
         <h3 className={`${classes["card__feature-video-title"]} ${classes["card__feature-video-title--in-progress"]}`}>
             <AnimatedLoaderText>
@@ -29,7 +29,7 @@ const MyProjectFeatures: FC<TMyProjectFeaturesProps> = ({ projectInfoButtonArr }
                         previewVideoSrc={myProjectButton.previewVideoSrc}
                         title={myProjectButton.title}
                     />
-                    : <MyProjectFeatureInProgress />
+                    : <Test />
             })}
         </div>
     )

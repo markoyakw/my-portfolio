@@ -1,15 +1,14 @@
 import MyCustomCursor from '@components/UI/MyCursor/MyCursorHoverArea'
 import { FC } from 'react'
-import PreviewVideo from '../MyProjectFeatureVideo/MyProjectFeatureVideo'
-import classes from "../ProjectsPage.module.css"
-import MyProjectFeatureInProgress from '../MyProjectFeatureVideo/MyProjectFeatureInProgress'
+import PreviewVideo from '../../MyProjectFeatureVideo/MyProjectFeatureVideo'
+import classes from "../../ProjectsPage.module.css"
+import MyProjectFeatureInProgress from '../../MyProjectFeatureVideo/MyProjectFeatureInProgress'
 
 export type TMyProjectInfoButton = {
     previewVideoSrc?: string;
     previewImgSrc: string;
     title: string
 }
-
 
 
 const MyProjectFeatureButton: FC<TMyProjectInfoButton> = ({ title, previewVideoSrc, previewImgSrc }) => {
