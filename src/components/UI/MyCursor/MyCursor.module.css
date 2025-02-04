@@ -8,6 +8,10 @@
     display: contents;
 }
 
+.custom-cursor__hover-container--no-basic-cursor {
+    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR42mP4DwABBgAHAyH6EAAAAABJRU5ErkJggg=="), auto;
+}
+
 .custom-cursor__card {
     padding: var(--spacing-xs);
 }

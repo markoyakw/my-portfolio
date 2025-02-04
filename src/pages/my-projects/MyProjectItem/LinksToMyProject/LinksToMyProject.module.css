@@ -4,6 +4,10 @@
     gap: var(--spacing-s);
 }
 
+.project-links__cursor {
+    white-space: nowrap;
+}
+
 .project-links__link {
     display: grid;
     grid-template-columns: 45px auto 36.56px;

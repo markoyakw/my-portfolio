@@ -14,7 +14,7 @@
 }
 
 .link:hover {
-    color: var(--color-accent);
+    color: var(--color-primary);
 }
 
 .link--active:hover {

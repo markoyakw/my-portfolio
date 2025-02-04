@@ -4,7 +4,6 @@ import classes from "./MyCursor.module.css"
 
 type TMyCursor = {
     mousePosition: TMouseCoordinates;
-    showBasicCursorStyle?: CSSStyleSheet;
     translateXPercent: number;
     translateYPercent: number;
     children: ReactNode;
@@ -12,7 +11,6 @@ type TMyCursor = {
 
 const MyCursor = forwardRef<HTMLDivElement, TMyCursor>((
     {
-        showBasicCursorStyle,
         translateXPercent = 0,
         translateYPercent = 0,
         mousePosition,
@@ -30,7 +28,6 @@ const MyCursor = forwardRef<HTMLDivElement, TMyCursor>((
                 translate: `${translateXPercent}% ${translateYPercent}%`,
                 top: mousePosition.y + 'px',
                 left: mousePosition.x + 'px',
-                ...showBasicCursorStyle
             }}
             className={classes["custom-cursor"]}
         >

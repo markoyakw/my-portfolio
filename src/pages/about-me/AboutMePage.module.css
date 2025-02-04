@@ -38,7 +38,7 @@
     background-color: var(--color-variety-2);
 }
 
-.card:nth-child(2){
+.card:nth-child(2) {
     background-color: var(--color-variety-1);
 }
 
@@ -70,10 +70,12 @@
 
 .card__small-caption {
     font-size: var(--font-size-s);
+    font-style: italic;
     font-weight: bold;
 }
 
 .card h2 {
+    font-style: italic;
     display: flex;
     align-items: center;
     font-size: var(--font-size-l);

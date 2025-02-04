@@ -1,4 +1,4 @@
-import { FC, MouseEvent, ReactNode, useState, CSSProperties, useRef, useEffect, useMemo } from 'react';
+import { FC, MouseEvent, ReactNode, useState, useRef, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import classes from "./MyCursor.module.css"
 import MyCursor from './MyCursor';
@@ -12,15 +12,17 @@ type TMyCustomCursorProps = {
     normalizeOverflowOutsideOfScreen?: boolean;
     translateXPercent?: number;
     translateYPercent?: number;
+    noCursorChilrenArr?: HTMLElement[]
 }
 
 const MyCustomCursor: FC<TMyCustomCursorProps> = ({
     cursor,
     children,
     disableBasicCursor,
-    normalizeOverflowOutsideOfScreen = true,
+    normalizeOverflowOutsideOfScreen = false,
     translateXPercent = -50,
-    translateYPercent = -50
+    translateYPercent = -50,
+    noCursorChilrenArr
 }) => {
 
     const [mousePosition, setMousePosition] = useState<TMouseCoordinates>(null);
@@ -35,15 +37,29 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
         return Number(spacingValue)
     }, [])
 
-    const showBasicCursorStyle: CSSProperties = disableBasicCursor
-        ? { cursor: "none" }
-        : {}
-
     const handleMouseMove = (e: MouseEvent) => {
-        setMousePosition({
+
+        const isHoveredChildNoCursor = noCursorChilrenArr?.some(element => {
+            const target = e.target as Node
+            return element.contains(target)
+        })
+
+        const setCursorPositionToMousePosition = () => setMousePosition({
             x: getNormalizedX(e.clientX),
             y: getNormalizedY(e.clientY),
         });
+
+        if (!noCursorChilrenArr) {
+            setCursorPositionToMousePosition()
+            return
+        }
+
+        if (isHoveredChildNoCursor) {
+            setMousePosition(null)
+            return
+        }
+
+        setCursorPositionToMousePosition()
     };
 
     const handleMouseLeave = () => {
@@ -87,10 +103,12 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
 
     return (
         <div
-            className={classes["custom-cursor__hover-container"]}
-            style={{ ...showBasicCursorStyle }}
+            className={`${classes["custom-cursor__hover-container"]} ${disableBasicCursor ? classes["custom-cursor__hover-container--no-basic-cursor"] : ""}`}
+
+            onMouseOver={handleMouseMove}
             onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}>
+            onMouseLeave={handleMouseLeave}
+        >
 
             {children}
 

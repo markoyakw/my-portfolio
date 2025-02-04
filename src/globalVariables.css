@@ -24,20 +24,12 @@ html {
 }
 
 html {
-    --color-primary: #007bff;
-    --color-primary-light: #66b2ff;
-    --color-primary-dark: #0056b3;
-
-    --color-secondary: #6c757d;
-    --color-secondary-light: #a1a5aa;
-    --color-secondary-dark: #495057;
-        
-    --color-accent: #C3423F;
-    --color-accent-light: #db6866;
-    --color-accent-dark: #6e1b1a;
+    --color-primary: #C3423F;
+    --color-primary-light: #db6866;
+    --color-primary-dark: #6e1b1a;
 
     --color-surface: #c8c8c8;
-    --color-border: #545454;
+    --color-surface-dark: #495057;
 
     --color-text-primary: #f8f9fa;
     --color-text-secondary: #001011;
@@ -52,4 +44,9 @@ html {
     --color-variety-2: #A485D6;
     --color-variety-2-dark: #5A329A;
     --color-variety-3: #F9C04E;
+
+    --color-project-button-variety-1: black;
+    --color-project-button-variety-2: var(--color-primary);
+    --color-project-button-variety-3: #F46201;
+    --color-project-button-variety-4: #0E71FB;
 }

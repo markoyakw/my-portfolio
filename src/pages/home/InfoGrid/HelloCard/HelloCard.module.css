@@ -1,9 +1,10 @@
 .container {
-    background-color: var(--color-accent);
+    background-color: var(--color-primary);
     gap: var(--spacing-s);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-style: italic;
 }
 
 .my-pictire__container {

@@ -22,14 +22,14 @@ const Pages = () => {
     const [projectsPageRef, isProjectsPageInView] = useObserver({
         threshold: 0.9,
     })
-    const [contactMePageRef, isContactMePageInView] = useObserver({
+    const [contactMePageRef, isContactMePageInView] = useObserver<HTMLFormElement>({
         threshold: 0.9,
     })
     const [resumePageRef, isResumePageInView] = useObserver({
         threshold: 0.9,
     })
 
-    const pageToUrlDictionary: Record<string, RefObject<HTMLDivElement>> = {
+    const pageToUrlDictionary: Record<string, RefObject<HTMLElement>> = {
         "/": homePageRef,
         "/about-me": aboutMePageRef,
         "/my-projects": projectsPageRef,

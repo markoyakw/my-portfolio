@@ -10,7 +10,7 @@
     height: calc(100vh - var(--spacing-s) * 2);
     width: var(--nav-bar-width-with-padding);
     position: fixed;
-    background-color: var(--color-secondary-dark);
+    background-color: var(--color-surface-dark);
     margin: var(--spacing-s);
     padding: var(--spacing-s);
     border-radius: var(--nav-bar-border-radius);
@@ -45,7 +45,7 @@
 
 .nav-link-highlight--active {
     transition: top 0.2s, width 0.2s, height 0.2s;
-    background-color: var(--color-accent);
+    background-color: var(--color-primary);
 }
 
 /* mobile screen header */
@@ -82,7 +82,7 @@
     border-radius: 25px;
     height: var(--mobile-header-height);
     aspect-ratio: 1/1;
-    background-color: var(--color-accent);
+    background-color: var(--color-primary);
 }
 
 /* mobile screen nav-bar */

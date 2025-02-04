@@ -1,6 +1,6 @@
 .button {
     --animation-duration: 0.3s;
-    --animation-color: var(--color-accent);
+    --animation-color: var(--color-primary);
 
     position: relative;
     display: flex;

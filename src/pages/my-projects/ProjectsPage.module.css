@@ -18,7 +18,6 @@ a {
 }
 
 .card {
-    cursor: pointer;
     /* --card-height: 480px; */
     border-radius: 35px;
     overflow: hidden;
@@ -26,14 +25,14 @@ a {
     display: flex;
     align-items: flex-start;
     /* height: var(--card-height); */
-    background-color: var(--color-accent-dark);
+    background-color: var(--color-primary-dark);
     display: flex;
     gap: var(--spacing-m);
 }
 
 .card__project-info-container {
     padding: var(--spacing-m);
-    background-color: var(--color-accent);
+    background-color: var(--color-primary);
     border-radius: 35px;
     width: 40%;
     height: 100%;
@@ -74,11 +73,16 @@ a {
     margin-bottom: var(--spacing-s);
 }
 
+.card__project-title {
+    font-size: var(--font-size-l);
+    font-style: oblique;
+}
+
 .card__tech-stack {
     display: flex;
     justify-content: space-between;
     gap: var(--spacing-xs);
-    background-color: var(--color-accent);
+    background-color: var(--color-primary);
     border-radius: 35px;
 }
 
@@ -86,10 +90,6 @@ a {
     font-size: var(--font-size-xs);
     height: 55px;
     width: 40px;
-}
-
-.card__project-title {
-    font-size: var(--font-size-l);
 }
 
 .card__dropdown-container {
@@ -101,35 +101,29 @@ a {
 }
 
 .card__feature-buttons-container {
+    flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     /* grid-template-rows: repeat(4, minmax(auto, calc(var(--card-height)/4))); */
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: var(--spacing-s);
-    overflow: hidden;
 }
 
 .card__feature-button {
     width: 100%;
-    overflow: hidden;
     border-radius: 35px;
-    background-color: var(--color-accent);
+    background-color: var(--color-primary);
     gap: var(--spacing-s);
     display: grid;
     grid-template-rows: subgrid;
-    grid-row: span 2;
-}
-
-.card__feature-button-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    grid-row: span 1;
+    padding: var(--spacing-m);
+    text-align: center;
 }
 
 .card__feature-button h3 {
     width: 100%;
     font-weight: bold;
-    padding: var(--spacing-m) var(--spacing-s) 0px var(--spacing-m);
     font-size: var(--font-size-m);
 }
 

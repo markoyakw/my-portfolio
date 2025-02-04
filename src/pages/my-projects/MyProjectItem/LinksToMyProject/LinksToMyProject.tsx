@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import classes from "./LinksToMyProject.module.css"
 import MyIcon from '@components/UI/MyIcon/MyIcon'
 import { IoIosArrowDroprightCircle } from 'react-icons/io'
@@ -16,7 +16,7 @@ const LinkToProjectCursor = ({ url, children }: { url: string, children: ReactNo
     return (
         <MyCustomCursor translateXPercent={3} translateYPercent={-120} cursor={
             <MyCursorLabel>
-                {url} <HiExternalLink />
+                <span className={classes["project-links__cursor"]}>{url} <HiExternalLink /></span>
             </MyCursorLabel>
         }>
             {children}
@@ -24,9 +24,9 @@ const LinkToProjectCursor = ({ url, children }: { url: string, children: ReactNo
     )
 }
 
-const LinksToMyProject: FC<TLinksToMyProjectProps> = ({ githubUrl, appUrl }) => {
+const LinksToMyProject = forwardRef<HTMLDivElement, TLinksToMyProjectProps>(({ githubUrl, appUrl }, ref) => {
     return (
-        <div className={classes["project-links"]}>
+        <div className={classes["project-links"]} ref={ref}>
             <LinkToProjectCursor url={appUrl}>
                 <a href={appUrl} target='_blank' className={classes["project-links__link"]}>
                     <CgWebsite className={`${classes["project-links__logo--app"]} ${classes["project-links__logo"]}`} />
@@ -43,6 +43,6 @@ const LinksToMyProject: FC<TLinksToMyProjectProps> = ({ githubUrl, appUrl }) => 
             </LinkToProjectCursor>
         </div>
     )
-}
+})
 
 export default LinksToMyProject

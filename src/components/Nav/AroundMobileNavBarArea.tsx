@@ -17,7 +17,7 @@ const AroundMobileSideBarArea: FC<TAroundMobileSideBarAreaProps> = ({ setIsSideB
         <div onClick={handleOutsideOfNavBarClick} className={classes["mobile-nav-bar__not-nav-bar-area"]}>
             <div className={classes["mobile-nav-bar__tap-to-close-circle"]}>
                 <IoClose className={classes["mobile-nav-bar__tap-to-close-cross"]} />
-                <CircularText addedClassName={classes["mobile-nav-bar__tap-to-close-text"]}>
+                <CircularText addedCharClassName={classes["mobile-nav-bar__tap-to-close-text"]}>
                     Tap to close the menu
                 </CircularText>
             </div>

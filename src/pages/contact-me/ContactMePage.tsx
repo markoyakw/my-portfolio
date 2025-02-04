@@ -2,22 +2,27 @@ import MyInput from "@components/UI/MyInput/MyInput"
 import classes from "./ContactMePage.module.css"
 import MyCard from "@components/UI/MyCard/MyCard"
 import MyTextArea from "@components/UI/MyInput/MyTextArea"
-import { forwardRef, useState } from "react"
+import { FormEvent, forwardRef, useState } from "react"
 import MyButton from "@components/UI/MyButton/MyButton"
 import MyAnimatedIconStack from "@components/UI/animations/MyAnimatedIconStack/MyAnimatedIconStack"
 import MyAnimatedLinks from "@pages/home/InfoGrid/HelloCard/MyAnimatedLinks"
 import { FaPhoneVolume } from "react-icons/fa6"
 
-const ContactMePage = forwardRef<HTMLDivElement>((_, ref) => {
+const ContactMePage = forwardRef<HTMLFormElement>((_, ref) => {
 
     const [value, setValue] = useState("")
+
+    const onFormSubmit = async () => {
+        const res = await fetch("https://api.telegram.org/bot7978438245:AAF79rieHepHoViZtYGK54VnsEKk_4nW344/sendMessage?chat_id=5028575361&text=Enter your text here")
+        console.log(await res.json())
+    }
+
     return (
-        <form className={classes["container"]}>
+        <form className={classes["container"]} ref={ref} >
             <h2>Contact me:</h2>
-            <MyCard ref={ref} addedClassName={classes["main-card"]}>
+            <MyCard addedClassName={classes["main-card"]}>
                 <div className={classes["main-card__contact-text"]}>
-                    <p>Feel free to reach out, and I'll get back to you ASAP! 😊</p>
-                    <p>Or contact me via:</p>
+                    <p>Feel free to reach out, and I'll get back to you ASAP! Or contact me via:</p>
                     <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
                     <div className={classes["main-card__contact-text-icon-container"]}>
                         <FaPhoneVolume className={classes["main-card__contact-text-icon"]} />
@@ -33,7 +38,7 @@ const ContactMePage = forwardRef<HTMLDivElement>((_, ref) => {
                         maxRows={20}
                     />
                     <div className={classes["button__container"]}>
-                        <MyButton addedClassName={classes["button"]}>
+                        <MyButton addedClassName={classes["button"]} onClick={onFormSubmit} type="button">
                             Send
                         </MyButton>
                     </div>

@@ -1,5 +1,5 @@
 import MyCustomCursor from '@components/UI/MyCursor/MyCursorHoverArea'
-import { FC } from 'react'
+import { CSSProperties, FC, useMemo } from 'react'
 import PreviewVideo from '../../MyProjectFeatureVideo/MyProjectFeatureVideo'
 import classes from "../../ProjectsPage.module.css"
 import MyProjectFeatureInProgress from '../../MyProjectFeatureVideo/MyProjectFeatureInProgress'
@@ -7,11 +7,12 @@ import MyProjectFeatureInProgress from '../../MyProjectFeatureVideo/MyProjectFea
 export type TMyProjectInfoButton = {
     previewVideoSrc?: string;
     previewImgSrc: string;
-    title: string
+    title: string;
+    backgroundColor: CSSProperties["backgroundColor"]
 }
 
 
-const MyProjectFeatureButton: FC<TMyProjectInfoButton> = ({ title, previewVideoSrc, previewImgSrc }) => {
+const MyProjectFeatureButton: FC<TMyProjectInfoButton> = ({ title, previewVideoSrc, previewImgSrc, backgroundColor }) => {
 
     const getCursorProps = () => {
         if (previewVideoSrc) {
@@ -28,11 +29,16 @@ const MyProjectFeatureButton: FC<TMyProjectInfoButton> = ({ title, previewVideoS
         }
     }
 
+    const featureButtonStyle = useMemo<CSSProperties>(() => {
+        return {
+            backgroundColor: backgroundColor
+        }
+    }, [])
+
     return (
-        <MyCustomCursor {...getCursorProps()}>
-            <div className={classes["card__feature-button"]}>
+        <MyCustomCursor {...getCursorProps()} normalizeOverflowOutsideOfScreen>
+            <div className={classes["card__feature-button"]} style={featureButtonStyle}>
                 <h3>{title}</h3>
-                <img className={classes["card__feature-button-image"]} src={previewImgSrc} />
             </div>
         </MyCustomCursor>
     )

@@ -3,13 +3,14 @@ import classes from "./CircularText.module.css"
 
 type TCircularText = {
     children: string,
-    addedClassName?: string
+    addedCharClassName?: string,
+    addedContainerClassName?: string
 }
 
-const CircularText: FC<TCircularText> = ({ children, addedClassName }) => {
+const CircularText: FC<TCircularText> = ({ children, addedCharClassName, addedContainerClassName }) => {
     const text = children + " "
     const textLength = text.length
-    const circularTextClassName = `${classes["char-container"]} ${addedClassName || ""}`
+    const circularTextClassName = `${classes["char-container"]} ${addedCharClassName || ""}`
 
     const charsInCircularStringShape = useMemo(() => {
         return text.split("").map((char, charId) =>
@@ -25,7 +26,7 @@ const CircularText: FC<TCircularText> = ({ children, addedClassName }) => {
     }, [])
 
     return (
-        <div className={classes["container"]}>
+        <div className={`${classes["container"]} ${addedContainerClassName}`}>
             {charsInCircularStringShape}
         </div>
     )

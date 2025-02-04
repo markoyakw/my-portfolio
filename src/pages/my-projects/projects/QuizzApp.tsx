@@ -17,27 +17,33 @@ const QuizzApp = () => {
         {
             title: "Creating and edditing quizzes",
             previewImgSrc: newTestFeatureImg,
-            previewVideoSrc: newTestFeatureVideo
+            previewVideoSrc: newTestFeatureVideo,
+            backgroundColor: "var(--color-project-button-variety-4)"
         },
         {
             title: "6 types of questions",
             previewImgSrc: questionTypesFeatureImg,
+            backgroundColor: "var(--color-project-button-variety-2)"
         },
         {
             title: "Managing quizz time frame",
             previewImgSrc: timeFeatureImg,
+            backgroundColor: "var(--color-project-button-variety-2)"
         },
         {
             title: "Automatic grades and journal",
             previewImgSrc: gradingFeatureImg,
+            backgroundColor: "var(--color-project-button-variety-2)"
         },
         {
             title: "Sharing quizzes via link or QR-code",
             previewImgSrc: sharingFeatureImg,
+            backgroundColor: "var(--color-project-button-variety-2)"
         },
         {
             title: "AI-assisted materials highlight",
             previewImgSrc: aiHighlightFeatureImg,
+            backgroundColor: "var(--color-project-button-variety-3)"
         }
     ]
 

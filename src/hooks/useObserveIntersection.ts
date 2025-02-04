@@ -6,11 +6,11 @@ interface UseObserverOptions {
     threshold?: number | number[];  // Percentage of visibility (0 to 1)
 }
 
-const useObserver = (
+const useObserver = <T extends HTMLElement = HTMLDivElement>(
     options: UseObserverOptions = {}
-): [React.RefObject<HTMLDivElement>, boolean] => {
+): [React.RefObject<T>, boolean] => {
     const [inView, setInView] = useState(false);
-    const elementRef = useRef<HTMLDivElement>(null);
+    const elementRef = useRef<T>(null);
 
     useEffect(() => {
         const { root = null, rootMargin = '0px', threshold = 0 } = options;
