@@ -6,13 +6,12 @@ import MyProjectFeatureInProgress from '../../MyProjectFeatureVideo/MyProjectFea
 
 export type TMyProjectInfoButton = {
     previewVideoSrc?: string;
-    previewImgSrc: string;
     title: string;
     backgroundColor: CSSProperties["backgroundColor"]
 }
 
 
-const MyProjectFeatureButton: FC<TMyProjectInfoButton> = ({ title, previewVideoSrc, previewImgSrc, backgroundColor }) => {
+const MyProjectFeatureButton: FC<TMyProjectInfoButton> = ({ title, previewVideoSrc, backgroundColor }) => {
 
     const getCursorProps = () => {
         if (previewVideoSrc) {

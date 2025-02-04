@@ -6,7 +6,6 @@ import MyProjectInfoButton, { TMyProjectInfoButton } from './MyProjectFeatures/M
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import LinksToMyProject from './LinksToMyProject/LinksToMyProject';
 import MyCustomCursor from '@components/UI/MyCursor/MyCursorHoverArea';
-import CircularText from '@components/UI/CircularText/CircularText';
 import MyProjectHoverCursor from './MyProjectHoverCursor/MyProjectHoverCursor';
 
 type TMyProject = {
@@ -57,7 +56,6 @@ const MyProject: FC<TMyProject> = ({ techStack, title, projectInfoButtonArr, git
                         {projectInfoButtonArr.map((myProjectButton, myProjectButtonId) => {
                             return <MyProjectInfoButton
                                 key={myProjectButtonId}
-                                previewImgSrc={myProjectButton.previewImgSrc}
                                 previewVideoSrc={myProjectButton.previewVideoSrc}
                                 title={myProjectButton.title}
                                 backgroundColor={myProjectButton.backgroundColor}
