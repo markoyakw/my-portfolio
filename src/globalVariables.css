@@ -38,7 +38,9 @@ html {
     --color-success: #57df3c;
     --color-warning: #ffc107;
     --color-error: #dc3545;
+    --color-error-dark: rgb(182, 3, 3);
     --color-disabled: #a1a1a1;
+    --color-disabled-dark: #6c6c6c;
 
     --color-variety-1: #70CDFF;
     --color-variety-2: #A485D6;

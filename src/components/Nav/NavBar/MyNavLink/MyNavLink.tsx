@@ -8,6 +8,7 @@ type TNavLinkProps = {
     href: string,
     addedClassName?: string,
     setHoveredLinkRect: (rect: DOMRectReadOnly | null) => void,
+    onClick?: () => void
 }
 
 const MyNavLink: FC<TNavLinkProps> = ({
@@ -16,6 +17,7 @@ const MyNavLink: FC<TNavLinkProps> = ({
     href,
     addedClassName,
     setHoveredLinkRect,
+    onClick
 }) => {
 
     const NavLinkRef = useRef<HTMLAnchorElement>(null)
@@ -57,6 +59,7 @@ const MyNavLink: FC<TNavLinkProps> = ({
             className={({ isActive }) => getNavLinkClasses(isActive)}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={onClick}
         >
 
             <div className={classes["icon"]}>

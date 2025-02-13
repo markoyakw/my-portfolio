@@ -18,13 +18,11 @@ a {
 }
 
 .card {
-    /* --card-height: 480px; */
     border-radius: 35px;
     overflow: hidden;
     padding: var(--spacing-s);
     display: flex;
     align-items: flex-start;
-    /* height: var(--card-height); */
     background-color: var(--color-primary-dark);
     display: flex;
     gap: var(--spacing-m);
@@ -101,10 +99,10 @@ a {
 }
 
 .card__feature-buttons-container {
+    cursor: pointer;
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* grid-template-rows: repeat(4, minmax(auto, calc(var(--card-height)/4))); */
     grid-template-rows: repeat(2, 1fr);
     gap: var(--spacing-s);
 }

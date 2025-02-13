@@ -54,6 +54,10 @@
     min-height: 550px;
 }
 
+.form-card__form {
+    display: contents;
+}
+
 .input {
     width: 100%;
 }
@@ -87,11 +91,11 @@
         width: 100%;
     }
 
-    .main-card__contact-text{
+    .main-card__contact-text {
         width: 100%;
     }
 
-    .main-card__contact-text-icon-container{
+    .main-card__contact-text-icon-container {
         display: none;
     }
 }

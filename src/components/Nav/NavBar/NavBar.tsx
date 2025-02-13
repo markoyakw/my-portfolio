@@ -9,6 +9,7 @@ import { PiReadCvLogoFill } from "react-icons/pi"
 import ActiveNavLinkHighlight from "./ActiveNavLinkHighlight"
 import useGetActiveNavLinkRect from "./useGetActiveNavLinkRect"
 import getRelativeRect from "@utils/getRelativeRect"
+import openResumePage from "@utils/openResumePage"
 
 type TNavBar = {
     className: string,
@@ -44,7 +45,7 @@ const NavBar: FC<TNavBar> = ({ className }) => {
                         Contact me
                     </MyNavLink>
                 </div>
-                <MyNavLink href='/resume' icon={<PiReadCvLogoFill />} setHoveredLinkRect={setHoveredLinkRect}>
+                <MyNavLink href='/resume' icon={<PiReadCvLogoFill />} setHoveredLinkRect={setHoveredLinkRect} onClick={openResumePage}>
                     Resume
                 </MyNavLink>
                 {activeLinkRect && <ActiveNavLinkHighlight highlightedRect={activeLinkRect} addedClassName={`${classes["nav-link-highlight--active"]} `} />}

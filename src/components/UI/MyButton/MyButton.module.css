@@ -16,11 +16,46 @@
     font-size: var(--font-size-l);
 }
 
-.button__text {
+.button:disabled:not(.button--loading):not(.button--success):not(.button--error) {
+    background-color: var(--color-disabled);
+    animation: none;
+    color: var(--color-disabled-dark) !important;
+    border-color: var(--color-disabled-dark);
+}
+
+.button:disabled {
+    cursor: default;
+}
+
+.button:disabled::after {
+    display: none;
+}
+
+.button__text-container {
+    --top-padding: var(--spacing-s);
     z-index: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    height: var(--font-size-l);
+    width: 100%;
+}
+
+.button__status-icon-container {
+    transition: all 0.2s;
+    display: flex;
+    position: absolute;
+    width: 150%;
+    height: 300px;
+    border-radius: 0%;
+    transition: width 0.3s, height 0.3s, border-radius 0.2s;
+}
+
+.button__text {
+    position: absolute;
+    display: flex;
 }
 
 .button::after {
@@ -34,6 +69,8 @@
     height: 160px;
     border-radius: 50%;
 }
+
+/* Hover states */
 
 .button--hover-start::after {
     animation-name: hover;
@@ -88,5 +125,142 @@
         width: 100px;
         height: 100px;
         border-radius: 50%
+    }
+}
+
+/* Loading and response status state */
+
+.button--loading .button__text,
+.button--success .button__text,
+.button--error .button__text {
+    transition: all 0.2s;
+    scale: 0.5;
+    opacity: 0%;
+}
+
+.button--loading .button__status-icon-container,
+.button--success .button__status-icon-container,
+.button--error .button__status-icon-container {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.button--loading .button__status-icon-container::before {
+    display: flex;
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    animation: loading-spinner-rotation 1s linear infinite;
+    background: conic-gradient(from 0deg at 50% 50%, #000000FF 65%, #FFFFFFFF 75%)
+}
+
+.button--loading .button__status-icon-container::after {
+    display: flex;
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: black;
+    border-radius: 50%
+}
+
+
+@keyframes loading-spinner-rotation {
+    0% {
+        transform: rotate(0deg) scale(1) skew(0deg);
+    }
+
+    25% {
+        transform: rotate(90deg) scale(1, 2) skew(-55deg, 0deg);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1) skew(0deg, 0deg);
+    }
+
+    75% {
+        transform: rotate(270deg) scale(2, 1) skew(55deg, 0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1) skew(0deg, 0deg);
+    }
+}
+
+.button__error-icon {
+    margin-top: 8px;
+    display: none;
+    color: var(--color-error);
+    position: absolute;
+}
+
+.button__checkmark-icon {
+    margin-top: 8px;
+    display: none;
+    color: var(--color-success);
+    position: absolute;
+}
+
+.button--error .button__error-icon {
+    display: block;
+}
+
+.button--success .button__checkmark-icon {
+    display: block;
+}
+
+.button--success .button__status-icon-container,
+.button--error .button__status-icon-container {
+    animation: success 0.3s, hide-status-icon 0.9s forwards;
+}
+
+.button--success .button__text {
+    animation: show-button-text 0.9s forwards;
+}
+
+@keyframes show-button-text {
+    66% {
+        display: flex;
+        opacity: 0%;
+    }
+
+    100% {
+        scale: 1;
+        opacity: 100%;
+    }
+}
+
+@keyframes hide-status-icon {
+    66% {
+        width: 50px;
+        height: 50px;
+        opacity: 100%;
+    }
+
+    100% {
+        width: 150%;
+        height: 300px;
+        opacity: 0%;
+    }
+}
+
+@keyframes success {
+    0% {
+        transform: translateY(20px);
+    }
+
+    70% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
     }
 }

@@ -1,15 +1,32 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs);
     align-items: flex-start;
+    gap: var(--spacing-xs);
 }
 
-.container label {
+.label-and-error-container {
+    font-size: var(--font-size-s);
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.label-and-error-container label {
     color: var(--color-text-primary);
-    font-size: var(--font-size-m);
+    padding: var(--spacing-xs) var(--spacing-s);
+    background-color: var(--color-variety-2-dark);
+    border-radius: 25px;
+    width: min-content;
+    display: flex;
+    align-items: center;
+}
+
+.error {
+    align-self: flex-end;
+    font-size: var(--font-size-s);
+    font-weight: bold;
+    color: var(--color-error-dark);
     padding: var(--spacing-xs);
-    background-color: var(--color-background);
     border-radius: 25px;
 }
 
@@ -25,4 +42,15 @@
     overflow: hidden;
     resize: none;
     font-size: var(--font-size-m);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }

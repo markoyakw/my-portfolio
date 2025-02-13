@@ -4,7 +4,6 @@ import HomePage from "./home/HomePage"
 import ProjectsPage from "./my-projects/ProjectsPage"
 import { useLocation, useNavigate } from "react-router-dom"
 import ResumePage from "./resume/ResumePage"
-import openResumePage from "@utils/openResumePage"
 import useObserver from "@hooks/useObserveIntersection"
 import ContactMePage from "./contact-me/ContactMePage"
 
@@ -22,7 +21,7 @@ const Pages = () => {
     const [projectsPageRef, isProjectsPageInView] = useObserver({
         threshold: 0.9,
     })
-    const [contactMePageRef, isContactMePageInView] = useObserver<HTMLFormElement>({
+    const [contactMePageRef, isContactMePageInView] = useObserver({
         threshold: 0.9,
     })
     const [resumePageRef, isResumePageInView] = useObserver({
@@ -76,9 +75,9 @@ const Pages = () => {
     useEffect(() => {
         const pathname = location.pathname as string
         scrollToCorrespondingToPathnameElement(pathname)
-        if (pathname === "/resume") {
-            openResumePage()
-        }
+        // if (pathname === "/resume") {
+        //     openResumePage()
+        // }
     }, [location])
 
     useEffect(() => {
