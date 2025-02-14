@@ -25,6 +25,8 @@ export const ContactMeForm = () => {
     const [isSubmitSuccessful, setIsSubmitSuccessful] = useState<boolean | undefined>(undefined)
     const isSubmitSuccessfulTimerRef = useRef<NodeJS.Timeout>()
     const [resetFormAfterSuccessDelay, startResetFormAfterSuccessDelay] = useDelay(RESPONSE_STATUS_ANIMATION_DELAY)
+ 
+    const apiKey = import.meta.env.VITE_TELEGRAM_API_KEY
 
     const { register, getValues, watch, handleSubmit, trigger, setValue, reset, formState: { errors, isValid, isDirty, touchedFields } } = useForm<TContactMeFormData>(
         {
@@ -48,7 +50,7 @@ export const ContactMeForm = () => {
         setIsSubmitSuccessful(undefined)
         setIsSubmitting(true)
         const formDataJson = JSON.stringify(data)
-        const res = await fetch(`https://api.telegram.org/bot7978438245:AAF79rieHepHoViZtYGK54VnsEKk_4nW344/sendMessage?chat_id=5028575361&text=${formDataJson}`)
+        const res = await fetch(`https://api.telegram.org/bot${apiKey}/sendMessage?chat_id=5028575361&text=${formDataJson}`)
         if (res.ok) {
             setIsSubmitSuccessful(true)
         }
