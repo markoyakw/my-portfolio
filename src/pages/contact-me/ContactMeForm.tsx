@@ -4,7 +4,10 @@ import MyInput from '@components/UI/MyInput/MyInput'
 import MyTextArea from '@components/UI/MyInput/MyTextArea'
 import classes from "./ContactMePage.module.css"
 import { useForm } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import MyPopupMessage from '@components/UI/MyPopupMessage/MyPopupMessage'
+import useDelay from '@hooks/useDelay'
+import isEmptyObject from '@utils/isEmptyObject'
 
 type TContactMeFormData = {
     name?: string,
@@ -13,12 +16,17 @@ type TContactMeFormData = {
     message: string
 }
 
+const RESET_IS_SUBMIT_SUCCESSFUL_TIME_MS = 3000
+const RESPONSE_STATUS_ANIMATION_DELAY = 1000
+
 export const ContactMeForm = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitSuccessful, setIsSubmitSuccessful] = useState<boolean | undefined>(undefined)
+    const isSubmitSuccessfulTimerRef = useRef<NodeJS.Timeout>()
+    const [resetFormAfterSuccessDelay, startResetFormAfterSuccessDelay] = useDelay(RESPONSE_STATUS_ANIMATION_DELAY)
 
-    const { register, getValues, watch, handleSubmit, trigger, setValue, formState: { errors, isValid, isDirty } } = useForm<TContactMeFormData>(
+    const { register, getValues, watch, handleSubmit, trigger, setValue, reset, formState: { errors, isValid, isDirty, touchedFields } } = useForm<TContactMeFormData>(
         {
             mode: "all",
             defaultValues: {
@@ -29,6 +37,12 @@ export const ContactMeForm = () => {
             }
         }
     )
+
+    useEffect(() => {
+        if (resetFormAfterSuccessDelay) {
+            reset()
+        }
+    }, [resetFormAfterSuccessDelay])
 
     const onFormSubmit = async (data: TContactMeFormData) => {
         setIsSubmitSuccessful(undefined)
@@ -45,10 +59,25 @@ export const ContactMeForm = () => {
     }
 
     useEffect(() => {
+        const resetisSubmitSuccessful = () => {
+            setIsSubmitSuccessful(undefined)
+        }
+        if (isSubmitSuccessful === true || isSubmitSuccessful === false) {
+            isSubmitSuccessfulTimerRef.current = setTimeout(resetisSubmitSuccessful, RESET_IS_SUBMIT_SUCCESSFUL_TIME_MS)
+        }
+        if (isSubmitSuccessful) {
+            startResetFormAfterSuccessDelay()
+        }
+        return () => clearTimeout(isSubmitSuccessfulTimerRef.current)
+    }, [isSubmitSuccessful])
+
+    useEffect(() => {
+        if (isEmptyObject(touchedFields)) return
         trigger("email")
     }, [watch("phoneNumber"), trigger])
 
     useEffect(() => {
+        if (isEmptyObject(touchedFields)) return
         trigger("phoneNumber")
     }, [watch("email")])
 
@@ -108,6 +137,9 @@ export const ContactMeForm = () => {
                         Send
                     </MyButton>
                 </div>
+
+                <MyPopupMessage message='Your message was successfully sent 🚀' type='success' delay={RESPONSE_STATUS_ANIMATION_DELAY} isVisible={isSubmitSuccessful === true} />
+                <MyPopupMessage message='Unexpected error 😵 Try again later.' type='error' delay={RESPONSE_STATUS_ANIMATION_DELAY} isVisible={isSubmitSuccessful === false} />
 
             </form>
         </MyCard>

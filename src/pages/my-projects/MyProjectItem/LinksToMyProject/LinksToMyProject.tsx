@@ -14,7 +14,7 @@ type TLinksToMyProjectProps = {
 
 const LinkToProjectCursor = ({ url, children }: { url: string, children: ReactNode }) => {
     return (
-        <MyCustomCursor translateXPercent={3} translateYPercent={-120} cursor={
+        <MyCustomCursor translateXPercent={3} translateYPercent={-120} normalizeOverflowOutsideOfScreen cursor={
             <MyCursorLabel>
                 <span className={classes["project-links__cursor"]}>{url} <HiExternalLink /></span>
             </MyCursorLabel>

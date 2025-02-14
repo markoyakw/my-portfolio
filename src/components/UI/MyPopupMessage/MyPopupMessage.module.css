@@ -1,0 +1,32 @@
+.popup-message {
+    position: fixed;
+    width: 80vw;
+    min-width: 300px;
+    background-color: var(--color-variety-3);
+    height: 60px;
+    border-top-right-radius: 35px;
+    border-top-left-radius: 35px;
+    padding: var(--spacing-m);
+    font-size: var(--font-size-m);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 10px 5px black;
+    top: calc(100vh - 60px);
+    left: 10%;
+    z-index: 99;
+
+    transition: top 0.3s;
+}
+
+.popup-message--hidden {
+    top: 100vh
+}
+
+.popup-message--success {
+    background-color: var(--color-success-light);
+}
+
+.popup-message--error {
+    background-color: var(--color-error);
+}

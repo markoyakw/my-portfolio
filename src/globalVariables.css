@@ -36,6 +36,7 @@ html {
     --color-text-link: white;
 
     --color-success: #57df3c;
+    --color-success-light: #8ce07b;
     --color-warning: #ffc107;
     --color-error: #dc3545;
     --color-error-dark: rgb(182, 3, 3);
