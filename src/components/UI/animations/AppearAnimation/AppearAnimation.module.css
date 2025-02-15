@@ -1,15 +1,18 @@
-/* .container {
-    position: relative;
-    display: block;
-    animation: appear 0.5s ease-out;
+.container {
+    display: contents;
     animation-delay: var(--animation-delay);
     animation-fill-mode: forwards;
     left: var(--appear-from-x);
-    top: var(--appear-from-y)
+    top: var(--appear-from-y);
+
+    opacity: 0%;
+    filter: blur(3px);
+    transform: translateX(var(--appear-from-x, 0px)) translateY(var(--appear-from-y, 0px));
+    animation: appear 0.5s ease-out;
 }
 
 .container--from-left {
-    --appear-from-x: -100vw
+    --appear-from-x: -100vw;
 }
 
 .container--from-right {
@@ -28,19 +31,13 @@
     0% {
         opacity: 0%;
         filter: blur(3px);
-        left: var(--appear-from-x);
-        top: var(--appear-from-y)
-    }
-
-    99% {
-        display: block;
-        opacity: 100%;
-        filter: blur(0px);
-        left: 0px;
-        top: 0px;
+        transform: translateX(var(--appear-from-x, 0px)) translateY(var(--appear-from-y, 0px));
     }
 
     100% {
-        display: contents;
+        display: block;
+        opacity: 100%;
+        filter: blur(0px);
+        transform: translate(0px 0px);
     }
-} */
+}

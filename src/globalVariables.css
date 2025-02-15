@@ -52,4 +52,7 @@ html {
     --color-project-button-variety-2: var(--color-primary);
     --color-project-button-variety-3: #F46201;
     --color-project-button-variety-4: #0E71FB;
+
+    --box-shadow: 0px 5px 10px 5px black;
+    --box-shadow-light: 0px 4px 5px 2px rgba(0, 0, 0, 0.257);
 }

@@ -25,10 +25,11 @@ export const ContactMeForm = () => {
     const [isSubmitSuccessful, setIsSubmitSuccessful] = useState<boolean | undefined>(undefined)
     const isSubmitSuccessfulTimerRef = useRef<NodeJS.Timeout>()
     const [resetFormAfterSuccessDelay, startResetFormAfterSuccessDelay] = useDelay(RESPONSE_STATUS_ANIMATION_DELAY)
- 
+    const [isTouched, setIsTouched] = useState(false)
+
     const apiKey = import.meta.env.VITE_TELEGRAM_API_KEY
 
-    const { register, getValues, watch, handleSubmit, trigger, setValue, reset, formState: { errors, isValid, isDirty, touchedFields } } = useForm<TContactMeFormData>(
+    const { register, getValues, watch, handleSubmit, trigger, setValue, reset, formState: { errors } } = useForm<TContactMeFormData>(
         {
             mode: "all",
             defaultValues: {
@@ -42,23 +43,10 @@ export const ContactMeForm = () => {
 
     useEffect(() => {
         if (resetFormAfterSuccessDelay) {
+            setIsTouched(false)
             reset()
         }
     }, [resetFormAfterSuccessDelay])
-
-    const onFormSubmit = async (data: TContactMeFormData) => {
-        setIsSubmitSuccessful(undefined)
-        setIsSubmitting(true)
-        const formDataJson = JSON.stringify(data)
-        const res = await fetch(`https://api.telegram.org/bot${apiKey}/sendMessage?chat_id=5028575361&text=${formDataJson}`)
-        if (res.ok) {
-            setIsSubmitSuccessful(true)
-        }
-        else {
-            setIsSubmitSuccessful(false)
-        }
-        setIsSubmitting(false)
-    }
 
     useEffect(() => {
         const resetisSubmitSuccessful = () => {
@@ -74,18 +62,41 @@ export const ContactMeForm = () => {
     }, [isSubmitSuccessful])
 
     useEffect(() => {
-        if (isEmptyObject(touchedFields)) return
+        if (!isTouched) return
         trigger("email")
-    }, [watch("phoneNumber"), trigger])
+    }, [watch("phoneNumber")])
 
     useEffect(() => {
-        if (isEmptyObject(touchedFields)) return
+        if (!isTouched) return
         trigger("phoneNumber")
     }, [watch("email")])
 
+    const onFormSubmit = async (data: TContactMeFormData) => {
+        setIsSubmitSuccessful(undefined)
+        setIsSubmitting(true)
+        const formDataJson = JSON.stringify(data)
+        const res = await fetch(`https://api.telegram.org/bot${apiKey}/sendMessage?chat_id=5028575361&text=${formDataJson}`)
+        if (res.ok) {
+            setIsSubmitSuccessful(true)
+        }
+        else {
+            setIsSubmitSuccessful(false)
+        }
+        setIsSubmitting(false)
+    }
+
+    const onFormError = () => {
+        setIsTouched(true)
+    }
+
+    const onFormTouch = () => {
+        if (isTouched) return
+        setIsTouched(true)
+    }
+
     return (
         <MyCard addedClassName={classes["form-card"]}>
-            <form onSubmit={handleSubmit(onFormSubmit)} className={classes["form-card__form"]}>
+            <form onChange={onFormTouch} onSubmit={handleSubmit(onFormSubmit, onFormError)} className={classes["form-card__form"]}>
 
                 <MyInput label="Name" error={errors["name"]?.message?.toString()} addedClassName={classes["input"]}
                     {...register("name", {
@@ -134,7 +145,7 @@ export const ContactMeForm = () => {
 
                 <div className={classes["button__container"]}>
                     <MyButton addedClassName={classes["button"]} type="submit"
-                        disabled={!isValid && isDirty} isLoading={isSubmitting} isSubmitSuccessful={isSubmitSuccessful}
+                        disabled={!isEmptyObject(errors) && isTouched} isLoading={isSubmitting} isSubmitSuccessful={isSubmitSuccessful}
                     >
                         Send
                     </MyButton>

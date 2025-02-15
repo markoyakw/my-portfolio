@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 5px 10px 5px black;
+    box-shadow: var(--box-shadow);
     top: calc(100vh - 60px);
     left: 10%;
     z-index: 99;

@@ -7,6 +7,7 @@ import TechStackCard from './InfoGrid/TechStackCard/TechStackCard'
 import EducationCard from './InfoGrid/EducationCard/EducationCard'
 import LetsConnectButton from './InfoGrid/LetsConnectButton/LetsConnectButton'
 import { forwardRef } from 'react'
+import AppearAnimation from '@components/UI/animations/AppearAnimation/AppearAnimation'
 
 const HomePage = forwardRef<HTMLDivElement>((_, ref) => {
   return (
@@ -15,22 +16,37 @@ const HomePage = forwardRef<HTMLDivElement>((_, ref) => {
         <div className={classes["left-column"]}>
           <div className={classes["hello-location-and-connect-flexbox"]}>
 
-            <HelloCard />
+            <AppearAnimation type='from-top'>
+              <HelloCard />
+            </AppearAnimation>
 
-            <div className={classes["location-and-connect-row"]}>
-              <LocationCard />
-              <LetsConnectButton />
-            </div>
+            <AppearAnimation type='from-left' delay="1s">
+              <div className={classes["location-and-connect-row"]}>
+                <LocationCard />
+                <AppearAnimation type='from-left' delay="2s">
+                  <LetsConnectButton />
+                </AppearAnimation>
+              </div>
+            </AppearAnimation>
 
           </div>
-          <WorkPositionCard />
 
-          <TechStackCard />
+          <AppearAnimation type='from-left'>
+            <WorkPositionCard />
+          </AppearAnimation>
+
+          <AppearAnimation type='from-bottom'>
+            <TechStackCard />
+          </AppearAnimation>
         </div>
         <div className={classes["right-column"]}>
-          <WorkExperienceCard />
+          <AppearAnimation type='from-top'>
+            <WorkExperienceCard />
+          </AppearAnimation>
 
-          <EducationCard />
+          <AppearAnimation type='from-bottom'>
+            <EducationCard />
+          </AppearAnimation>
         </div>
       </div>
     </div>

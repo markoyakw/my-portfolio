@@ -117,6 +117,8 @@ a {
     grid-row: span 1;
     padding: var(--spacing-m);
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .card__feature-button h3 {

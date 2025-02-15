@@ -17,7 +17,7 @@ const AppearAnimation: FC<TAppearAnimationProps> = ({ children, type, delay, add
 
     useEffect(() => {
         if (!containerRef.current || !delay) return
-        containerRef.current.style.setProperty("--animation-delay", delay)
+        // containerRef.current.style.setProperty("--animation-delay", delay)
     }, [])
 
     return (
