@@ -6,6 +6,7 @@ import { PiReadCvLogoFill } from "react-icons/pi"
 import classes from "./ResumePage.module.css"
 
 const ResumePage = forwardRef<HTMLDivElement>((_, ref) => {
+
     return (
         <div ref={ref} className={classes["container"]}>
             <h2>For more information, you can check out my resume below <FaArrowDown /></h2>

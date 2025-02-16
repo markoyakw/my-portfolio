@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import MyCard from '@components/UI/MyCard/MyCard'
 import AddMLGGlassesOnHover from '@components/UI/animations/AddMLGGlassesOnHover/AddMLGGlassesOnHover'
 import WavyHand from '@components/UI/animations/WavyHand/WavyHand'
@@ -6,12 +6,19 @@ import resumePhoto from "@assets/resume/resume-photo.jpg"
 import MyAnimatedIconStack from '@components/UI/animations/MyAnimatedIconStack/MyAnimatedIconStack'
 import MyAnimatedLinks from './MyAnimatedLinks'
 import classes from "./HelloCard.module.css"
+import useAppearAnimationAttributes from '@hooks/useAppearAnimationProps/useAppearAnimationProps'
 
-const HelloCard = () => {
+const HelloCard: FC<{ isInView?: boolean }> = ({ isInView }) => {
+
     const [isHelloCardHovered, setIsHelloCardHovered] = useState(false)
+    const { animationClassName } = useAppearAnimationAttributes({
+        type: "from-top",
+        show: isInView
+    })
+    const containerClassName = `${classes["container"]} ${animationClassName}`
 
     return (
-        <MyCard onMouseEnter={() => setIsHelloCardHovered(true)} onMouseLeave={() => setIsHelloCardHovered(false)} addedClassName={classes["container"]}>
+        <MyCard onMouseEnter={() => setIsHelloCardHovered(true)} onMouseLeave={() => setIsHelloCardHovered(false)} addedClassName={containerClassName}>
             <div className={classes["greetings__container"]}>
                 <div className={classes["greetings__text"]}>
                     Hello <WavyHand isHovered={isHelloCardHovered} />

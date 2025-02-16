@@ -1,12 +1,13 @@
 import { CSSProperties, useMemo } from "react"
 import classes from "./appearAnimation.module.css"
 
-type TAppearType = "from-top" | "from-bottom" | "from-left" | "from-right"
+type TAppearType = "from-top" | "from-bottom" | "from-left" | "from-right" | "fade-in"
 
 type TAppearAnimationProps = {
     type: TAppearType,
     delay?: CSSProperties["animationDelay"],
-    addedClassName?: string
+    addedClassName?: string,
+    show?: boolean
 }
 
 type TAnimationAttributes = {
@@ -14,11 +15,11 @@ type TAnimationAttributes = {
     delayStyle: CSSProperties
 }
 
-const useAppearAnimationAttributes = ({ type, delay }: TAppearAnimationProps): TAnimationAttributes => {
+const useAppearAnimationAttributes = ({ type, delay, show = true }: TAppearAnimationProps): TAnimationAttributes => {
 
     const animationAttributes = useMemo(() => {
 
-        const animationClassName = `${classes["appear-container"]} ${classes["appear-container--" + type]}`
+        const animationClassName = `${classes["appear-container"]} ${classes["appear-container--" + type]} ${show ? "" : classes["appear-container--hide"]}`
         const delayStyle: CSSProperties = {
             animationDelay: delay
         }
@@ -28,7 +29,7 @@ const useAppearAnimationAttributes = ({ type, delay }: TAppearAnimationProps): T
             delayStyle
         }
 
-    }, [type, delay])
+    }, [type, delay, show])
 
     return animationAttributes
 }

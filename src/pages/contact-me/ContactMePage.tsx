@@ -5,11 +5,23 @@ import MyAnimatedIconStack from "@components/UI/animations/MyAnimatedIconStack/M
 import MyAnimatedLinks from "@pages/home/InfoGrid/HelloCard/MyAnimatedLinks"
 import { FaPhoneVolume } from "react-icons/fa6"
 import { ContactMeForm } from "./ContactMeForm"
+import useAppearAnimationAttributes from "@hooks/useAppearAnimationProps/useAppearAnimationProps"
 
-const ContactMePage = forwardRef<HTMLDivElement>((_, ref) => {
+type TContactMePageProps = {
+    isInView: boolean
+}
+
+const ContactMePage = forwardRef<HTMLDivElement, TContactMePageProps>(({ isInView }, ref) => {
+
+    const { animationClassName, delayStyle } = useAppearAnimationAttributes({
+        type: "fade-in",
+        delay: "0.1s",
+        show: isInView
+    })
+    const containerClassName = `${classes["container"]} ${animationClassName}`
 
     return (
-        <div className={classes["container"]} ref={ref}>
+        <div className={containerClassName} ref={ref} style={delayStyle}>
             <h2>Contact me:</h2>
             <MyCard addedClassName={classes["main-card"]}>
                 <div className={classes["main-card__contact-text"]}>

@@ -17,7 +17,7 @@ type TContactMeFormData = {
 }
 
 const RESET_IS_SUBMIT_SUCCESSFUL_TIME_MS = 3000
-const RESPONSE_STATUS_ANIMATION_DELAY = 1000
+const RESPONSE_STATUS_ANIMATION_DELAY = 900
 
 export const ContactMeForm = () => {
 

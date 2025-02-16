@@ -7,9 +7,11 @@ import EducationCard from './InfoGrid/EducationCard/EducationCard'
 import { forwardRef } from 'react'
 import LocationAndLetsConnectCards from './InfoGrid/LocationAndLetsConnectCards/LocationAndLetsConnectCards'
 
-const HomePage = forwardRef<HTMLDivElement>((_, ref) => {
+type THomePageProps = {
+  isInView: boolean
+}
 
-
+const HomePage = forwardRef<HTMLDivElement, THomePageProps>(({ isInView }, ref) => {
 
   return (
     <div className={classes["container"]} ref={ref}>
@@ -17,17 +19,17 @@ const HomePage = forwardRef<HTMLDivElement>((_, ref) => {
         <div className={classes["left-column"]}>
 
           <div className={classes["hello-location-and-connect-flexbox"]}>
-            <HelloCard />
-            <LocationAndLetsConnectCards />
+            <HelloCard isInView={isInView} />
+            <LocationAndLetsConnectCards isInView={isInView} />
           </div>
 
-          <WorkPositionCard />
-          <TechStackCard />
+          <WorkPositionCard isInView={isInView} />
+          <TechStackCard isInView={isInView} />
         </div>
 
         <div className={classes["right-column"]}>
-          <WorkExperienceCard />
-          <EducationCard />
+          <WorkExperienceCard  isInView={isInView}/>
+          <EducationCard isInView={isInView}/>
         </div>
       </div>
     </div>

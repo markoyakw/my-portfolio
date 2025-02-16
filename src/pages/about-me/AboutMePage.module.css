@@ -75,6 +75,7 @@
 }
 
 .card h2 {
+    font-weight: bold;
     font-style: italic;
     display: flex;
     align-items: center;

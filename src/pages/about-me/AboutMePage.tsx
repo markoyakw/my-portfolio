@@ -5,13 +5,28 @@ import { BsEmojiSunglassesFill } from "react-icons/bs"
 import AnimatedLoaderText from "@components/UI/animations/AnimatedLoaderText/AnimatedLoaderText"
 import AboutMeCard from "./AboutMeCard"
 import { forwardRef } from "react"
+import useAppearAnimationAttributes from "@hooks/useAppearAnimationProps/useAppearAnimationProps"
+import useObserver from "@hooks/useObserveIntersection"
 
-const AboutMePage = forwardRef<HTMLDivElement>((_, ref) => {
+type TAboutMePageProps = {
+  isInView: boolean
+}
+
+const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView }, ref) => {
+
+  const { animationClassName, delayStyle: aboutMeTextAppearDelayStyle } = useAppearAnimationAttributes({
+    type: "fade-in",
+    delay: "0.1s",
+    show: isInView
+  })
+  const aboutMeTextClassName = `${classes["about-me-text"]} ${animationClassName}`
+
+  const [cardsContainerRef, isCardsContainerInView] = useObserver()
 
   return (
     <div className={classes["container"]} ref={ref}>
 
-      <div className={classes["about-me-text"]}>
+      <div className={aboutMeTextClassName} style={aboutMeTextAppearDelayStyle}>
         <p>
           I specialize in building&nbsp;
           <span className={classes["react-highligted-span"]}>
@@ -22,9 +37,10 @@ const AboutMePage = forwardRef<HTMLDivElement>((_, ref) => {
         </p>
       </div>
 
-      <div className={classes["cards-grid"]}>
+      <div className={classes["cards-grid"]} ref={cardsContainerRef}>
 
         <AboutMeCard
+          show={isCardsContainerInView}
           title={<><IoGlobeSharp /> Languages:</>}
           listStringArr={[
             "English: C1",
@@ -36,6 +52,8 @@ const AboutMePage = forwardRef<HTMLDivElement>((_, ref) => {
         />
 
         <AboutMeCard
+          show={isCardsContainerInView}
+          showDelay="0.2s"
           title={<><MdWorkOutline /> Professional qualities:</>}
           listStringArr={[
             "Strong sense of responsibility",
@@ -47,6 +65,8 @@ const AboutMePage = forwardRef<HTMLDivElement>((_, ref) => {
         />
 
         <AboutMeCard
+          show={isCardsContainerInView}
+          showDelay="0.4s"
           title={<><BsEmojiSunglassesFill /> About me:</>}
           listStringArr={[
             "Originally from Ukraine",

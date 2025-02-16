@@ -9,6 +9,10 @@
     animation-delay: var(--animation-delay);
 }
 
+.appear-container--hide {
+    animation: none;
+}
+
 .appear-container--from-left {
     --appear-from-x: -100vw;
 }

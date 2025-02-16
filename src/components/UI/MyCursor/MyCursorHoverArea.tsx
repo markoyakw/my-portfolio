@@ -30,7 +30,7 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
     const isSensorScreen = useSensorScreen()
     const cursorContainerRef = useRef<HTMLDivElement>(null)
     const cursorPivot = useRef({ x: 0, y: 0 })
-    const portalRoot = document.getElementById('portal-root');
+    const portalRoot = document.getElementById('cursor-portal-root');
     if (!portalRoot) return null;
 
     const fromScreenBorderToCursorMargin = useMemo(() => {

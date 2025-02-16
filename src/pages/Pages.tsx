@@ -12,20 +12,25 @@ const Pages = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const [homePageRef, isHomePageInView] = useObserver({
-        threshold: 0.9,
+    const [homePageRef, isHomePageInView, isHomePageInViewAtAll] = useObserver({
+        threshold: 0.7,
+        checkInViewAtAll: true
     });
-    const [aboutMePageRef, isAboutMePageInView] = useObserver({
-        threshold: 0.9,
+    const [aboutMePageRef, isAboutMePageInView, isAboutMePageInViewAtAll] = useObserver({
+        threshold: 0.7,
+        checkInViewAtAll: true
     });
-    const [projectsPageRef, isProjectsPageInView] = useObserver({
-        threshold: 0.9,
+    const [projectsPageRef, isProjectsPageInView, isProjectsPageInViewAtAll] = useObserver({
+        threshold: 0.7,
+        checkInViewAtAll: true
     })
-    const [contactMePageRef, isContactMePageInView] = useObserver({
-        threshold: 0.9,
+    const [contactMePageRef, isContactMePageInView, isContactMePageInViewAtAll] = useObserver({
+        threshold: 0.7,
+        checkInViewAtAll: true
     })
     const [resumePageRef, isResumePageInView] = useObserver({
-        threshold: 0.9,
+        threshold: 0.7,
+        checkInViewAtAll: true
     })
 
     const pageToUrlDictionary: Record<string, RefObject<HTMLElement>> = {
@@ -75,9 +80,6 @@ const Pages = () => {
     useEffect(() => {
         const pathname = location.pathname as string
         scrollToCorrespondingToPathnameElement(pathname)
-        // if (pathname === "/resume") {
-        //     openResumePage()
-        // }
     }, [location])
 
     useEffect(() => {
@@ -89,10 +91,10 @@ const Pages = () => {
 
     return (
         <>
-            <HomePage ref={homePageRef} />
-            <AboutMePage ref={aboutMePageRef} />
-            <ProjectsPage ref={projectsPageRef} />
-            <ContactMePage ref={contactMePageRef} />
+            <HomePage ref={homePageRef} isInView={isHomePageInViewAtAll || false} />
+            <AboutMePage ref={aboutMePageRef} isInView={isAboutMePageInViewAtAll || false} />
+            <ProjectsPage ref={projectsPageRef} isInView={isProjectsPageInViewAtAll || false} />
+            <ContactMePage ref={contactMePageRef} isInView={isContactMePageInViewAtAll || false} />
             <ResumePage ref={resumePageRef} />
         </>
     )

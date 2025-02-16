@@ -1,6 +1,8 @@
 import MyCard from "@components/UI/MyCard/MyCard"
 import MyListWithTimeline from "@components/UI/MyListWithTimeline/MyListWithTimeline"
 import classes from "../ListCard.module.css"
+import useAppearAnimationAttributes from "@hooks/useAppearAnimationProps/useAppearAnimationProps"
+import { FC } from "react"
 
 const workExperienceComponentArr = [
     <>
@@ -17,9 +19,18 @@ const workExperienceComponentArr = [
     </>
 ]
 
-const WorkExperienceCard = () => {
+const WorkExperienceCard:FC<{isInView: boolean}> = ({isInView}) => {
+
+    const { animationClassName, delayStyle } = useAppearAnimationAttributes({
+        type: "from-right",
+        delay: "0.15s",
+        show: isInView
+    })
+
+    const containerClassName = `${animationClassName} ${classes["container"]}`
+
     return (
-        <MyCard addedClassName={classes["container"]}>
+        <MyCard addedClassName={containerClassName} addedStyle={delayStyle}>
             <h2 className={classes["heading"]}>
                 <span >Work experience</span>
             </h2>

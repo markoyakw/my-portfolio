@@ -1,18 +1,30 @@
 import MyCard from '@components/UI/MyCard/MyCard'
 import classes from "./AboutMePage.module.css"
-import { FC, ReactNode } from 'react'
+import { CSSProperties, FC, ReactNode } from 'react'
+import useAppearAnimationAttributes from '@hooks/useAppearAnimationProps/useAppearAnimationProps'
 
 type TAboutMeCard = {
     title: ReactNode,
     listStringArr: (string | ReactNode)[],
-    smallCaption: string
+    smallCaption: string,
+    show?: boolean,
+    showDelay?: CSSProperties["animationDelay"]
 }
 
-const AboutMeCard: FC<TAboutMeCard> = ({ title, listStringArr, smallCaption }) => {
+const AboutMeCard: FC<TAboutMeCard> = ({ title, listStringArr, smallCaption, show = true, showDelay }) => {
+
+    const { animationClassName, delayStyle } = useAppearAnimationAttributes({
+        type: "from-right",
+        delay: showDelay,
+        show
+    })
+
+    const cardClassName = `${classes["card"]} ${animationClassName}`
+
     return (
-        <MyCard addedClassName={classes["card"]}>
+        <MyCard addedClassName={cardClassName} addedStyle={delayStyle}>
             <h2>
-                <b>{title}</b>
+                <span>{title}</span>
             </h2>
             <ul className={classes["card__list"]}>
                 {listStringArr.map((text, textId) => (

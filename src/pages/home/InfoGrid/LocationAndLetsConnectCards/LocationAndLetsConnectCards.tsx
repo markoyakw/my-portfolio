@@ -1,19 +1,21 @@
-import useAppearAnimationAttributes from '@utils/useAppearAnimationProps/useAppearAnimationProps'
+import useAppearAnimationAttributes from '@hooks/useAppearAnimationProps/useAppearAnimationProps'
 import classes from "../../HomePage.module.css"
 import LocationCard from './LocationCard/LocationCard'
 import LetsConnectButton from './LetsConnectButton/LetsConnectButton'
+import { FC } from 'react'
 
-const LocationAndLetsConnectCards = () => {
+const LocationAndLetsConnectCards: FC<{ isInView: boolean }> = ({ isInView }) => {
 
     const { animationClassName, delayStyle } = useAppearAnimationAttributes({
         type: "from-left",
-        delay: "1s"
+        delay: "0.1s",
+        show: isInView
     })
 
-    const className = `${classes["location-and-connect-row"]} ${animationClassName}`
+    const containerClassName = `${classes["location-and-connect-row"]} ${animationClassName}`
 
     return (
-        <div className={className} style={delayStyle}>
+        <div className={containerClassName} style={delayStyle}>
             <LocationCard />
             <LetsConnectButton />
         </div>

@@ -13,9 +13,10 @@
     justify-content: center;
     box-shadow: var(--box-shadow);
     top: calc(100vh - 60px);
-    left: 10%;
+    left: 10vw;
     z-index: 99;
 
+    transform: none;
     transition: top 0.3s;
 }
 
