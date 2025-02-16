@@ -24,10 +24,6 @@
     width: 55%;
 }
 
-.right-column>div {
-    height: 100%;
-}
-
 .hello-location-and-connect-flexbox {
     display: flex;
     flex-direction: column;

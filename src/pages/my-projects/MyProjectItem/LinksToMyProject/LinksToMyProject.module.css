@@ -43,6 +43,13 @@
     scale: 1.3;
 }
 
+@media (hover: none) {
+    .project-links__link:hover .project-links__arrow-icon {
+        rotate: 0deg;
+        scale: 1;
+    }
+}
+
 .project-links__logo {
     flex-shrink: 0;
 }

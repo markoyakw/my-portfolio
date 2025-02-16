@@ -3,6 +3,7 @@ import classes from "./MyButton.module.css"
 import { FaArrowRight } from "react-icons/fa6"
 import { ImCheckmark } from "react-icons/im"
 import { MdReportGmailerrorred } from "react-icons/md"
+import useSensorScreen from "@hooks/useIsSensorScreen"
 
 type TMyButtonProps = {
     addedClassName?: string,
@@ -16,6 +17,7 @@ const MyButton: FC<TMyButtonProps> = ({ children, addedClassName, isLoading, isS
     const [fakeLoading, setFakeLoading] = useState(false)
     const [animationPlayed, setAnimationPlayed] = useState<"hover-start" | "mouse-leave" | "hover-finished" | "loading" | "success" | "error" | null>(null)
     const timerFromSubmitToResponse = useRef<NodeJS.Timeout>()
+    const isScreenSensor = useSensorScreen()
 
     const disabledDueToState = animationPlayed === "loading" || animationPlayed === "success"
     const isStatusAnimationPlayed = animationPlayed === "loading" || animationPlayed == "success" || animationPlayed === "error"
@@ -72,18 +74,16 @@ const MyButton: FC<TMyButtonProps> = ({ children, addedClassName, isLoading, isS
     }
 
     const handleMouseLeave = () => {
+        if (isScreenSensor) return
         setHoverState("mouseJustLeft")
-        if (animationPlayed === "hover-start" || isStatusAnimationPlayed) {
-            return
-        }
+        if (animationPlayed === "hover-start" || isStatusAnimationPlayed) return
         setAnimationPlayed("mouse-leave")
     }
 
     const handleMouseEnter = () => {
+        if (isScreenSensor) return
         setHoverState("hovered")
-        if (isStatusAnimationPlayed) {
-            return
-        }
+        if (isStatusAnimationPlayed) return
         setAnimationPlayed("hover-start")
     }
 

@@ -152,6 +152,16 @@ a {
     scale: 1.2;
 }
 
+@media (hover: none) {
+    .card__arrow-icon--link:hover {
+        rotate: 0deg;
+    }
+
+    .card__arrow-icon:hover {
+        opacity: 50%;
+    }
+}
+
 @media(max-width: 1300px) {
     .card {
         flex-direction: column;

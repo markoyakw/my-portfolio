@@ -75,6 +75,12 @@
     color: var(--color-text-primary);
 }
 
+@media (hover: none) {
+    .button:hover {
+        color: var(--color-text-secondary);
+    }
+}
+
 .button__container {
     flex-grow: 1;
     display: flex;

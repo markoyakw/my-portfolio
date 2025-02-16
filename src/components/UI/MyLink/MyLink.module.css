@@ -20,3 +20,13 @@
 .link--active:hover {
     color: var(--color-text-link);
 }
+
+@media (hover: none) {
+    .link:hover {
+        color: var(--color-text-link);
+    }
+
+    .link--active:hover {
+        color: var(--color-text-link);
+    }
+}

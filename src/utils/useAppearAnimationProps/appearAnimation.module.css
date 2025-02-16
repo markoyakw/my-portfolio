@@ -1,0 +1,36 @@
+.appear-container {
+    animation-delay: var(--animation-delay);
+    animation-fill-mode: forwards;
+
+    opacity: 0%;
+    filter: blur(3px);
+    transform: translateX(var(--appear-from-x, 0px)) translateY(var(--appear-from-y, 0px));
+    animation: appear 0.5s ease-out forwards;
+    animation-delay: var(--animation-delay);
+}
+
+.appear-container--from-left {
+    --appear-from-x: -100vw;
+}
+
+.appear-container--from-right {
+    --appear-from-x: 100vw
+}
+
+.appear-container--from-top {
+    --appear-from-y: -100vh
+}
+
+.appear-container--from-bottom {
+    --appear-from-y: 100vh
+}
+
+@keyframes appear {
+    0% {}
+
+    100% {
+        opacity: 100%;
+        filter: blur(0px);
+        transform: translateX(0px) translateY(0px);
+    }
+}

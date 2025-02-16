@@ -1,6 +1,7 @@
 import { FC, MouseEvent, ReactElement, useMemo, useRef, useState } from "react"
 import classes from "./MyAnimatedIconStack.module.css"
 import MyAnimatedIconStackItem from "./MyAnimatedIconStackItem"
+import useSensorScreen from "@hooks/useIsSensorScreen"
 
 type TMyAnimatedIconStackProps = {
     itemArr: ReactElement[],
@@ -15,13 +16,14 @@ const MyAnimatedIconStack: FC<TMyAnimatedIconStackProps> = ({ itemArr }) => {
 
     const containerRef = useRef<HTMLDivElement>(null)
     const [mousePosition, setMousePosition] = useState<TMouseCoordinates>({ x: 0, y: 0 })
+    const isScreenSensor = useSensorScreen()
 
     const containerRect = useMemo(() => containerRef.current && containerRef.current.getBoundingClientRect(), [containerRef.current])
     const getMouseCoordinates = (event: MouseEvent<HTMLDivElement>) => {
+        if (isScreenSensor) return
         const container = containerRef.current
-        if (!container) {
-            return
-        }
+        if (!container) return
+
         setMousePosition({
             x: event.clientX,
             y: event.clientY

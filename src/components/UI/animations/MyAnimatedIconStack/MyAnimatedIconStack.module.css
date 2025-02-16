@@ -36,6 +36,12 @@
     opacity: 0.3;
 }
 
+@media (hover: none) {
+    .animated-stack-item:hover::before {
+        opacity: 0;
+    }
+}
+
 .animated-stack__shrink-stopper {
     position: absolute;
     width: 100%;

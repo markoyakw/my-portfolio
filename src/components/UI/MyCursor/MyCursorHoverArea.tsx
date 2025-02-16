@@ -2,6 +2,7 @@ import { FC, MouseEvent, ReactNode, useState, useRef, useEffect, useMemo } from 
 import { createPortal } from 'react-dom';
 import classes from "./MyCursor.module.css"
 import MyCursor from './MyCursor';
+import useSensorScreen from '@hooks/useIsSensorScreen';
 
 type TMouseCoordinates = { x: number; y: number } | null;
 
@@ -26,6 +27,7 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
 }) => {
 
     const [mousePosition, setMousePosition] = useState<TMouseCoordinates>(null);
+    const isSensorScreen = useSensorScreen()
     const cursorContainerRef = useRef<HTMLDivElement>(null)
     const cursorPivot = useRef({ x: 0, y: 0 })
     const portalRoot = document.getElementById('portal-root');
@@ -119,7 +121,7 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
                     translateXPercent={translateXPercent}
                     translateYPercent={translateYPercent}
                 >
-                    {cursor}
+                    {!isSensorScreen && cursor}
                 </MyCursor>,
                 portalRoot
             )}
