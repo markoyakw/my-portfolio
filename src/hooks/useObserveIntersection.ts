@@ -1,26 +1,36 @@
 import { useEffect, useState, useRef } from 'react';
+import useDebounce from './useDebounce';
 
 interface UseObserverOptions {
     root?: Element | null;   // The element or browser as a viewport (if value = null)
     rootMargin?: string;     // Margin around the root
     threshold?: number | number[];  // Decimal of visibility (0 to 1)
-    checkInViewAtAll?: boolean; // Flag to determine if `isInViewAtAll` should be observed
+    checkInViewAtAll?: boolean; // is `isInViewAtAll` should be observed
+    debounceTime?: number;
 }
 
 const useObserver = <T extends HTMLElement = HTMLDivElement>(
     options: UseObserverOptions = {}
 ): [React.RefObject<T>, boolean, boolean | undefined] => {
-    const [inView, setInView] = useState(false);
+    const [isInView, setInView] = useState(false);
     const [isInViewAtAll, setIsInViewAtAll] = useState(false);
     const elementRef = useRef<T>(null);
 
-    const { root = null, rootMargin = '0px', threshold = 0, checkInViewAtAll = false } = options;
+    const { root = null, rootMargin = '0px', threshold = 0, checkInViewAtAll = false, debounceTime } = options;
+
+    const debouncedInView = useDebounce(isInView, debounceTime || 0);
 
     useEffect(() => {
+        const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
+            setInView(entry.isIntersecting);
+
+            if (checkInViewAtAll && entry.isIntersecting) {
+                setIsInViewAtAll(true);
+            }
+        };
+
         const observer = new IntersectionObserver(
-            ([entry]) => {
-                setInView(entry.isIntersecting);
-            },
+            handleIntersection,
             { root, rootMargin, threshold }
         );
 
@@ -34,24 +44,25 @@ const useObserver = <T extends HTMLElement = HTMLDivElement>(
             );
         }
 
-        if (elementRef.current) {
-            observer.observe(elementRef.current);
+        const currentElement = elementRef.current;
+        if (currentElement) {
+            observer.observe(currentElement);
             if (observerAtAll) {
-                observerAtAll.observe(elementRef.current);
+                observerAtAll.observe(currentElement);
             }
         }
 
         return () => {
-            if (elementRef.current) {
-                observer.unobserve(elementRef.current);
+            if (currentElement) {
+                observer.unobserve(currentElement);
                 if (observerAtAll) {
-                    observerAtAll.unobserve(elementRef.current);
+                    observerAtAll.unobserve(currentElement);
                 }
             }
         };
-    }, [options]);
+    }, [root, rootMargin, threshold, checkInViewAtAll]);
 
-    return [elementRef, inView, checkInViewAtAll ? isInViewAtAll : undefined];
+    return [elementRef, debounceTime ? debouncedInView : isInView, checkInViewAtAll ? isInViewAtAll : undefined];
 };
 
 export default useObserver;

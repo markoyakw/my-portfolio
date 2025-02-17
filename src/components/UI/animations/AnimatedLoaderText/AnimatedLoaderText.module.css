@@ -1,22 +1,21 @@
-.container span {
-    position: relative;
-}
-
 .char {
+    display: inline-block;
+    will-change: transform;
     animation: elipsies-dot-animation 1.5s infinite linear;
     animation-delay: calc(0.1s * var(--char-id));
+    white-space: pre;
 }
 
 @keyframes elipsies-dot-animation {
     0% {
-        top: 0px
+        transform: translateY(0px);
     }
 
     12.5% {
-        top: -3px
+        transform: translateY(-3px);
     }
 
     25% {
-        top: 0px
+        transform: translateY(0px);
     }
 }

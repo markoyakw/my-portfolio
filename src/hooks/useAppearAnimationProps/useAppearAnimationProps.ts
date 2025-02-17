@@ -17,21 +17,21 @@ type TAnimationAttributes = {
 
 const useAppearAnimationAttributes = ({ type, delay, show = true }: TAppearAnimationProps): TAnimationAttributes => {
 
-    const animationAttributes = useMemo(() => {
-
+    const animationClassName = useMemo(() => {
         const animationClassName = `${classes["appear-container"]} ${classes["appear-container--" + type]} ${show ? "" : classes["appear-container--hide"]}`
-        const delayStyle: CSSProperties = {
+        return animationClassName
+    }, [show, type])
+
+    const delayStyle = useMemo(() => {
+        return {
             animationDelay: delay
         }
+    }, [delay])
 
-        return {
-            animationClassName: animationClassName,
-            delayStyle
-        }
-
-    }, [type, delay, show])
-
-    return animationAttributes
+    return {
+        animationClassName: animationClassName,
+        delayStyle
+    }
 }
 
 export default useAppearAnimationAttributes

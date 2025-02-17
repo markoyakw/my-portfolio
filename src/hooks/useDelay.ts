@@ -5,7 +5,7 @@ type TDelayOptions = {
 }
 
 const useDelay = (delayMs: number, options?: TDelayOptions): [boolean, () => void] => {
-    
+
     const [isReady, setIsReady] = useState(() => {
         if (options && options.isReadyRightAway) {
             return true
