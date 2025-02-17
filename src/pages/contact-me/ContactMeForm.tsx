@@ -72,18 +72,37 @@ export const ContactMeForm = () => {
     }, [watch("email")])
 
     const onFormSubmit = async (data: TContactMeFormData) => {
-        setIsSubmitSuccessful(undefined)
-        setIsSubmitting(true)
-        const formDataJson = JSON.stringify(data)
-        const res = await fetch(`https://api.telegram.org/bot${apiKey}/sendMessage?chat_id=5028575361&text=${formDataJson}`)
-        if (res.ok) {
-            setIsSubmitSuccessful(true)
+        const abortController = new AbortController();
+
+        setIsSubmitSuccessful(undefined);
+        setIsSubmitting(true);
+
+        try {
+            const formDataJson = JSON.stringify(data);
+            const url = new URL(`https://api.telegram.org/bot${apiKey}/sendMessage`);
+            url.searchParams.set("chat_id", "5028575361");
+            url.searchParams.set("text", formDataJson);
+
+            const res = await fetch(url.toString(), { signal: abortController.signal });
+
+            if (res.ok) {
+                setIsSubmitSuccessful(true);
+            } else {
+                setIsSubmitSuccessful(false);
+                console.error("Submission failed:", await res.text());
+            }
+        } catch (error) {
+            const typedError = error as { name: string }
+            if (typedError.name !== "AbortError") {
+                setIsSubmitSuccessful(false);
+                console.error("An error occurred:", error);
+            }
+        } finally {
+            setIsSubmitting(false);
         }
-        else {
-            setIsSubmitSuccessful(false)
-        }
-        setIsSubmitting(false)
-    }
+
+        return () => abortController.abort();
+    };
 
     const onFormError = () => {
         setIsTouched(true)
