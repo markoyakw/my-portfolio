@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { forwardRef, memo } from "react"
 import QuizzApp from "./projects/QuizzApp"
 import classes from "./ProjectsPage.module.css"
 import useAppearAnimationAttributes from "@hooks/useAppearAnimationProps/useAppearAnimationProps"
@@ -24,4 +24,4 @@ const ProjectsPage = forwardRef<HTMLDivElement, TProjectsPageProps>(({ isInView 
     )
 })
 
-export default ProjectsPage
+export default memo(ProjectsPage)

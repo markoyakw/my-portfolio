@@ -15,7 +15,7 @@ const ActiveNavLinkHighlight: FC<TActiveNavLinkHighlightProps> = ({ highlightedR
             style={{
                 width: highlightedRect?.width,
                 height: highlightedRect?.height,
-                top: highlightedRect?.y,
+                transform: `translateY(${highlightedRect?.y}px)`,
             }} />
     )
 }

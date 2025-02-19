@@ -1,6 +1,6 @@
 import MyButton from "@components/UI/MyButton/MyButton"
 import openResumePage from "@utils/openResumePage"
-import { forwardRef } from "react"
+import { forwardRef, memo } from "react"
 import { FaArrowDown } from "react-icons/fa6"
 import { PiReadCvLogoFill } from "react-icons/pi"
 import classes from "./ResumePage.module.css"
@@ -19,4 +19,4 @@ const ResumePage = forwardRef<HTMLDivElement>((_, ref) => {
     )
 })
 
-export default ResumePage
+export default memo(ResumePage)

@@ -1,9 +1,8 @@
-import { forwardRef, MutableRefObject, ReactNode } from 'react'
-import { TMouseCoordinates } from '../animations/MyAnimatedIconStack/MyAnimatedIconStack';
+import { CSSProperties, forwardRef, ReactNode, useMemo } from 'react'
 import classes from "./MyCursor.module.css"
 
 type TMyCursor = {
-    mousePosition: TMouseCoordinates;
+    mousePosition: { x: number, y: number };
     translateXPercent: number;
     translateYPercent: number;
     children: ReactNode;
@@ -18,20 +17,22 @@ const MyCursor = forwardRef<HTMLDivElement, TMyCursor>((
     },
     ref) => {
 
-    if (!mousePosition) return <></>
-    const cursorContainerRef = ref as MutableRefObject<HTMLDivElement>
+    const transformStyle = useMemo<CSSProperties>(() => ({
+        transform: `translate(
+            calc(${mousePosition.x}px + ${translateXPercent}%),
+            calc(${mousePosition.y}px + ${translateYPercent}%)
+        )`
+    }), [mousePosition.x, mousePosition.y, translateXPercent, translateYPercent]);
 
     return (
         <div
-            ref={cursorContainerRef}
-            style={{
-                translate: `${translateXPercent}% ${translateYPercent}%`,
-                top: mousePosition.y + 'px',
-                left: mousePosition.x + 'px',
-            }}
+            ref={ref}
+            style={transformStyle}
             className={classes["custom-cursor"]}
         >
+
             {children}
+
         </div>
     )
 })

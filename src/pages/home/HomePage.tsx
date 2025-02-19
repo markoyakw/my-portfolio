@@ -4,14 +4,10 @@ import WorkPositionCard from './InfoGrid/WorkPositionCard/WorkPositionCard'
 import WorkExperienceCard from './InfoGrid/WorkExperienceCard/WorkExperienceCard'
 import TechStackCard from './InfoGrid/TechStackCard/TechStackCard'
 import EducationCard from './InfoGrid/EducationCard/EducationCard'
-import { forwardRef } from 'react'
+import { forwardRef, memo } from 'react'
 import LocationAndLetsConnectCards from './InfoGrid/LocationAndLetsConnectCards/LocationAndLetsConnectCards'
 
-type THomePageProps = {
-  isInView: boolean
-}
-
-const HomePage = forwardRef<HTMLDivElement, THomePageProps>(({ isInView }, ref) => {
+const HomePage = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div className={classes["container"]} ref={ref}>
@@ -19,21 +15,21 @@ const HomePage = forwardRef<HTMLDivElement, THomePageProps>(({ isInView }, ref) 
         <div className={classes["left-column"]}>
 
           <div className={classes["hello-location-and-connect-flexbox"]}>
-            <HelloCard isInView={isInView} />
-            <LocationAndLetsConnectCards isInView={isInView} />
+            <HelloCard />
+            <LocationAndLetsConnectCards />
           </div>
 
-          <WorkPositionCard isInView={isInView} />
-          <TechStackCard isInView={isInView} />
+          <WorkPositionCard />
+          <TechStackCard />
         </div>
 
         <div className={classes["right-column"]}>
-          <WorkExperienceCard  isInView={isInView}/>
-          <EducationCard isInView={isInView}/>
+          <WorkExperienceCard />
+          <EducationCard />
         </div>
       </div>
     </div>
   )
 })
 
-export default HomePage
+export default memo(HomePage)

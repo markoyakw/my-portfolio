@@ -4,7 +4,7 @@ import { MdWorkOutline } from "react-icons/md"
 import { BsEmojiSunglassesFill } from "react-icons/bs"
 import AnimatedLoaderText from "@components/UI/animations/AnimatedLoaderText/AnimatedLoaderText"
 import AboutMeCard from "./AboutMeCard"
-import { forwardRef } from "react"
+import { forwardRef, memo, useEffect } from "react"
 import useAppearAnimationAttributes from "@hooks/useAppearAnimationProps/useAppearAnimationProps"
 import useObserver from "@hooks/useObserveIntersection"
 
@@ -22,6 +22,9 @@ const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView },
   const aboutMeTextClassName = `${classes["about-me-text"]} ${animationClassName}`
 
   const [cardsContainerRef, isCardsContainerInView] = useObserver()
+
+  useEffect(() => {
+  }, [isCardsContainerInView])
 
   return (
     <div className={classes["container"]} ref={ref}>
@@ -83,4 +86,4 @@ const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView },
   )
 })
 
-export default AboutMePage
+export default memo(AboutMePage)

@@ -1,17 +1,17 @@
-import { FC, ReactElement, useEffect, useRef } from "react"
-import classes from "./MyNavLink.module.css"
-import { NavLink, useLocation } from "react-router-dom"
+import React, { FC, ReactElement, useEffect, useRef, useCallback } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import classes from "./MyNavLink.module.css";
 
 type TNavLinkProps = {
-    icon: ReactElement,
-    children: string,
-    href: string,
-    addedClassName?: string,
-    setHoveredLinkRect: (rect: DOMRectReadOnly | null) => void,
-    onClick?: () => void
-}
+    icon: ReactElement;
+    children: string;
+    href: string;
+    addedClassName?: string;
+    setHoveredLinkRect: (rect: DOMRectReadOnly | null) => void;
+    onClick?: () => void;
+};
 
-const MyNavLink: FC<TNavLinkProps> = ({
+const MyNavLink: FC<TNavLinkProps> = React.memo(({
     icon,
     children,
     href,
@@ -19,58 +19,71 @@ const MyNavLink: FC<TNavLinkProps> = ({
     setHoveredLinkRect,
     onClick
 }) => {
+    const NavLinkRef = useRef<HTMLAnchorElement>(null);
+    const prevRectRef = useRef<DOMRectReadOnly | null>(null);
+    const params = useLocation();
 
-    const NavLinkRef = useRef<HTMLAnchorElement>(null)
-    const rect = NavLinkRef?.current?.getBoundingClientRect()
-    const getNavLinkClasses = (isActive: boolean) => {
-        return `${classes["container"]} ${addedClassName} ${isActive ? classes["container--active"] : ""}`
-    }
-    const params = useLocation()
+    const getNavLinkClasses = useCallback((isActive: boolean) => {
+        return `${classes["container"]} ${addedClassName} ${isActive ? classes["container--active"] : ""}`;
+    }, [addedClassName]);
 
-    const handleMouseEnter = () => {
-        if (!NavLinkRef.current || !setHoveredLinkRect) return
-        setHoveredLinkRect(rect || null)
-    }
-    const handleMouseLeave = () => {
-        if (!setHoveredLinkRect) return
-        const newRectCenteredX = (rect?.x || 0) + ((rect?.width || 0) / 2)
-        const newRectCenteredY = (rect?.y || 0) + ((rect?.height || 0) / 2)
-        const newRect = new DOMRect(newRectCenteredX, newRectCenteredY, 0, 0)
-        setHoveredLinkRect(newRect)
-    }
+    const handleMouseEnter = useCallback(() => {
+        if (!NavLinkRef.current || !setHoveredLinkRect) return;
+        const rect = NavLinkRef.current.getBoundingClientRect();
+        if (
+            !prevRectRef.current ||
+            prevRectRef.current.x !== rect.x ||
+            prevRectRef.current.y !== rect.y ||
+            prevRectRef.current.width !== rect.width ||
+            prevRectRef.current.height !== rect.height
+        ) {
+            setHoveredLinkRect(rect);
+            prevRectRef.current = rect;
+        }
+    }, [setHoveredLinkRect]);
 
-    //set active link as animation source (highlight block will move from its position)
+    const handleMouseLeave = useCallback(() => {
+        if (!setHoveredLinkRect || !NavLinkRef.current) return;
+        const rect = NavLinkRef.current.getBoundingClientRect();
+        const newRectCenteredX = rect.x + rect.width / 2;
+        const newRectCenteredY = rect.y + rect.height / 2;
+        const newRect = new DOMRect(newRectCenteredX, newRectCenteredY, 0, 0);
+        if (
+            !prevRectRef.current ||
+            prevRectRef.current.x !== newRect.x ||
+            prevRectRef.current.y !== newRect.y
+        ) {
+            setHoveredLinkRect(newRect);
+            prevRectRef.current = newRect;
+        }
+    }, [setHoveredLinkRect]);
+
     useEffect(() => {
-        if (href === params.pathname && rect) {
-            setHoveredLinkRect(rect)
+        if (href === params.pathname && NavLinkRef.current) {
+            const rect = NavLinkRef.current.getBoundingClientRect();
             setHoveredLinkRect({
                 ...rect,
                 height: 0,
                 width: 0,
                 x: rect.x + rect.width / 2,
                 y: rect.y + rect.height / 2,
-            })
+            });
         }
-    }, [NavLinkRef.current])
+    }, [params.pathname, href, setHoveredLinkRect]);
 
     return (
-        <NavLink to={href}
+        <NavLink
+            to={href}
             ref={NavLinkRef}
             className={({ isActive }) => getNavLinkClasses(isActive)}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={onClick}
         >
-
-            <div className={classes["icon"]}>
-                {icon}
-            </div>
-            <span className={classes["label"]}>
-                {children}
-            </span>
-
+            <div className={classes["icon"]}>{icon}</div>
+            <span className={classes["label"]}>{children}</span>
         </NavLink>
-    )
-}
+    );
+});
 
-export default MyNavLink
+export default MyNavLink;

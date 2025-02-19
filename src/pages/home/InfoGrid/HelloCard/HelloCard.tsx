@@ -8,12 +8,11 @@ import MyAnimatedLinks from './MyAnimatedLinks'
 import classes from "./HelloCard.module.css"
 import useAppearAnimationAttributes from '@hooks/useAppearAnimationProps/useAppearAnimationProps'
 
-const HelloCard: FC<{ isInView?: boolean }> = ({ isInView }) => {
+const HelloCard: FC = () => {
 
     const [isHelloCardHovered, setIsHelloCardHovered] = useState(false)
     const { animationClassName } = useAppearAnimationAttributes({
         type: "from-top",
-        show: isInView
     })
     const containerClassName = `${classes["container"]} ${animationClassName}`
 

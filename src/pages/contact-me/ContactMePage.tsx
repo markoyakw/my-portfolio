@@ -1,6 +1,6 @@
 import classes from "./ContactMePage.module.css"
 import MyCard from "@components/UI/MyCard/MyCard"
-import { forwardRef } from "react"
+import { forwardRef, memo } from "react"
 import MyAnimatedIconStack from "@components/UI/animations/MyAnimatedIconStack/MyAnimatedIconStack"
 import MyAnimatedLinks from "@pages/home/InfoGrid/HelloCard/MyAnimatedLinks"
 import { FaPhoneVolume } from "react-icons/fa6"
@@ -37,4 +37,4 @@ const ContactMePage = forwardRef<HTMLDivElement, TContactMePageProps>(({ isInVie
     )
 })
 
-export default ContactMePage
+export default memo(ContactMePage)

@@ -2,6 +2,7 @@
     position: fixed;
     z-index: 9999;
     pointer-events: none;
+    will-change: transform;
 }
 
 .custom-cursor__hover-container {
@@ -12,17 +13,19 @@
     cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR42mP4DwABBgAHAyH6EAAAAABJRU5ErkJggg=="), auto;
 }
 
-.custom-cursor__card {
-    padding: var(--spacing-xs);
-    box-shadow: var(--box-shadow-light);
-}
-
 .custom-cursor__label {
     font-size: var(--font-size-m);
     animation: custom-cursor__label---appear 0.15s
 }
 
+.custom-cursor__card {
+    display: flex;
+    padding: var(--spacing-xs);
+    box-shadow: var(--box-shadow-light);
+}
+
 .custom-cursor__label-text {
+    width: 100%;
     color: var(--color-text-primary);
 }
 

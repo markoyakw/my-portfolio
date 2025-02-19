@@ -2,7 +2,7 @@ import { forwardRef, ReactNode } from 'react'
 import classes from "./LinksToMyProject.module.css"
 import MyIcon from '@components/UI/MyIcon/MyIcon'
 import { IoIosArrowDroprightCircle } from 'react-icons/io'
-import MyCustomCursor from '@components/UI/MyCursor/MyCursorHoverArea'
+import MyCustomCursor from '@components/UI/MyCursor/MyCustomCursor'
 import MyCursorLabel from '@components/UI/MyCursor/MyCursorLabel'
 import { HiExternalLink } from 'react-icons/hi'
 import { CgWebsite } from 'react-icons/cg'

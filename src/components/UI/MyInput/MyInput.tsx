@@ -14,7 +14,7 @@ type TMyInputInputProps = {
 const MyInput = forwardRef<HTMLInputElement, TMyInputInputProps>(({ label, addedClassName, error, onChange, addedOnChange, ...props }, ref) => {
 
     const className = `${classes["input"]} ${addedClassName}`
-    const inputId = useMemo(() => String(Date.now()), [])
+    const inputId = useMemo(() => String(Date.now() * Math.random()), [])
 
     const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         onChange && onChange(e)

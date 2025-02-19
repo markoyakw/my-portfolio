@@ -5,7 +5,7 @@ import classes from "../ProjectsPage.module.css"
 import MyProjectInfoButton, { TMyProjectInfoButton } from './MyProjectFeatures/MyProjectFeatureButton';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import LinksToMyProject from './LinksToMyProject/LinksToMyProject';
-import MyCustomCursor from '@components/UI/MyCursor/MyCursorHoverArea';
+import MyCustomCursor from '@components/UI/MyCursor/MyCustomCursor';
 import MyProjectHoverCursor from './MyProjectHoverCursor/MyProjectHoverCursor';
 
 type TMyProject = {
@@ -63,8 +63,6 @@ const MyProject: FC<TMyProject> = ({ techStack, title, projectInfoButtonArr, git
                         })}
                     </div>
                 </div>
-
-                {/* <IoIosArrowDroprightCircle className={`${classes["card__arrow-icon"]} ${classes["card__arrow-icon--link"]}`} /> */}
 
                 <div className={dropdownIconButtonClassName}>
                     <IoIosArrowDroprightCircle onClick={() => toggleIsProjectFeaturesOpenMobile()} />

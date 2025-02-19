@@ -20,13 +20,13 @@ const useAppearAnimationAttributes = ({ type, delay, show = true }: TAppearAnima
     const animationClassName = useMemo(() => {
         const animationClassName = `${classes["appear-container"]} ${classes["appear-container--" + type]} ${show ? "" : classes["appear-container--hide"]}`
         return animationClassName
-    }, [show, type])
+    }, [show])
 
     const delayStyle = useMemo(() => {
         return {
             animationDelay: delay
         }
-    }, [delay])
+    }, [])
 
     return {
         animationClassName: animationClassName,

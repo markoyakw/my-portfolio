@@ -31,7 +31,10 @@
     gap: var(--spacing-s);
 }
 
+/* highlights of active and hovered navLink */
+
 .nav-link-highlight {
+    margin-top: calc(-1 * var(--spacing-s));
     position: absolute;
     pointer-events: none;
     border-radius: 20px;
@@ -44,7 +47,7 @@
 }
 
 .nav-link-highlight--active {
-    transition: top 0.2s, width 0.2s, height 0.2s;
+    transition: transform 0.2s, width 0.2s, height 0.2s;
     background-color: var(--color-primary);
 }
 

@@ -1,4 +1,4 @@
-import MyCustomCursor from '@components/UI/MyCursor/MyCursorHoverArea'
+import MyCustomCursor from '@components/UI/MyCursor/MyCustomCursor'
 import { CSSProperties, FC, useMemo } from 'react'
 import PreviewVideo from '../../MyProjectFeatureVideo/MyProjectFeatureVideo'
 import classes from "../../ProjectsPage.module.css"

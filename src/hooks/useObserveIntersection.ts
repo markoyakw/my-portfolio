@@ -1,68 +1,83 @@
 import { useEffect, useState, useRef } from 'react';
-import useDebounce from './useDebounce';
 
 interface UseObserverOptions {
-    root?: Element | null;   // The element or browser as a viewport (if value = null)
-    rootMargin?: string;     // Margin around the root
-    threshold?: number | number[];  // Decimal of visibility (0 to 1)
-    checkInViewAtAll?: boolean; // is `isInViewAtAll` should be observed
-    debounceTime?: number;
+  root?: Element | null;   
+  rootMargin?: string;     
+  threshold?: number | number[];
+  checkInViewAtAll?: boolean;
+  debounceTime?: number;
 }
 
 const useObserver = <T extends HTMLElement = HTMLDivElement>(
-    options: UseObserverOptions = {}
+  options: UseObserverOptions = {}
 ): [React.RefObject<T>, boolean, boolean | undefined] => {
-    const [isInView, setInView] = useState(false);
-    const [isInViewAtAll, setIsInViewAtAll] = useState(false);
-    const elementRef = useRef<T>(null);
+  const [isInView, setInView] = useState(false);
+  const [isInViewAtAll, setIsInViewAtAll] = useState(false);
+  const elementRef = useRef<T>(null);
+  const timeoutRef = useRef<number | null>(null);
 
-    const { root = null, rootMargin = '0px', threshold = 0, checkInViewAtAll = false, debounceTime } = options;
+  const {
+    root = null,
+    rootMargin = '0px',
+    threshold = 0,
+    checkInViewAtAll = false,
+    debounceTime = 0,
+  } = options;
 
-    const debouncedInView = useDebounce(isInView, debounceTime || 0);
-
-    useEffect(() => {
-        const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
-            setInView(entry.isIntersecting);
-
-            if (checkInViewAtAll && entry.isIntersecting) {
-                setIsInViewAtAll(true);
+  useEffect(() => {
+    const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
+      // If the element is intersecting (entering view), debounce the update.
+      if (entry.isIntersecting) {
+        if (debounceTime > 0) {
+          if (timeoutRef.current !== null) {
+            clearTimeout(timeoutRef.current);
+          }
+          timeoutRef.current = window.setTimeout(() => {
+            setInView(true);
+            if (checkInViewAtAll) {
+              setIsInViewAtAll(entry.intersectionRatio >= 0.15);
             }
-        };
-
-        const observer = new IntersectionObserver(
-            handleIntersection,
-            { root, rootMargin, threshold }
-        );
-
-        let observerAtAll: IntersectionObserver | null = null;
+          }, debounceTime);
+        } else {
+          setInView(true);
+          if (checkInViewAtAll) {
+            setIsInViewAtAll(entry.intersectionRatio >= 0.15);
+          }
+        }
+      } else {
+        // If leaving view, update immediately.
+        if (timeoutRef.current !== null) {
+          clearTimeout(timeoutRef.current);
+        }
+        setInView(false);
         if (checkInViewAtAll) {
-            observerAtAll = new IntersectionObserver(
-                ([entry]) => {
-                    setIsInViewAtAll(entry.isIntersecting);
-                },
-                { root, rootMargin, threshold: 0 }
-            );
+          setIsInViewAtAll(false);
         }
+      }
+    };
 
-        const currentElement = elementRef.current;
-        if (currentElement) {
-            observer.observe(currentElement);
-            if (observerAtAll) {
-                observerAtAll.observe(currentElement);
-            }
-        }
+    const observer = new IntersectionObserver(handleIntersection, {
+      root,
+      rootMargin,
+      threshold,
+    });
 
-        return () => {
-            if (currentElement) {
-                observer.unobserve(currentElement);
-                if (observerAtAll) {
-                    observerAtAll.unobserve(currentElement);
-                }
-            }
-        };
-    }, [root, rootMargin, threshold, checkInViewAtAll]);
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
 
-    return [elementRef, debounceTime ? debouncedInView : isInView, checkInViewAtAll ? isInViewAtAll : undefined];
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [root, rootMargin, threshold, checkInViewAtAll, debounceTime]);
+
+  return [elementRef, isInView, checkInViewAtAll ? isInViewAtAll : undefined];
 };
 
 export default useObserver;
