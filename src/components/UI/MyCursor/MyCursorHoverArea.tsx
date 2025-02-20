@@ -14,11 +14,10 @@ const MyCursorHoverArea: FC<TCursorHoverAreaProps> = ({
     handleMouseLeave,
     children
 }) => {
-    
+
     return (
         <div
             className={`${classes["custom-cursor__hover-container"]} ${disableBasicCursor ? classes["custom-cursor__hover-container--no-basic-cursor"] : ""}`}
-
             onMouseOver={handleMouseMove}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}

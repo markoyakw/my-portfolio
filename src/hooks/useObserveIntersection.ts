@@ -11,7 +11,7 @@ interface UseObserverOptions {
 const useObserver = <T extends HTMLElement = HTMLDivElement>(
     options: UseObserverOptions = {}
 ): [React.RefObject<T>, boolean, boolean | undefined] => {
-    
+
     const [isInView, setInView] = useState(false);
     const [isInViewAtAll, setIsInViewAtAll] = useState(false);
     const elementRef = useRef<T>(null);
@@ -38,7 +38,7 @@ const useObserver = <T extends HTMLElement = HTMLDivElement>(
                 ([entry]) => {
                     setIsInViewAtAll(entry.isIntersecting);
                 },
-                { root, rootMargin, threshold: 0.15 }
+                { root, rootMargin, threshold: 0 }
             );
         }
 

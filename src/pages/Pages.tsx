@@ -12,22 +12,22 @@ const Pages = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const [homePageRef] = useObserver({
+    const [homePageRef, isHomePageInView] = useObserver({
         threshold: 0.7,
     });
-    const [aboutMePageRef, isAboutMePageInViewAtAll] = useObserver({
+    const [aboutMePageRef, isAboutMePageInView, isAboutMePageInViewAtAll] = useObserver({
         threshold: 0.7,
         checkInViewAtAll: true,
     });
-    const [projectsPageRef, isProjectsPageInViewAtAll] = useObserver({
+    const [projectsPageRef, isProjectsPageInView, isProjectsPageInViewAtAll] = useObserver({
         threshold: 0.7,
         checkInViewAtAll: true,
     })
-    const [contactMePageRef, isContactMePageInViewAtAll] = useObserver({
+    const [contactMePageRef, isContactMePageInView, isContactMePageInViewAtAll] = useObserver({
         threshold: 0.7,
         checkInViewAtAll: true,
     })
-    const [resumePageRef] = useObserver({
+    const [resumePageRef, isResumePageInView] = useObserver({
         threshold: 0.7
     })
 
@@ -39,35 +39,35 @@ const Pages = () => {
         "/resume": resumePageRef
     }
 
-    // useEffect(() => {
-    //     if (isHomePageInView) {
-    //         navigate("/*")
-    //     }
-    // }, [isHomePageInView])
+    useEffect(() => {
+        if (isHomePageInView) {
+            navigate("/*")
+        }
+    }, [isHomePageInView])
 
-    // useEffect(() => {
-    //     if (isAboutMePageInView) {
-    //         navigate("/about-me/")
-    //     }
-    // }, [isAboutMePageInView])
+    useEffect(() => {
+        if (isAboutMePageInView) {
+            navigate("/about-me/")
+        }
+    }, [isAboutMePageInView])
 
-    // useEffect(() => {
-    //     if (isProjectsPageInView) {
-    //         navigate("/my-projects/")
-    //     }
-    // }, [isProjectsPageInView])
+    useEffect(() => {
+        if (isProjectsPageInView) {
+            navigate("/my-projects/")
+        }
+    }, [isProjectsPageInView])
 
-    // useEffect(() => {
-    //     if (isContactMePageInView) {
-    //         navigate("/contact-me/")
-    //     }
-    // }, [isContactMePageInView])
+    useEffect(() => {
+        if (isContactMePageInView) {
+            navigate("/contact-me/")
+        }
+    }, [isContactMePageInView])
 
-    // useEffect(() => {
-    //     if (isResumePageInView) {
-    //         navigate("/resume/")
-    //     }
-    // }, [isResumePageInView])
+    useEffect(() => {
+        if (isResumePageInView) {
+            navigate("/resume/")
+        }
+    }, [isResumePageInView])
 
     const scrollToCorrespondingToPathnameElement = (pathname: string) => {
         const pageRef = pageToUrlDictionary[pathname]
