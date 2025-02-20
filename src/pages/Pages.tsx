@@ -12,23 +12,23 @@ const Pages = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const [homePageRef, isHomePageInView] = useObserver({
+    const [homePageRef] = useObserver({
         threshold: 0.7,
     });
-    const [aboutMePageRef, isAboutMePageInView, isAboutMePageInViewAtAll] = useObserver({
+    const [aboutMePageRef, isAboutMePageInViewAtAll] = useObserver({
         threshold: 0.7,
         checkInViewAtAll: true,
     });
-    const [projectsPageRef, isProjectsPageInView, isProjectsPageInViewAtAll] = useObserver({
+    const [projectsPageRef, isProjectsPageInViewAtAll] = useObserver({
         threshold: 0.7,
         checkInViewAtAll: true,
     })
-    const [contactMePageRef, isContactMePageInView, isContactMePageInViewAtAll] = useObserver({
+    const [contactMePageRef, isContactMePageInViewAtAll] = useObserver({
         threshold: 0.7,
         checkInViewAtAll: true,
     })
-    const [resumePageRef, isResumePageInView] = useObserver({
-        threshold: 0.7,
+    const [resumePageRef] = useObserver({
+        threshold: 0.7
     })
 
     const pageToUrlDictionary: Record<string, RefObject<HTMLElement>> = {

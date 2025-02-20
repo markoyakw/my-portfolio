@@ -24,7 +24,7 @@ const useAppearAnimationAttributes = ({ type, delay, show = true }: TAppearAnima
 
     const delayStyle = useMemo(() => {
         return {
-            animationDelay: delay
+            // animationDelay: delay
         }
     }, [])
 

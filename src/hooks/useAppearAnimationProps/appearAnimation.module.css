@@ -7,7 +7,6 @@
     transform: translateX(var(--appear-from-x, 0px)) translateY(var(--appear-from-y, 0px));
     animation: appear 0.5s ease-out forwards;
     animation-delay: var(--animation-delay);
-    will-change: opacity, filter, transform
 }
 
 .appear-container--hide {
@@ -34,6 +33,7 @@
     0% {}
 
     100% {
+        z-index: initial;
         opacity: 100%;
         filter: blur(0px);
         transform: translateX(0px) translateY(0px);
