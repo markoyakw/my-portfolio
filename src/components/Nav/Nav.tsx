@@ -1,4 +1,4 @@
-import { BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import classes from "./Nav.module.css"
 import NavBar from './NavBar/NavBar'
 import { Dispatch, FC, ReactNode, SetStateAction } from 'react'

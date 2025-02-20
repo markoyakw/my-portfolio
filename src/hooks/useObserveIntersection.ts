@@ -5,13 +5,11 @@ interface UseObserverOptions {
     rootMargin?: string;     // Margin around the root
     threshold?: number | number[];  // Decimal of visibility (0 to 1)
     checkInViewAtAll?: boolean; // is `isInViewAtAll` should be observed
-    debounceTime?: number;
 }
 
 const useObserver = <T extends HTMLElement = HTMLDivElement>(
     options: UseObserverOptions = {}
 ): [React.RefObject<T>, boolean, boolean | undefined] => {
-
     const [isInView, setInView] = useState(false);
     const [isInViewAtAll, setIsInViewAtAll] = useState(false);
     const elementRef = useRef<T>(null);

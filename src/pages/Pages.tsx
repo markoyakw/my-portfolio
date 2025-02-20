@@ -1,101 +1,79 @@
-import { RefObject, useEffect } from "react"
-import AboutMePage from "./about-me/AboutMePage"
-import HomePage from "./home/HomePage"
-import ProjectsPage from "./my-projects/ProjectsPage"
-import { useLocation, useNavigate } from "react-router-dom"
-import ResumePage from "./resume/ResumePage"
-import useObserver from "@hooks/useObserveIntersection"
-import ContactMePage from "./contact-me/ContactMePage"
+import { useEffect, useRef } from "react";
+import AboutMePage from "./about-me/AboutMePage";
+import HomePage from "./home/HomePage";
+import ProjectsPage from "./my-projects/ProjectsPage";
+import { useLocation, useNavigate } from "react-router-dom";
+import ResumePage from "./resume/ResumePage";
+import ContactMePage from "./contact-me/ContactMePage";
+import { useMultiObserver } from "@hooks/useMultiObserver"; // Assuming you've moved the hook to a separate file
 
 const Pages = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const location = useLocation()
-    const navigate = useNavigate()
+    const homePageRef = useRef<HTMLDivElement>(null)
+    const aboutMePageRef = useRef<HTMLDivElement>(null)
+    const projectsPageRef = useRef<HTMLDivElement>(null)
+    const contactMePageRef = useRef<HTMLDivElement>(null)
+    const resumePageRef = useRef<HTMLDivElement>(null)
 
-    const [homePageRef, isHomePageInView] = useObserver({
-        threshold: 0.7,
-    });
-    const [aboutMePageRef, isAboutMePageInView, isAboutMePageInViewAtAll] = useObserver({
-        threshold: 0.7,
-        checkInViewAtAll: true,
-    });
-    const [projectsPageRef, isProjectsPageInView, isProjectsPageInViewAtAll] = useObserver({
-        threshold: 0.7,
-        checkInViewAtAll: true,
-    })
-    const [contactMePageRef, isContactMePageInView, isContactMePageInViewAtAll] = useObserver({
-        threshold: 0.7,
-        checkInViewAtAll: true,
-    })
-    const [resumePageRef, isResumePageInView] = useObserver({
-        threshold: 0.7
-    })
+    const observedElements = [
+        { key: "/home", ref: homePageRef },
+        { key: "/about-me", ref: aboutMePageRef },
+        { key: "/my-projects", ref: projectsPageRef },
+        { key: "/contact-me", ref: contactMePageRef },
+        { key: "/resume", ref: resumePageRef },
+    ];
 
-    const pageToUrlDictionary: Record<string, RefObject<HTMLElement>> = {
-        "/": homePageRef,
-        "/about-me": aboutMePageRef,
-        "/my-projects": projectsPageRef,
-        "/contact-me": contactMePageRef,
-        "/resume": resumePageRef
-    }
+    const visibilityMap = useMultiObserver(observedElements);
+
+    const isHomePageInView = visibilityMap[""];
+    const isAboutMePageInView = visibilityMap["/about-me"];
+    const isProjectsPageInView = visibilityMap["/my-projects"];
+    const isContactMePageInView = visibilityMap["/contact-me"];
+    const isResumePageInView = visibilityMap["/resume"];
 
     useEffect(() => {
         if (isHomePageInView) {
-            navigate("/*")
+            navigate("/*");
+        } else if (isAboutMePageInView) {
+            navigate("/about-me/");
+        } else if (isProjectsPageInView) {
+            navigate("/my-projects/");
+        } else if (isContactMePageInView) {
+            navigate("/contact-me/");
+        } else if (isResumePageInView) {
+            navigate("/resume/");
         }
-    }, [isHomePageInView])
-
-    useEffect(() => {
-        if (isAboutMePageInView) {
-            navigate("/about-me/")
-        }
-    }, [isAboutMePageInView])
-
-    useEffect(() => {
-        if (isProjectsPageInView) {
-            navigate("/my-projects/")
-        }
-    }, [isProjectsPageInView])
-
-    useEffect(() => {
-        if (isContactMePageInView) {
-            navigate("/contact-me/")
-        }
-    }, [isContactMePageInView])
-
-    useEffect(() => {
-        if (isResumePageInView) {
-            navigate("/resume/")
-        }
-    }, [isResumePageInView])
+    }, [isHomePageInView, isAboutMePageInView, isProjectsPageInView, isContactMePageInView, isResumePageInView, navigate]);
 
     const scrollToCorrespondingToPathnameElement = (pathname: string) => {
-        const pageRef = pageToUrlDictionary[pathname]
-        if (!pageRef || !pageRef.current) return
-        pageRef.current.scrollIntoView()
-    }
+        const pageRef = observedElements.find((element) => element.key === pathname)?.ref;
+        if (!pageRef || !pageRef.current) return;
+        pageRef.current.scrollIntoView();
+    };
 
     useEffect(() => {
-        const pathname = location.pathname as string
-        scrollToCorrespondingToPathnameElement(pathname)
-    }, [location])
+        scrollToCorrespondingToPathnameElement(location.pathname);
+    }, [location]);
 
     useEffect(() => {
         if (location.pathname.endsWith("*") || location.pathname.endsWith("/")) {
-            scrollToCorrespondingToPathnameElement(location.pathname.slice(0, -1))
-            navigate(location.pathname.slice(0, -1))
+            const cleanPathname = location.pathname.slice(0, -1).replace("/", "");
+            scrollToCorrespondingToPathnameElement(cleanPathname);
+            navigate(cleanPathname, { replace: true });
         }
-    }, [])
+    }, []);
 
     return (
         <>
             <HomePage ref={homePageRef} />
-            <AboutMePage ref={aboutMePageRef} isInView={isAboutMePageInViewAtAll || false} />
-            <ProjectsPage ref={projectsPageRef} isInView={isProjectsPageInViewAtAll || false} />
-            <ContactMePage ref={contactMePageRef} isInView={isContactMePageInViewAtAll || false} />
+            <AboutMePage ref={aboutMePageRef} isInView={isAboutMePageInView || false} />
+            <ProjectsPage ref={projectsPageRef} isInView={isProjectsPageInView || false} />
+            <ContactMePage ref={contactMePageRef} isInView={isContactMePageInView || false} />
             <ResumePage ref={resumePageRef} />
         </>
-    )
-}
+    );
+};
 
-export default Pages
+export default Pages;
