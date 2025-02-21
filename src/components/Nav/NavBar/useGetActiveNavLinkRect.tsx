@@ -1,6 +1,6 @@
+import useURLChange from "@hooks/hoi"
 import getRelativeRect from "@utils/getRelativeRect"
 import { RefObject, useEffect, useMemo, useRef, useState } from "react"
-import { useLocation } from "react-router-dom"
 
 const useGetActiveNavLinkRect = (
     navBarRef: RefObject<HTMLElement>,
@@ -8,7 +8,8 @@ const useGetActiveNavLinkRect = (
 
     const [activeLinkRect, setActiveLinkRect] = useState<DOMRectReadOnly>()
     const URIToHTMLAnchorMap = useMemo(() => new Map<string, HTMLAnchorElement>(), [])
-    const params = useLocation()
+    const params = useURLChange()
+
     const paramsRef = useRef(params)
 
     const addHTMLAnchorToMap = (HTMLAnchor: HTMLAnchorElement) => {
@@ -40,8 +41,8 @@ const useGetActiveNavLinkRect = (
     }
 
     const recalculateHighlightRect = () => {
-        const currentPathname = paramsRef.current.pathname
-        let activeAnchorHTML = URIToHTMLAnchorMap.get(paramsRef.current.pathname)
+        const currentPathname = paramsRef.current
+        let activeAnchorHTML = URIToHTMLAnchorMap.get(paramsRef.current)
             || URIToHTMLAnchorMap.get(currentPathname.slice(0, -1))
             || URIToHTMLAnchorMap.get(currentPathname.slice(0, -1) + "*")
         const navBar = navBarRef.current

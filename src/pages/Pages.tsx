@@ -1,15 +1,18 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import AboutMePage from "./about-me/AboutMePage";
 import HomePage from "./home/HomePage";
 import ProjectsPage from "./my-projects/ProjectsPage";
-import { useLocation, useNavigate } from "react-router-dom";
 import ResumePage from "./resume/ResumePage";
 import ContactMePage from "./contact-me/ContactMePage";
-import { useMultiObserver } from "@hooks/useMultiObserver"; // Assuming you've moved the hook to a separate file
+import { useMultiObserver } from "@hooks/useMultiObserver";
+import useURLChange from "@hooks/hoi";
 
 const Pages = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
+    const location = useURLChange();
+    const navigate = (newPath: string) => {
+        window.history.pushState({}, "", newPath);
+        // console.log("URL changed to:", newPath);
+    };
 
     const homePageRef = useRef<HTMLDivElement>(null)
     const aboutMePageRef = useRef<HTMLDivElement>(null)
@@ -17,13 +20,13 @@ const Pages = () => {
     const contactMePageRef = useRef<HTMLDivElement>(null)
     const resumePageRef = useRef<HTMLDivElement>(null)
 
-    const observedElements = [
+    const observedElements = useMemo(() => [
         { key: "/home", ref: homePageRef },
         { key: "/about-me", ref: aboutMePageRef },
         { key: "/my-projects", ref: projectsPageRef },
         { key: "/contact-me", ref: contactMePageRef },
         { key: "/resume", ref: resumePageRef },
-    ];
+    ], [])
 
     const visibilityMap = useMultiObserver(observedElements);
 
@@ -45,7 +48,7 @@ const Pages = () => {
         } else if (isResumePageInView) {
             navigate("/resume/");
         }
-    }, [isHomePageInView, isAboutMePageInView, isProjectsPageInView, isContactMePageInView, isResumePageInView, navigate]);
+    }, [isHomePageInView, isAboutMePageInView, isProjectsPageInView, isContactMePageInView, isResumePageInView]);
 
     const scrollToCorrespondingToPathnameElement = (pathname: string) => {
         const pageRef = observedElements.find((element) => element.key === pathname)?.ref;
@@ -54,14 +57,14 @@ const Pages = () => {
     };
 
     useEffect(() => {
-        scrollToCorrespondingToPathnameElement(location.pathname);
+        scrollToCorrespondingToPathnameElement(location);
     }, [location]);
 
     useEffect(() => {
-        if (location.pathname.endsWith("*") || location.pathname.endsWith("/")) {
-            const cleanPathname = location.pathname.slice(0, -1).replace("/", "");
+        if (location.endsWith("*") || location.endsWith("/")) {
+            const cleanPathname = location.slice(0, -1).replace("/", "");
             scrollToCorrespondingToPathnameElement(cleanPathname);
-            navigate(cleanPathname, { replace: true });
+            navigate(cleanPathname);
         }
     }, []);
 

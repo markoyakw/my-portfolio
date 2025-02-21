@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, useEffect, useRef, useCallback } from "react";
-import { NavLink, useLocation } from "react-router-dom";
 import classes from "./MyNavLink.module.css";
+import useURLChange from "@hooks/hoi";
 
 type TNavLinkProps = {
     icon: ReactElement;
@@ -21,7 +21,7 @@ const MyNavLink: FC<TNavLinkProps> = React.memo(({
 }) => {
     const NavLinkRef = useRef<HTMLAnchorElement>(null);
     const prevRectRef = useRef<DOMRectReadOnly | null>(null);
-    const params = useLocation();
+    const params = useURLChange();
 
     const getNavLinkClasses = useCallback((isActive: boolean) => {
         return `${classes["container"]} ${addedClassName} ${isActive ? classes["container--active"] : ""}`;
@@ -59,7 +59,7 @@ const MyNavLink: FC<TNavLinkProps> = React.memo(({
     }, [setHoveredLinkRect]);
 
     useEffect(() => {
-        if (href === params.pathname && NavLinkRef.current) {
+        if (href === params && NavLinkRef.current) {
             const rect = NavLinkRef.current.getBoundingClientRect();
             setHoveredLinkRect({
                 ...rect,
@@ -69,20 +69,20 @@ const MyNavLink: FC<TNavLinkProps> = React.memo(({
                 y: rect.y + rect.height / 2,
             });
         }
-    }, [params.pathname, href, setHoveredLinkRect]);
+    }, [params, href, setHoveredLinkRect]);
 
     return (
-        <NavLink
-            to={href}
+        <a
+            href={href}
             ref={NavLinkRef}
-            className={({ isActive }) => getNavLinkClasses(isActive)}
+            // className={({ isActive }) => getNavLinkClasses(isActive)}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={onClick}
         >
             <div className={classes["icon"]}>{icon}</div>
             <span className={classes["label"]}>{children}</span>
-        </NavLink>
+        </a>
     );
 });
 

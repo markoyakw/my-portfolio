@@ -6,7 +6,6 @@ const useURLChange = () => {
     useEffect(() => {
         const handleUrlChange = () => {
             setUrl(window.location.pathname);
-            console.log("URL changed to:", window.location.pathname);
         };
 
         window.addEventListener("popstate", handleUrlChange);

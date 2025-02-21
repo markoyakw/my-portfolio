@@ -1,6 +1,5 @@
 import { FC, ReactNode } from "react"
 import classes from "./MyLink.module.css"
-import { NavLink } from "react-router-dom"
 
 type TMyLinkProps = {
     children: ReactNode,
@@ -17,9 +16,9 @@ const MyLink: FC<TMyLinkProps> = ({ children, href, addedClassName }) => {
     }
 
     return (
-        <NavLink to={href} className={({ isActive }) => getLinkClasses(isActive)}>
+        <a href={href}>
             {children}
-        </NavLink>
+        </a>
     )
 }
 

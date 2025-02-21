@@ -1,4 +1,3 @@
-import { BrowserRouter } from 'react-router-dom'
 import classes from "./Nav.module.css"
 import NavBar from './NavBar/NavBar'
 import { Dispatch, FC, ReactNode, SetStateAction } from 'react'
@@ -17,7 +16,7 @@ const Header: FC<THeaderProps> = ({ isSideBarOpenOnMobile, setIsSideBarOpenOnMob
     const mobileSideBarClassName = `${classes["nav-bar"]} ${classes["nav-bar--mobile"]} ${isSideBarOpenOnMobile ? classes["nav-bar--mobile-open"] : classes["nav-bar--mobile-closed"]}`
 
     return (
-        <BrowserRouter>
+        <>
             <NavBar className={sideBarClassName} />
             <NavBar className={mobileSideBarClassName} />
             {isSideBarOpenOnMobile
@@ -25,7 +24,7 @@ const Header: FC<THeaderProps> = ({ isSideBarOpenOnMobile, setIsSideBarOpenOnMob
                 : <MobileHeader setIsSideBarOpenOnMobile={setIsSideBarOpenOnMobile} />
             }
             {children}
-        </BrowserRouter >
+        </ >
     )
 }
 
