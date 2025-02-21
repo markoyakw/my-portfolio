@@ -2,7 +2,7 @@ import { TiThMenu } from "react-icons/ti"
 import classes from "./Nav.module.css"
 import { FaChevronUp } from "react-icons/fa6"
 import { AiFillMessage } from "react-icons/ai"
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
+import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from "react"
 
 type TMobileHeaderProps = {
     setIsSideBarOpenOnMobile: Dispatch<SetStateAction<boolean>>
@@ -10,27 +10,27 @@ type TMobileHeaderProps = {
 
 const MobileHeader: FC<TMobileHeaderProps> = ({ setIsSideBarOpenOnMobile }) => {
 
-    const [scrollTopState, setScrollTopState] = useState(0)
+    const scrollTopRef = useRef(0)
     const [isMobileHeaderVisible, setIsMobileHeaderVisible] = useState(true)
 
     useEffect(() => {
         const handleHeaderVisibilityAndScrollTopValue = () => {
-            const scrollTop = document.documentElement.scrollTop
-            setScrollTopState(oldValue => {
-                if (oldValue > scrollTopState) {
-                    setIsMobileHeaderVisible(false)
-                }
-                else {
-                    setIsMobileHeaderVisible(true)
-                }
-                return scrollTop
-            })
-        }
-        document.addEventListener("scroll", handleHeaderVisibilityAndScrollTopValue)
+            const scrollTop = document.documentElement.scrollTop;
+
+            if (scrollTop > scrollTopRef.current) {
+                setIsMobileHeaderVisible(false);
+            } else {
+                setIsMobileHeaderVisible(true);
+            }
+
+            scrollTopRef.current = scrollTop;
+        };
+
+        window.addEventListener("scroll", handleHeaderVisibilityAndScrollTopValue);
         return () => {
-            window.removeEventListener("scroll", handleHeaderVisibilityAndScrollTopValue)
-        }
-    })
+            window.removeEventListener("scroll", handleHeaderVisibilityAndScrollTopValue);
+        };
+    }, []);
 
     const mobileHeaderClassName = `${classes["mobile-header"]} ${isMobileHeaderVisible ? classes["mobile-header--visible"] : ""}`
     const handleMobileHeaderTogge = () => {

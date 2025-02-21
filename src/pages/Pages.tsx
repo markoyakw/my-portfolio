@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import AboutMePage from "./about-me/AboutMePage";
 import HomePage from "./home/HomePage";
 import ProjectsPage from "./my-projects/ProjectsPage";
@@ -17,13 +17,13 @@ const Pages = () => {
     const contactMePageRef = useRef<HTMLDivElement>(null)
     const resumePageRef = useRef<HTMLDivElement>(null)
 
-    const observedElements = [
-        { key: "/home", ref: homePageRef },
+    const observedElements = useMemo(() => [
+        { key: "/", ref: homePageRef },
         { key: "/about-me", ref: aboutMePageRef },
         { key: "/my-projects", ref: projectsPageRef },
         { key: "/contact-me", ref: contactMePageRef },
         { key: "/resume", ref: resumePageRef },
-    ];
+    ], [])
 
     const visibilityMap = useMultiObserver(observedElements);
 
@@ -45,7 +45,7 @@ const Pages = () => {
         } else if (isResumePageInView) {
             navigate("/resume/");
         }
-    }, [isHomePageInView, isAboutMePageInView, isProjectsPageInView, isContactMePageInView, isResumePageInView, navigate]);
+    }, [isHomePageInView, isAboutMePageInView, isProjectsPageInView, isContactMePageInView, isResumePageInView]);
 
     const scrollToCorrespondingToPathnameElement = (pathname: string) => {
         const pageRef = observedElements.find((element) => element.key === pathname)?.ref;
