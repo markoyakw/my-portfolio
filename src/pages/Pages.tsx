@@ -27,7 +27,7 @@ const Pages = () => {
 
     const visibilityMap = useMultiObserver(observedElements);
 
-    const isHomePageInView = visibilityMap[""];
+    const isHomePageInView = visibilityMap["/"];
     const isAboutMePageInView = visibilityMap["/about-me"];
     const isProjectsPageInView = visibilityMap["/my-projects"];
     const isContactMePageInView = visibilityMap["/contact-me"];

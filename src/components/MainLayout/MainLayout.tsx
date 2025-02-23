@@ -8,7 +8,11 @@ type TMainLayoutProps = {
 
 const MainLayout: FC<TMainLayoutProps> = ({ children }) => {
 
-  const [isSideBarOpenOnMobile, setIsSideBarOpenOnMobile] = useState(false)
+  const [isSideBarOpenOnMobile, _setIsSideBarOpenOnMobile] = useState(false)
+
+  const setIsSideBarOpenOnMobile = (newValue: boolean) => {
+    _setIsSideBarOpenOnMobile(newValue)
+  }
 
   return (
     <div className={classes["layout"]}>

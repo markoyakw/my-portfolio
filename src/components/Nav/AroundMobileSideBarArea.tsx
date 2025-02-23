@@ -1,10 +1,10 @@
 import { IoClose } from "react-icons/io5"
 import classes from "./Nav.module.css"
 import CircularText from "@components/UI/CircularText/CircularText"
-import { Dispatch, FC, SetStateAction } from "react"
+import { FC } from "react"
 
 type TAroundMobileSideBarAreaProps = {
-    setIsSideBarOpenOnMobile: Dispatch<SetStateAction<boolean>>
+    setIsSideBarOpenOnMobile: (isOpen: boolean) => void
 }
 
 const AroundMobileSideBarArea: FC<TAroundMobileSideBarAreaProps> = ({ setIsSideBarOpenOnMobile }) => {

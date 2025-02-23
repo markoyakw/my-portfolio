@@ -14,7 +14,6 @@ const AddMLGGlassesOnHover: FC<TAddMLGGlassesOnHoverProps> = ({ children, isHove
     return (
         <div className={classes["MLG-picture"]}>
             <img className={MLGPictureGlassesClassName} src={MLGGlassesPicture} alt="mlg sunglasses" />
-            <div className={classes["loading-cover"]}></div>
             {children}
         </div>
     )

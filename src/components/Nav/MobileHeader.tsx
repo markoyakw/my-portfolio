@@ -2,10 +2,10 @@ import { TiThMenu } from "react-icons/ti"
 import classes from "./Nav.module.css"
 import { FaChevronUp } from "react-icons/fa6"
 import { AiFillMessage } from "react-icons/ai"
-import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 
 type TMobileHeaderProps = {
-    setIsSideBarOpenOnMobile: Dispatch<SetStateAction<boolean>>
+    setIsSideBarOpenOnMobile: (isOpen: boolean) => void
 }
 
 const MobileHeader: FC<TMobileHeaderProps> = ({ setIsSideBarOpenOnMobile }) => {
@@ -33,14 +33,15 @@ const MobileHeader: FC<TMobileHeaderProps> = ({ setIsSideBarOpenOnMobile }) => {
     }, []);
 
     const mobileHeaderClassName = `${classes["mobile-header"]} ${isMobileHeaderVisible ? classes["mobile-header--visible"] : ""}`
-    const handleMobileHeaderTogge = () => {
-        setIsSideBarOpenOnMobile(oldState => !oldState)
+    
+    const handleMobileHeaderOpen = () => {
+        setIsSideBarOpenOnMobile(true)
     }
 
     return (
         <div className={mobileHeaderClassName}>
             <div className={classes["mobile-header__main-row"]}>
-                <button className={classes["mobile-header__button"]} onClick={handleMobileHeaderTogge}>
+                <button className={classes["mobile-header__button"]} onClick={handleMobileHeaderOpen}>
                     <TiThMenu size={"70%"} />
                 </button>
                 <button className={classes["mobile-header__button"]} >

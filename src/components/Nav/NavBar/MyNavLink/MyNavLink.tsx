@@ -23,11 +23,11 @@ const MyNavLink: FC<TNavLinkProps> = React.memo(({
     const prevRectRef = useRef<DOMRectReadOnly | null>(null);
     const params = useLocation();
 
-    const getNavLinkClasses = useCallback((isActive: boolean) => {
+    const getNavLinkClasses = (isActive: boolean) => {
         return `${classes["container"]} ${addedClassName} ${isActive ? classes["container--active"] : ""}`;
-    }, [addedClassName]);
+    }
 
-    const handleMouseEnter = useCallback(() => {
+    const handleMouseEnter = () => {
         if (!NavLinkRef.current || !setHoveredLinkRect) return;
         const rect = NavLinkRef.current.getBoundingClientRect();
         if (
@@ -40,9 +40,9 @@ const MyNavLink: FC<TNavLinkProps> = React.memo(({
             setHoveredLinkRect(rect);
             prevRectRef.current = rect;
         }
-    }, [setHoveredLinkRect]);
+    };
 
-    const handleMouseLeave = useCallback(() => {
+    const handleMouseLeave = () => {
         if (!setHoveredLinkRect || !NavLinkRef.current) return;
         const rect = NavLinkRef.current.getBoundingClientRect();
         const newRectCenteredX = rect.x + rect.width / 2;
@@ -56,7 +56,7 @@ const MyNavLink: FC<TNavLinkProps> = React.memo(({
             setHoveredLinkRect(newRect);
             prevRectRef.current = newRect;
         }
-    }, [setHoveredLinkRect]);
+    }
 
     useEffect(() => {
         if (href === params.pathname && NavLinkRef.current) {

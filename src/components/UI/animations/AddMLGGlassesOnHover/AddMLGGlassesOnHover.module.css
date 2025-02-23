@@ -9,12 +9,10 @@
     position: absolute;
     z-index: 100;
     width: 60%;
-    transform: rotateZ(-12deg);
-    left: 29px;
-    top: -190px;
-    transition: top 0.3s;
+    transform: translateX(39px) translateY(-190px);
+    transition: transform 0.3s;
 }
 
 .MLG-picture__glasses--hovered {
-    top: 13px;
+    transform: rotateZ(-12deg) translateY(20px) translateX(26px);
 }

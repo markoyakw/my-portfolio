@@ -1,13 +1,13 @@
 import { BrowserRouter } from 'react-router-dom'
 import classes from "./Nav.module.css"
 import NavBar from './NavBar/NavBar'
-import { Dispatch, FC, ReactNode, SetStateAction } from 'react'
-import AroundMobileNavBarArea from './AroundMobileNavBarArea'
-import MobileHeader from './MobileHeader'
+import { FC, ReactNode } from 'react'
+import { useIsMobileWindowSize } from '@hooks/useIsMobileWindowSize'
+import NavMobileExclusiveComponents from './NavMobileExclusiveComponents'
 
 type THeaderProps = {
     isSideBarOpenOnMobile: boolean,
-    setIsSideBarOpenOnMobile: Dispatch<SetStateAction<boolean>>,
+    setIsSideBarOpenOnMobile: (newValue: boolean) => void,
     children: ReactNode
 }
 
@@ -15,14 +15,16 @@ const Header: FC<THeaderProps> = ({ isSideBarOpenOnMobile, setIsSideBarOpenOnMob
 
     const sideBarClassName = `${classes["nav-bar"]}`
     const mobileSideBarClassName = `${classes["nav-bar"]} ${classes["nav-bar--mobile"]} ${isSideBarOpenOnMobile ? classes["nav-bar--mobile-open"] : classes["nav-bar--mobile-closed"]}`
+    const isMobileWindowSize = useIsMobileWindowSize()
 
     return (
         <BrowserRouter>
-            <NavBar className={sideBarClassName} />
-            <NavBar className={mobileSideBarClassName} />
-            {isSideBarOpenOnMobile
-                ? <AroundMobileNavBarArea setIsSideBarOpenOnMobile={setIsSideBarOpenOnMobile} />
-                : <MobileHeader setIsSideBarOpenOnMobile={setIsSideBarOpenOnMobile} />
+            {isMobileWindowSize
+                ? <NavBar className={mobileSideBarClassName} />
+                : <NavBar className={sideBarClassName} />
+            }
+            {isMobileWindowSize &&
+                <NavMobileExclusiveComponents setIsSideBarOpenOnMobile={setIsSideBarOpenOnMobile} isSideBarOpenOnMobile={isSideBarOpenOnMobile} />
             }
             {children}
         </BrowserRouter >

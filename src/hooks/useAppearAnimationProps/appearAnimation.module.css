@@ -33,7 +33,6 @@
     0% {}
 
     100% {
-        z-index: initial;
         opacity: 100%;
         filter: blur(0px);
         transform: translateX(0px) translateY(0px);
