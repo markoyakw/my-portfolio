@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useEffect, useRef, useCallback } from "react";
+import React, { FC, ReactElement, useEffect, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import classes from "./MyNavLink.module.css";
 
