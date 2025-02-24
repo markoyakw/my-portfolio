@@ -43,6 +43,7 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
     const animationFrameRef = useRef<number | null>(null);
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
+        if (isSensorScreen) return
         if (animationFrameRef.current) {
             cancelAnimationFrame(animationFrameRef.current);
         }
@@ -65,6 +66,7 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
     }, [noCursorChilrenArr])
 
     const handleMouseLeave = useCallback(() => {
+        if (isSensorScreen) return
         setTimeout(() => {
             setMousePosition(null);
         }, 10);

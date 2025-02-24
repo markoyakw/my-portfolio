@@ -42,3 +42,11 @@
         transform: scaleY(1);
     }
 }
+
+@media(max-width:450px), (max-height: 600px) {
+    .card__feature-video {
+        min-height: calc(100% - 100px - var(--spacing-s) * 2);
+        width: auto;
+        height: auto;
+    }
+}

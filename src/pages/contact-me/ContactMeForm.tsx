@@ -170,9 +170,12 @@ export const ContactMeForm = () => {
                     </MyButton>
                 </div>
 
-                <MyPopupMessage message='Your message was successfully sent 🚀' type='success' delay={RESPONSE_STATUS_ANIMATION_DELAY} isVisible={isSubmitSuccessful === true} />
-                <MyPopupMessage message='Unexpected error 😵 Try again later.' type='error' delay={RESPONSE_STATUS_ANIMATION_DELAY} isVisible={isSubmitSuccessful === false} />
-
+                <MyPopupMessage type='success' delay={RESPONSE_STATUS_ANIMATION_DELAY} isVisible={isSubmitSuccessful === true} >
+                    Your message was successfully sent 🚀
+                </MyPopupMessage>
+                <MyPopupMessage type='error' delay={RESPONSE_STATUS_ANIMATION_DELAY} isVisible={isSubmitSuccessful === false} >
+                    Unexpected error 😵 Try again later.
+                </MyPopupMessage>
             </form>
         </MyCard>
     )

@@ -23,7 +23,6 @@ const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView },
 
   const [cardsContainerRef, isCardsContainerInView] = useObserver()
 
-  console.log("bebra")
   return (
     <div className={classes["container"]} ref={ref}>
 

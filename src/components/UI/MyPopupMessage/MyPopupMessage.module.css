@@ -1,8 +1,7 @@
 .popup-message {
     position: fixed;
-    width: 80vw;
-    min-width: 300px;
-    background-color: var(--color-variety-3);
+    background-color: var(--color-variety-2-dark);
+    color: var(--color-text-primary);
     height: 60px;
     border-top-right-radius: 35px;
     border-top-left-radius: 35px;
@@ -12,22 +11,25 @@
     align-items: center;
     justify-content: center;
     box-shadow: var(--box-shadow);
+    width: calc(100vw - 2 * var(--spacing-s));
     top: calc(100vh - 60px);
-    left: 10vw;
+    left: var(--spacing-s);
     z-index: 99;
 
     transform: none;
-    transition: top 0.3s;
+    transition: transform 0.3s;
 }
 
 .popup-message--hidden {
-    top: 110vh
+    transform: translateY(10vh);
 }
 
 .popup-message--success {
     background-color: var(--color-success-light);
+    color: var(--color-text-secondary);
 }
 
 .popup-message--error {
     background-color: var(--color-error);
+    color: var(--color-text-secondary);
 }
