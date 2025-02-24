@@ -12,16 +12,17 @@
     justify-content: center;
     box-shadow: var(--box-shadow);
     width: calc(100vw - 2 * var(--spacing-s));
-    top: calc(100vh - 60px);
     left: var(--spacing-s);
     z-index: 99;
 
+    bottom: 0px;
     transform: none;
-    transition: transform 0.3s;
+    transition: bottom 0.3s;
 }
 
+
 .popup-message--hidden {
-    transform: translateY(10vh);
+    bottom: -300px;
 }
 
 .popup-message--success {

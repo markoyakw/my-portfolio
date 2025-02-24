@@ -9,4 +9,7 @@ export default defineConfig({
   optimizeDeps: {
     include: ['lodash']
   },
+  server: {
+    host: '0.0.0.0'
+  }
 }) satisfies UserConfig
