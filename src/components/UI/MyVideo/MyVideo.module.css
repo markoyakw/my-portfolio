@@ -1,0 +1,29 @@
+.video {
+    aspect-ratio: 5/6;
+    display: flex;
+    min-width: 100%;
+    min-height: 100%;
+    animation: video-appear 0.1s forwards;
+}
+
+.video--loading {
+    display: none;
+}
+
+.loader__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes video-appear {
+    0% {
+        opacity: 0;
+        scale: 0;
+    }
+
+    100% {
+        scale: 1;
+        opacity: 1;
+    }
+}

@@ -13,10 +13,10 @@
 }
 
 .popup {
-    padding: 0px;
-    max-width: calc(100vw - 2 * var(--spacing-s));
-    max-height: calc(100vh - 2 * var(--spacing-s));
     margin: var(--spacing-s);
+    overflow: hidden;
+    max-height: calc(100vh - 2* var(--spacing-s));
+    max-width: calc(100vh - 2* var(--spacing-s));
 }
 
 .popup__close-button {

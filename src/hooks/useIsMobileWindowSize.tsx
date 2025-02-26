@@ -1,8 +1,8 @@
 import { MOBILE_WINDOW_WIDTH } from "@/constants";
-import useWindowWidth from "./useWindowWidth";
+import useWindowSize from "./useWindowSize";
 
 const useIsMobileWindowSize = () => {
-    const width = useWindowWidth();
+    const { width } = useWindowSize();
     return width <= MOBILE_WINDOW_WIDTH;
 };
 

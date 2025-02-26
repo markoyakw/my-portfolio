@@ -1,8 +1,8 @@
 import MyCustomCursor from '@components/UI/MyCursor/MyCustomCursor'
 import { CSSProperties, FC, useMemo, useState } from 'react'
-import PreviewVideo from '../MyProjectFeatureVideo/MyProjectFeatureVideo'
+import PreviewVideo from './MyProjectFeatureVideo/MyProjectFeatureVideo'
 import classes from "../../ProjectsPage.module.css"
-import MyProjectFeatureInProgress from '../MyProjectFeatureVideo/MyProjectFeatureInProgress'
+import MyProjectFeatureInProgress from './MyProjectFeatureVideo/MyProjectFeatureInProgress'
 import useSensorScreen from '@hooks/useIsSensorScreen'
 import MyPopupWindow from '@components/UI/MyPopup/MyPopupWindow'
 import MyPopupMessage from '@components/UI/MyPopupMessage/MyPopupMessage'
@@ -23,7 +23,7 @@ const MyProjectFeatureButton: FC<TMyProjectInfoButton> = ({ title, previewVideoS
     const getCursorProps = () => {
         if (previewVideoSrc) {
             return {
-                cursor: <PreviewVideo title={title} src={previewVideoSrc} />
+                cursor: <PreviewVideo title={title} src={previewVideoSrc} isLoadingStarted={true} startLoadingWhenVisible={true} />
             }
         }
         else {
@@ -55,7 +55,7 @@ const MyProjectFeatureButton: FC<TMyProjectInfoButton> = ({ title, previewVideoS
             </MyCustomCursor>
             {previewVideoSrc
                 ? <MyPopupWindow isOpen={isProjectFeaturePopupOpen} toggleIsOpen={toggleProjectFeaturePopup}>
-                    <PreviewVideo title={title} src={previewVideoSrc} />
+                    <PreviewVideo title={title} src={previewVideoSrc} isLoadingStarted={isProjectFeaturePopupOpen} />
                 </MyPopupWindow>
 
                 : <MyPopupMessage isVisible={isProjectFeaturePopupOpen} disappearFunction={toggleProjectFeaturePopup} disappearIn={3000}>

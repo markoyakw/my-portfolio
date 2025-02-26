@@ -1,0 +1,52 @@
+.spinner {
+    --spinner-color: var(--color-variety-2);
+    --spinner-background-color: var(--color-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    width: 300px;
+}
+
+.spinner::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    scale: 3;
+    animation: loading-spinner-rotation 1s linear infinite;
+    background: conic-gradient(from 0deg at 50% 50%, var(--spinner-background-color) 65%, var(--spinner-color) 75%)
+}
+
+.spinner::after {
+    position: absolute;
+    content: "";
+    width: 70%;
+    height: 70%;
+    background-color: var(--spinner-background-color);
+    border-radius: 50%;
+}
+
+@keyframes loading-spinner-rotation {
+    0% {
+        transform: rotate(0deg) scale(1) skew(0deg);
+    }
+
+    25% {
+        transform: rotate(90deg) scale(1, 2) skew(-75deg, 0deg);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1) skew(0deg, 0deg);
+    }
+
+    75% {
+        transform: rotate(270deg) scale(2, 1) skew(35deg, 0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1) skew(0deg, 0deg);
+    }
+}
