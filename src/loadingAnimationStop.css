@@ -1,0 +1,30 @@
+#loading {
+    animation: background-color-toggle 4s infinite steps(1), loaded-background-color-change 1s forwards;
+}
+
+.loading__sphere {
+    animation: sphere-bounce 2s forwards linear infinite, ball-color-toggle 4s infinite steps(1), loaded-sphere-color-change-and-scale 0.5s forwards 0.7s;
+}
+
+@keyframes loaded-sphere-color-change-and-scale {
+    0% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        background-color: var(--color-background);
+        scale: 5;
+    }
+    
+}
+
+@keyframes loaded-background-color-change {
+    100% {
+        background-color: transparent;
+    }
+}
