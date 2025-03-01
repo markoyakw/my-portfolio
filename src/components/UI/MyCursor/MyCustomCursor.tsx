@@ -115,7 +115,7 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
                 {children}
             </MyCursorHoverArea>
 
-            {createPortal(
+            {/* {createPortal(
                 !isSensorScreen && mousePosition
                     ? <MyCursor
                         ref={cursorContainerRef}
@@ -127,7 +127,7 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
                     </MyCursor>
                     : <></>,
                 portalRoot
-            )}
+            )} */}
         </>
     );
 };

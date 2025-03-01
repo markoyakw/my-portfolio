@@ -1,0 +1,50 @@
+.card__feature-video-container {
+    --video-container-max-height: calc(100vh - 70px - 4 * var(--spacing-s));
+    --video-max-height: calc(var(--video-container-max-height) - var(--title-height) - var(--spacing-s) * 3);
+    /* 70px is the close button height */
+
+    color: var(--color-text-primary);
+    padding: var(--spacing-s);
+    border-radius: 35px;
+    animation: card__feature-video-container-appear 0.2s forwards;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-s);
+    box-shadow: var(--box-shadow-light);
+
+    max-width: 100%;
+    max-height: var(--video-container-max-height);
+}
+
+.card__feature-video {
+    width: 600px;
+    border-radius: 35px;
+    max-width: 100%;
+    max-height: var(--video-max-height);
+    align-self: center;
+    justify-self: center;
+    aspect-ratio: 4/5;
+}
+
+.card__feature-video-title {
+    font-size: var(--font-size-l);
+}
+
+.card__feature-video-title--in-progress {
+    white-space: nowrap;
+    padding: var(--spacing-xs);
+}
+
+@keyframes card__feature-video-container-appear {
+    0% {
+        transform: scaleY(0);
+    }
+
+    70% {
+        transform: scaleY(1.1);
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
+}
