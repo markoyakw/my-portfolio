@@ -11,21 +11,20 @@ export const useMultiObserver = (observedElements: ObservedElement[]): Visibilit
     const [visibilityMap, setVisibilityMap] = useState<VisibilityMap>({});
 
     useEffect(() => {
+        const viewportHeight = window.innerHeight;
+        const bottomRootMargin = viewportHeight / 4
+        const topRootMargin = bottomRootMargin / 6
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     const key = entry.target.getAttribute("data-observer-key");
                     if (!key) return;
 
-                    const { top, bottom } = entry.boundingClientRect;
-                    const viewportHeight = window.innerHeight;
-
-                    const isFullyOut = bottom < 0 || top > viewportHeight;
-
-                    setVisibilityMap((prev) => ({ ...prev, [key]: !isFullyOut }));
+                    setVisibilityMap((prev) => ({ ...prev, [key]: entry.isIntersecting }));
                 });
             },
-            { root: null, rootMargin: "0px", threshold: [0] }
+            { root: null, rootMargin: `-${topRootMargin}px 0px -${bottomRootMargin}px 0px`, threshold: 0 }
         );
 
         observedElements.forEach(({ key, ref }) => {

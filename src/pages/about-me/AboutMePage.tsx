@@ -21,7 +21,7 @@ const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView },
   })
   const aboutMeTextClassName = `${classes["about-me-text"]} ${animationClassName}`
 
-  const [cardsContainerRef, isCardsContainerInView] = useObserver()
+  const [cardsContainerRef, isCardsContainerInView] = useObserver({rootMargin: "-100px 0px"})
 
   return (
     <div className={classes["container"]} ref={ref}>

@@ -41,9 +41,7 @@ const useGetActiveNavLinkRect = (
 
     const recalculateHighlightRect = () => {
         const currentPathname = paramsRef.current.pathname
-        let activeAnchorHTML = URIToHTMLAnchorMap.get(paramsRef.current.pathname)
-            || URIToHTMLAnchorMap.get(currentPathname.slice(0, -1))
-            || URIToHTMLAnchorMap.get(currentPathname.slice(0, -1) + "*")
+        let activeAnchorHTML = URIToHTMLAnchorMap.get(paramsRef.current.pathname) || URIToHTMLAnchorMap.get(currentPathname.slice(0, -1))
         const navBar = navBarRef.current
         if (!activeAnchorHTML || !navBar) return
         const activeLinkRect = activeAnchorHTML.getBoundingClientRect()

@@ -5,7 +5,7 @@ import ProjectsPage from "./my-projects/ProjectsPage";
 import ResumePage from "./resume/ResumePage";
 import ContactMePage from "./contact-me/ContactMePage";
 import { useMultiObserver } from "@hooks/useMultiObserver";
-import usePagesNavigation from "./usePagesNavigation"
+import usePagesScrollNavigation from "./usePagesScrollNavigation"
 
 const Pages = () => {
     const homePageRef = useRef<HTMLDivElement>(null);
@@ -23,7 +23,7 @@ const Pages = () => {
     ], []);
 
     const visibilityMap = useMultiObserver(observedElements);
-    usePagesNavigation(visibilityMap, observedElements);
+    usePagesScrollNavigation(visibilityMap, observedElements);
 
     return (
         <>
