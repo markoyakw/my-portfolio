@@ -2,12 +2,14 @@ import useAppearAnimationAttributes from '@hooks/useAppearAnimationProps/useAppe
 import classes from "../../HomePage.module.css"
 import LocationCard from './LocationCard/LocationCard'
 import LetsConnectButton from './LetsConnectButton/LetsConnectButton'
+import { FC } from 'react'
 
-const LocationAndLetsConnectCards = () => {
+const LocationAndLetsConnectCards: FC<{ isRevealAnimationReady: boolean }> = ({ isRevealAnimationReady }) => {
 
     const { animationClassName, delayStyle } = useAppearAnimationAttributes({
         type: "from-left",
         delay: "0.1s",
+        show: isRevealAnimationReady
     })
 
     const containerClassName = `${classes["location-and-connect-row"]} ${animationClassName}`

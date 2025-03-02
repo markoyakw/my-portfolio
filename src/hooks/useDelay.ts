@@ -1,17 +1,18 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 type TDelayOptions = {
-    isReadyRightAway: boolean
+    startDelayRightAway: boolean
 }
 
 const useDelay = (delayMs: number, options?: TDelayOptions): [boolean, () => void] => {
 
-    const [isReady, setIsReady] = useState(() => {
-        if (options && options.isReadyRightAway) {
-            return true
+    const [isReady, setIsReady] = useState(false);
+
+    useEffect(() => {
+        if (options && options.startDelayRightAway) {
+            startDelay()
         }
-        else return false
-    });
+    }, [])
 
     const startDelay = useCallback(() => {
         setIsReady(false);

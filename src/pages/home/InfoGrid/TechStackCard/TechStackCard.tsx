@@ -3,8 +3,9 @@ import MyIconWithLabel from '@components/UI/MyIcon/MyIconWithLabel'
 import classes from "./TechStackCard.module.css"
 import MyCard from '@components/UI/MyCard/MyCard'
 import useAppearAnimationAttributes from '@hooks/useAppearAnimationProps/useAppearAnimationProps'
+import { FC } from 'react'
 
-const TechStackCard = () => {
+const TechStackCard: FC<{ isRevealAnimationReady: boolean }> = ({ isRevealAnimationReady }) => {
 
     const displayNameMap = {
         javascript: "JavaScript",
@@ -22,6 +23,7 @@ const TechStackCard = () => {
     const { animationClassName, delayStyle } = useAppearAnimationAttributes({
         type: "from-left",
         delay: "0.3s",
+        show: isRevealAnimationReady
     })
 
     const containerClassName = `${classes["container"]} ${animationClassName}`

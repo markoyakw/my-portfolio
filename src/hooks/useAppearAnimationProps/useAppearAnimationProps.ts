@@ -1,4 +1,4 @@
-import { CSSProperties, useMemo } from "react"
+import { CSSProperties, useEffect, useMemo, useState } from "react"
 import classes from "./appearAnimation.module.css"
 
 type TAppearType = "from-top" | "from-bottom" | "from-left" | "from-right" | "fade-in"
@@ -17,11 +17,22 @@ type TAnimationAttributes = {
 
 const useAppearAnimationAttributes = ({ type, delay, show = true }: TAppearAnimationProps): TAnimationAttributes => {
 
-    const animationClassName = useMemo(() => {
-        const animationClassName = `${classes["appear-container"]} ${classes["appear-container--" + type]} ${show ? "" : classes["appear-container--hide"]}`
-        return animationClassName
+    const [isFirstAppearHappened, setIsFirstAppearHappened] = useState(false)
+
+    useEffect(() => {
+        if (show && !isFirstAppearHappened) {
+            setIsFirstAppearHappened(true)
+        }
     }, [show])
 
+    const animationClassName = useMemo(() => {
+        const animationClassName = `${classes["appear-container"]}
+        ${classes["appear-container--" + type]}
+        ${show ? classes["appear-container--show"] : classes["appear-container--hide"]}
+        ${isFirstAppearHappened ? classes["appear-container--after-first-appearance"] : ""}
+        `
+        return animationClassName
+    }, [show])
 
     const delayStyle = useMemo(() => {
         return {

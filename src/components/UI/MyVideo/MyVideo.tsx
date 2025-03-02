@@ -49,6 +49,11 @@ const MyVideo: FC<MyVideoProps> = ({
     const videoClassName = `${classes["video"]} ${isLoading ? classes["video--loading"] : ""} ${className}`
     const loaderClassName = `${classes["loader__container"]} ${className}`
 
+    const handleVideoEnd = () => {
+        if (!videoRef?.current) return
+        videoRef.current.play()
+    }
+
     return (
         <>
             {isLoading &&
@@ -66,6 +71,7 @@ const MyVideo: FC<MyVideoProps> = ({
                 loop={loop}
                 muted={muted}
                 onLoadedData={() => setTimeout(() => setIsLoading(false), 1000)}
+                onEnded={handleVideoEnd}
             >
                 {isLoadingStartedState && <source src={src} type={type} />}
             </video>

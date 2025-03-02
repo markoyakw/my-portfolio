@@ -1,16 +1,24 @@
 .appear-container {
     animation-delay: var(--animation-delay);
     animation-fill-mode: forwards;
-
-    opacity: 0%;
-    filter: blur(3px);
     transform: translateX(var(--appear-from-x, 0px)) translateY(var(--appear-from-y, 0px));
-    animation: appear 0.5s ease-out forwards;
     animation-delay: var(--animation-delay);
 }
 
+.appear-container--show {
+    opacity: 0;
+    animation: appear 0.5s ease-out forwards;
+}
+
 .appear-container--hide {
-    animation: none;
+    opacity: 0;
+    transform: translateX(0px) translateY(0px);
+    animation: hide 0.3s ease-out forwards;
+    animation-delay: 0s;
+}
+
+.appear-container--after-first-appearance.appear-container--hide {
+    opacity: 1;
 }
 
 .appear-container--from-left {
@@ -29,12 +37,24 @@
     --appear-from-y: 100vh
 }
 
-@keyframes appear {
-    0% {}
+@keyframes hide {
+    0% {
+        transform: translateX(0px) translateY(0px);
+    }
 
     100% {
-        opacity: 100%;
-        filter: blur(0px);
+        transform: translateX(0px) translateY(0px);
+        opacity: 0;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
         transform: translateX(0px) translateY(0px);
     }
 }

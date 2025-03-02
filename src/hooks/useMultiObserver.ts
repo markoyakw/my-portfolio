@@ -13,7 +13,7 @@ export const useMultiObserver = (observedElements: ObservedElement[]): Visibilit
     useEffect(() => {
         const viewportHeight = window.innerHeight;
         const bottomRootMargin = viewportHeight / 4
-        const topRootMargin = bottomRootMargin / 6
+        const topRootMargin = viewportHeight / 4
 
         const observer = new IntersectionObserver(
             (entries) => {
