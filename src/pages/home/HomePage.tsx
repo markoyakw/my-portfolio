@@ -7,10 +7,11 @@ import EducationCard from './InfoGrid/EducationCard/EducationCard'
 import { forwardRef, memo } from 'react'
 import LocationAndLetsConnectCards from './InfoGrid/LocationAndLetsConnectCards/LocationAndLetsConnectCards'
 import useDelay from '@hooks/useDelay'
+import { FAKE_LOADING_TIME_MS } from '@/constants'
 
 const HomePage = forwardRef<HTMLDivElement>((_, ref) => {
 
-  const [isRevealAnimationReady] = useDelay(700, { startDelayRightAway: true })
+  const [isRevealAnimationReady] = useDelay(FAKE_LOADING_TIME_MS, { startDelayRightAway: true })
 
   return (
     <div className={classes["container"]} ref={ref}>
@@ -18,17 +19,17 @@ const HomePage = forwardRef<HTMLDivElement>((_, ref) => {
         <div className={classes["left-column"]}>
 
           <div className={classes["hello-location-and-connect-flexbox"]}>
-            <HelloCard isRevealAnimationReady={isRevealAnimationReady}/>
-            <LocationAndLetsConnectCards isRevealAnimationReady={isRevealAnimationReady}/>
+            <HelloCard isRevealAnimationReady={isRevealAnimationReady} />
+            <LocationAndLetsConnectCards isRevealAnimationReady={isRevealAnimationReady} />
           </div>
 
-          <WorkPositionCard isRevealAnimationReady={isRevealAnimationReady}/>
-          <TechStackCard isRevealAnimationReady={isRevealAnimationReady}/>
+          <WorkPositionCard isRevealAnimationReady={isRevealAnimationReady} />
+          <TechStackCard isRevealAnimationReady={isRevealAnimationReady} />
         </div>
 
         <div className={classes["right-column"]}>
-          <WorkExperienceCard isRevealAnimationReady={isRevealAnimationReady}/>
-          <EducationCard isRevealAnimationReady={isRevealAnimationReady}/>
+          <WorkExperienceCard isRevealAnimationReady={isRevealAnimationReady} />
+          <EducationCard isRevealAnimationReady={isRevealAnimationReady} />
         </div>
       </div>
     </div>

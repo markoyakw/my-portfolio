@@ -1,1 +1,2 @@
 export const MOBILE_WINDOW_WIDTH = 660;
+export const FAKE_LOADING_TIME_MS = 1300

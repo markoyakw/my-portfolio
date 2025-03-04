@@ -1,0 +1,16 @@
+.text-reveal-container {
+    display: inline-flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.text-line {
+    opacity: 0;
+    transform: translateY(1em);
+    transition: opacity 0.8s ease-out, transform 0.4s ease-out;
+}
+
+.text-line--visible {
+    opacity: 1;
+    transform: translateY(0);
+}

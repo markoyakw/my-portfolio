@@ -1,4 +1,4 @@
-#loading {
+/* #loading {
     animation: background-color-toggle 4s infinite steps(1), loaded-background-color-change 1s forwards;
 }
 
@@ -27,4 +27,4 @@
     100% {
         background-color: transparent;
     }
-}
+} */

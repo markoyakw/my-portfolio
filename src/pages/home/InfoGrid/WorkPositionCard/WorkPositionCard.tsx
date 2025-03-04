@@ -1,24 +1,20 @@
-import useAppearAnimationAttributes from "@hooks/useAppearAnimationProps/useAppearAnimationProps"
 import classes from "./WorkPositionCard.module.css"
 import { FC } from "react"
+import TextReveal from "@components/UI/animations/TextReveal/TextReveal"
 
 const WorkPositionCard: FC<{ isRevealAnimationReady: boolean }> = ({ isRevealAnimationReady }) => {
 
-    const { animationClassName, delayStyle } = useAppearAnimationAttributes({
-        type: "fade-in",
-        delay: "0.25s",
-        show: isRevealAnimationReady
-    })
+    const containerClassName = `${classes["work-position"]}`
 
-    const containerClassName = `${classes["work-position"]} ${animationClassName}`
-
+    if (!isRevealAnimationReady) return null
     return (
         <strong>
-            <h1 className={containerClassName} style={delayStyle}>
+            <h1 className={containerClassName}>
                 <div>
-                    FRONT <i>end</i>&nbsp;
+                    <TextReveal delay={500}>FRONT</TextReveal>
+                    <i><TextReveal delay={500}>&nbsp;end&nbsp;</TextReveal></i>
                 </div>
-                DEVELOPER
+                <TextReveal delay={800}>DEVELOPER</TextReveal>
             </h1>
         </strong>
     )

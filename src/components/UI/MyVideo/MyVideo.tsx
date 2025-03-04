@@ -46,16 +46,21 @@ const MyVideo: FC<MyVideoProps> = ({
         }
     }, [isLoadingStarted, isVideoInView, startLoadingWhenVisible])
 
-    const videoClassName = `${classes["video"]} ${isLoading ? classes["video--loading"] : ""} ${className}`
-    const loaderClassName = `${classes["loader__container"]} ${className}`
+    const containerClassName = `${className}`
+    const loaderClassName = `${classes["loader__container"]}`
+    const videoClassName = `${classes["video"]} ${isLoading ? classes["video--loading"] : ""}`
 
     const handleVideoEnd = () => {
         if (!videoRef?.current) return
         videoRef.current.play()
     }
 
+    const handleLoadedData = () => {
+        setIsLoading(false)
+    }
+
     return (
-        <>
+        <div className={containerClassName}>
             {isLoading &&
                 <div className={loaderClassName}>
                     <MyLoaderSpinner />
@@ -70,12 +75,12 @@ const MyVideo: FC<MyVideoProps> = ({
                 autoPlay={autoPlay}
                 loop={loop}
                 muted={muted}
-                onLoadedData={() => setTimeout(() => setIsLoading(false), 1000)}
+                onLoadedData={handleLoadedData}
                 onEnded={handleVideoEnd}
             >
                 {isLoadingStartedState && <source src={src} type={type} />}
             </video>
-        </>
+        </div>
     );
 };
 

@@ -1,0 +1,56 @@
+body {
+    animation: scroll-enable 1.6s forwards;
+}
+
+#loading {
+    z-index: 102;
+    animation: background-color-toggle 4s infinite steps(1), loading-finish 1.6s forwards;
+}
+
+.loading__sphere {
+    animation: sphere-bounce 2s forwards linear infinite, ball-color-toggle 4s infinite steps(1), loaded-sphere-opacity-and-scale-change 0.8s forwards 0.8s;
+}
+
+@keyframes loading-finish {
+    0% {
+        display: block;
+        opacity: 1;
+    }
+
+    30% {
+        background-color: var(--color-background);
+    }
+
+    70% {
+        transform: translateY(0px);
+    }
+
+    99% {
+        transform: translateY(-100vh);
+        display: none;
+    }
+
+    100% {
+        display: none;
+    }
+}
+
+@keyframes loaded-sphere-opacity-and-scale-change {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        scale: 5;
+    }
+}
+
+@keyframes scroll-enable {
+    99% {
+        overflow: hidden;
+    }
+
+    100% {
+        overflow: visible;
+    }
+}
