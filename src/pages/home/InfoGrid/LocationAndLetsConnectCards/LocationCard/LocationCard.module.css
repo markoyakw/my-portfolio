@@ -44,3 +44,20 @@
         font-size: var(--font-size-m);
     }
 }
+
+@media(max-width: 390px) {
+    .text-row {
+        font-size: 7vw;
+    }
+
+    .location-pin-circle {
+        max-width: 27vw;
+        max-height: 27vw;
+        width: auto;
+        height: auto;
+    }
+
+    .container {
+        justify-content: center;
+    }
+}

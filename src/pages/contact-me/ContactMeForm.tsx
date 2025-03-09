@@ -123,7 +123,8 @@ export const ContactMeForm = () => {
                             value: 100,
                             message: "Max lenght of name is 100 symbols"
                         }
-                    })} />
+                    })}
+                />
 
                 <MyInput label="Email" error={errors["email"]?.message?.toString()} addedClassName={classes["input"]}
                     {...register("email", {
@@ -132,7 +133,8 @@ export const ContactMeForm = () => {
                                 return "Please, provide your email or phone if possible"
                             }
                         }
-                    })} />
+                    })}
+                />
 
                 <MyInput autoComplete='off' inputMode='tel' label="Phone number" error={errors["phoneNumber"]?.message?.toString()} addedClassName={classes["input"]}
                     {...register("phoneNumber", {
@@ -149,7 +151,8 @@ export const ContactMeForm = () => {
                     onInput={(e) => {
                         const numberValue = e.currentTarget.value.replace(/[^\d()+-]/g, "");
                         setValue("phoneNumber", numberValue)
-                    }} />
+                    }}
+                />
 
                 <MyTextArea
                     label="Message"

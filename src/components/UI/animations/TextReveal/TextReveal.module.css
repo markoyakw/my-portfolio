@@ -23,14 +23,13 @@
 }
 
 .word {
-    height: 0px;
-    width: 0px;
     opacity: 0;
     transform: translateY(100%);
     transition: opacity 0.8s ease-out, transform 0.4s ease-out;
+    animation: word-size-hide 0.8s forwards;
 }
 
-.word__overflow-container{
+.word__overflow-container {
     overflow: hidden;
     display: flex;
 }
@@ -41,4 +40,17 @@
     display: block;
     opacity: 1;
     transform: translateY(0);
+    animation: none;
+}
+
+@keyframes word-size-hide {
+    99% {
+        width: auto;
+        height: auto;
+    }
+
+    100% {
+        height: 0px;
+        width: 0px;
+    }
 }

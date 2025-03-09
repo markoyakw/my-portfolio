@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./TextReveal.module.css";
 import getNumberOfLinesInHTMLelement from "@utils/getNumberOfLinesInHTMLElement";
 import useWindowSize from "@hooks/useWindowSize";
@@ -10,9 +10,10 @@ type TTextRevealProps = {
     delayBetweenLines?: number;
     className?: string;
     shouldAnimationStart?: boolean
+    onAnimationFinish?: (params?: any) => any
 };
 
-const TextReveal: React.FC<TTextRevealProps> = ({ children, delay = 0, className = "", shouldAnimationStart = true, delayBetweenLines = 150 }) => {
+const TextReveal: React.FC<TTextRevealProps> = ({ children, delay = 0, className = "", shouldAnimationStart = true, delayBetweenLines = 150, onAnimationFinish = function () { } }) => {
 
     const [lastRevealedLine, setLastRevealedLine] = useState(1);
     const [revealedWordsCount, setRevealedWordsCount] = useState(0)
@@ -22,11 +23,6 @@ const TextReveal: React.FC<TTextRevealProps> = ({ children, delay = 0, className
     const hiddenTextSizeCalcRef = useRef<HTMLDivElement>(null)
     const revealedTextRef = useRef<HTMLDivElement>(null)
     const windowSize = useWindowSize()
-
-    const maxRevealedLines = useMemo(() => {
-        if (!hiddenTextSizeCalcRef.current) return
-        return getNumberOfLinesInHTMLelement(hiddenTextSizeCalcRef.current)
-    }, [hiddenTextSizeCalcRef.current, windowSize])
 
     useEffect(() => {
         if (!shouldAnimationStart) return
@@ -41,7 +37,10 @@ const TextReveal: React.FC<TTextRevealProps> = ({ children, delay = 0, className
         const maxWords = children.split(" ").length
 
         const revealedLinesHTML = getNumberOfLinesInHTMLelement(revealedTextRef.current)
-        if (!maxRevealedLines || revealedWordsCount === maxWords) return
+        if (revealedWordsCount > maxWords) {
+            onAnimationFinish()
+            return
+        }
 
         if (revealedLinesHTML < lastRevealedLine) {
             setRevealedWordsCount(prevCount => prevCount + 1)
@@ -55,7 +54,7 @@ const TextReveal: React.FC<TTextRevealProps> = ({ children, delay = 0, className
             setLastRevealedLine(revealedLinesHTML + 1)
         }, delayBetweenLines)
 
-    }, [revealedWordsCount, lastRevealedLine, maxRevealedLines, shouldAnimationStart, isDelayFinished])
+    }, [revealedWordsCount, lastRevealedLine, shouldAnimationStart, isDelayFinished, windowSize])
 
     useEffect(() => {
         if (!shouldAnimationStart) {
@@ -75,17 +74,15 @@ const TextReveal: React.FC<TTextRevealProps> = ({ children, delay = 0, className
                 )}
             </div>
 
-            {shouldAnimationStart &&
-                <div className={classes["revealed-text-container"]} ref={revealedTextRef}>
-                    {children.split(" ").map((word, wordIndex) => (
-                        <span key={wordIndex} className={classes["word__overflow-container"]}>
-                            <span className={`${classes["word"]} ${wordIndex < revealedWordsCount ? classes["word--visible"] : ""}`}>
-                                {word}&nbsp;
-                            </span>
+            <div className={classes["revealed-text-container"]} ref={revealedTextRef}>
+                {children.split(" ").map((word, wordIndex) => (
+                    <span key={wordIndex} className={classes["word__overflow-container"]}>
+                        <span className={`${classes["word"]} ${wordIndex < revealedWordsCount ? classes["word--visible"] : ""}`}>
+                            {word}&nbsp;
                         </span>
-                    ))}
-                </div>
-            }
+                    </span>
+                ))}
+            </div>
         </div>
     );
 };

@@ -88,3 +88,10 @@
         height: 100%;
     }
 }
+
+@media (max-width: 390px) {
+    .location-and-connect-row {
+        flex-direction: column-reverse;
+        gap: var(--spacing-m);
+    }
+}

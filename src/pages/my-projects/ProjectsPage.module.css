@@ -221,6 +221,24 @@ a {
     }
 }
 
+@media(max-width: 430px) {
+    .card__project-info-container {
+        flex-direction: column;
+        gap: var(--spacing-l);
+    }
+
+    .card__tech-stack {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        place-items: center;
+    }
+
+    .card__feature-button h3{
+        font-size: var(--font-size-s);
+    }
+}
+
 @media(max-width:600px) {
     .card__feature-buttons-container {
         grid-template-columns: repeat(2, 1fr);

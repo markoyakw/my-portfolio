@@ -26,3 +26,10 @@
         font-size: 6vw;
     }
 }
+
+@media(max-width: 390px) {
+    .work-position {
+        font-size: 7vw;
+        justify-content: center;
+    }
+}

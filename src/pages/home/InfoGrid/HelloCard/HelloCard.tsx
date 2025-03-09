@@ -21,8 +21,8 @@ const HelloCard: FC<{ isRevealAnimationReady: boolean }> = ({ isRevealAnimationR
         <MyCard onMouseEnter={() => setIsHelloCardHovered(true)} onMouseLeave={() => setIsHelloCardHovered(false)} addedClassName={containerClassName}>
             <div className={classes["greetings__container"]}>
                 <div className={classes["greetings__text"]}>
-                    Hello <WavyHand isHovered={isHelloCardHovered} />
-                    , <br />I'm Marko
+                    <div>Hello <WavyHand isHovered={isHelloCardHovered} />,&nbsp;</div>
+                    <div>I'm Marko</div>
                 </div>
                 <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
             </div>

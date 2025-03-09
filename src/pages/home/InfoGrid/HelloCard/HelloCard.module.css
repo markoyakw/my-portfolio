@@ -33,3 +33,14 @@
     font-size: var(--font-size-l);
     color: var(--color-text-primary);
 }
+
+@media(max-width: 400px){
+    .container{
+        flex-direction: column-reverse;
+    }
+    .greetings__text{
+        font-size: var(--font-size-m);
+        display: flex;
+        align-items: flex-end;
+    }
+}
