@@ -11,6 +11,7 @@ import useGetActiveNavLinkRect from "./useGetActiveNavLinkRect"
 import getRelativeRect from "@utils/getRelativeRect"
 import openResumePage from "@utils/openResumePage"
 import useAppearAnimationAttributes from "@hooks/useAppearAnimationProps/useAppearAnimationProps"
+import { useMainLoadingDelay } from "@hooks/useMainLoadingDelay"
 
 type TNavBar = {
     className: string,
@@ -29,15 +30,16 @@ const NavBar: FC<TNavBar> = ({ className }) => {
         return getRelativeRect(hoveredLinkRect, navBarRect)
     }
 
-    const { animationClassName, delayStyle } = useAppearAnimationAttributes({
+    const { isLoadingDelayFinished } = useMainLoadingDelay()
+    const { animationClassName } = useAppearAnimationAttributes({
         type: "from-top",
-        delay: "0.5s"
+        show: isLoadingDelayFinished
     })
 
     const containerClassName = `${className} ${animationClassName}`
 
     return (
-        <nav className={containerClassName} ref={navBarRef} style={delayStyle}>
+        <nav className={containerClassName} ref={navBarRef}>
             <div className={classes["nav-bar__main-column"]} >
                 <MyNavLink href='/' icon={<IoHomeSharp />} setHoveredLinkRect={setHoveredLinkRect}>
                     Home

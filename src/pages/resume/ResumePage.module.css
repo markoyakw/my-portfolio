@@ -2,12 +2,14 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-m);
+    color: var(--color-text-primary);
+    align-items: center;
+    font-size: var(--font-size-xl);
 }
 
 .container h2 {
-    max-width: 900px;
-    color: var(--color-text-primary);
     font-size: var(--font-size-xl);
+    max-width: 900px;
     text-align: center;
 }
 
@@ -15,6 +17,13 @@
     display: flex;
     justify-content: center;
     width: 100%;
+}
+
+.button-and-arrow-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-m);
 }
 
 .button {

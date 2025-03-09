@@ -26,7 +26,8 @@ const useAppearAnimationAttributes = ({ type, delay, show = true }: TAppearAnima
     }, [show])
 
     const animationClassName = useMemo(() => {
-        const animationClassName = `${classes["appear-container"]}
+        const animationClassName = `
+        ${classes["appear-container"]}
         ${classes["appear-container--" + type]}
         ${show ? classes["appear-container--show"] : classes["appear-container--hide"]}
         ${isFirstAppearHappened ? classes["appear-container--after-first-appearance"] : ""}

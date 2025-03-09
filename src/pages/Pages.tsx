@@ -6,6 +6,7 @@ import ResumePage from "./resume/ResumePage";
 import ContactMePage from "./contact-me/ContactMePage";
 import { useMultiObserver } from "@hooks/useMultiObserver";
 import usePagesScrollNavigation from "./usePagesScrollNavigation"
+import { useMainLoadingDelay } from "@hooks/useMainLoadingDelay";
 
 const Pages = () => {
     const homePageRef = useRef<HTMLDivElement>(null);
@@ -24,14 +25,15 @@ const Pages = () => {
 
     const visibilityMap = useMultiObserver(observedElements);
     usePagesScrollNavigation(visibilityMap, observedElements);
+    const { isLoadingDelayFinished } = useMainLoadingDelay()
 
     return (
         <>
-            <HomePage ref={homePageRef} />
-            <AboutMePage ref={aboutMePageRef} isInView={visibilityMap["/about-me"] || false} />
-            <ProjectsPage ref={projectsPageRef} isInView={visibilityMap["/my-projects"] || false} />
-            <ContactMePage ref={contactMePageRef} isInView={visibilityMap["/contact-me"] || false} />
-            <ResumePage ref={resumePageRef} />
+            <HomePage ref={homePageRef} isInView={visibilityMap["/"] && isLoadingDelayFinished} />
+            <AboutMePage ref={aboutMePageRef} isInView={visibilityMap["/about-me"] && isLoadingDelayFinished} />
+            <ProjectsPage ref={projectsPageRef} isInView={visibilityMap["/my-projects"] && isLoadingDelayFinished} />
+            <ContactMePage ref={contactMePageRef} isInView={visibilityMap["/contact-me"] && isLoadingDelayFinished} />
+            <ResumePage ref={resumePageRef} isInView={visibilityMap["/resume"] && isLoadingDelayFinished} />
         </>
     );
 };

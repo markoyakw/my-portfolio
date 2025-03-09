@@ -6,7 +6,6 @@ import AnimatedLoaderText from "@components/UI/animations/AnimatedLoaderText/Ani
 import AboutMeCard from "./AboutMeCard"
 import { forwardRef, memo } from "react"
 import useAppearAnimationAttributes from "@hooks/useAppearAnimationProps/useAppearAnimationProps"
-import useObserver from "@hooks/useObserveIntersection"
 
 type TAboutMePageProps = {
   isInView: boolean
@@ -20,8 +19,6 @@ const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView },
     show: isInView
   })
   const aboutMeTextClassName = `${classes["about-me-text"]} ${animationClassName}`
-
-  const [cardsContainerRef, isCardsContainerInView] = useObserver({rootMargin: "-100px 0px"})
 
   return (
     <div className={classes["container"]} ref={ref}>
@@ -37,10 +34,10 @@ const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView },
         </p>
       </div>
 
-      <div className={classes["cards-grid"]} ref={cardsContainerRef}>
+      <div className={classes["cards-grid"]}>
 
         <AboutMeCard
-          show={isCardsContainerInView}
+          show={isInView}
           title={<><IoGlobeSharp /> Languages:</>}
           listStringArr={[
             "English: C1",
@@ -52,7 +49,7 @@ const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView },
         />
 
         <AboutMeCard
-          show={isCardsContainerInView}
+          show={isInView}
           showDelay="0.2s"
           title={<><MdWorkOutline /> Professional qualities:</>}
           listStringArr={[
@@ -65,7 +62,7 @@ const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView },
         />
 
         <AboutMeCard
-          show={isCardsContainerInView}
+          show={isInView}
           showDelay="0.4s"
           title={<><BsEmojiSunglassesFill /> About me:</>}
           listStringArr={[

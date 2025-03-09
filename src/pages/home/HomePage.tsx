@@ -4,14 +4,20 @@ import WorkPositionCard from './InfoGrid/WorkPositionCard/WorkPositionCard'
 import WorkExperienceCard from './InfoGrid/WorkExperienceCard/WorkExperienceCard'
 import TechStackCard from './InfoGrid/TechStackCard/TechStackCard'
 import EducationCard from './InfoGrid/EducationCard/EducationCard'
-import { forwardRef, memo } from 'react'
+import { forwardRef, memo, useEffect, useState } from 'react'
 import LocationAndLetsConnectCards from './InfoGrid/LocationAndLetsConnectCards/LocationAndLetsConnectCards'
-import useDelay from '@hooks/useDelay'
-import { FAKE_LOADING_TIME_MS } from '@/constants'
+import { useMainLoadingDelay } from '@hooks/useMainLoadingDelay'
 
-const HomePage = forwardRef<HTMLDivElement>((_, ref) => {
+const HomePage = forwardRef<HTMLDivElement, { isInView: boolean }>(({ isInView }, ref) => {
 
-  const [isRevealAnimationReady] = useDelay(FAKE_LOADING_TIME_MS, { startDelayRightAway: true })
+  const { isLoadingDelayFinished } = useMainLoadingDelay()
+  const [isRevealAnimationReady, setIsRevealAnimationReady] = useState(false)
+
+  useEffect(() => {
+    if (isInView && isLoadingDelayFinished) {
+      setIsRevealAnimationReady(true)
+    }
+  }, [isInView, isLoadingDelayFinished])
 
   return (
     <div className={classes["container"]} ref={ref}>

@@ -1,16 +1,44 @@
-.text-reveal-container {
-    display: inline-flex;
-    flex-direction: column;
-    overflow: hidden;
+.container {
+    position: relative;
 }
 
-.text-line {
+.revealed-text-container {
+    white-space: normal;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
+.hidden-text-size-calculation-container {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    top: 0px;
+    left: 0px;
+    width: 100%;
     opacity: 0;
-    transform: translateY(1em);
+}
+
+.word {
+    height: 0px;
+    width: 0px;
+    opacity: 0;
+    transform: translateY(100%);
     transition: opacity 0.8s ease-out, transform 0.4s ease-out;
 }
 
-.text-line--visible {
+.word__overflow-container{
+    overflow: hidden;
+    display: flex;
+}
+
+.word--visible {
+    width: auto;
+    height: auto;
+    display: block;
     opacity: 1;
     transform: translateY(0);
 }

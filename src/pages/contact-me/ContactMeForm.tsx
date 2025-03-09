@@ -24,7 +24,7 @@ export const ContactMeForm = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitSuccessful, setIsSubmitSuccessful] = useState<boolean | undefined>(undefined)
     const isSubmitSuccessfulTimerRef = useRef<NodeJS.Timeout>()
-    const [resetFormAfterSuccessDelay, startResetFormAfterSuccessDelay] = useDelay(RESPONSE_STATUS_ANIMATION_DELAY)
+    const [resetFormAfterSuccessDelay, startResetFormAfterSuccessDelay] = useDelay(RESPONSE_STATUS_ANIMATION_DELAY, { shouldStart: true })
     const [isTouched, setIsTouched] = useState(false)
 
     const apiKey = import.meta.env.VITE_TELEGRAM_API_KEY

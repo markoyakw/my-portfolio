@@ -6,15 +6,20 @@ const WorkPositionCard: FC<{ isRevealAnimationReady: boolean }> = ({ isRevealAni
 
     const containerClassName = `${classes["work-position"]}`
 
-    if (!isRevealAnimationReady) return null
     return (
         <strong>
             <h1 className={containerClassName}>
-                <div>
-                    <TextReveal delay={500}>FRONT</TextReveal>
-                    <i><TextReveal delay={500}>&nbsp;end&nbsp;</TextReveal></i>
+                <div className={classes["front-end-row"]}>
+                    <TextReveal shouldAnimationStart={isRevealAnimationReady}>
+                        FRONT
+                    </TextReveal>
+                    <TextReveal shouldAnimationStart={isRevealAnimationReady}>
+                        end
+                    </TextReveal>
                 </div>
-                <TextReveal delay={800}>DEVELOPER</TextReveal>
+                <TextReveal shouldAnimationStart={isRevealAnimationReady} delay={200}>
+                    DEVELOPER
+                </TextReveal>
             </h1>
         </strong>
     )
