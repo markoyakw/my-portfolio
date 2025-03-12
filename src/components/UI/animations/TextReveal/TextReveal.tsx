@@ -2,73 +2,82 @@ import React, { useEffect, useRef, useState } from "react";
 import classes from "./TextReveal.module.css";
 import getNumberOfLinesInHTMLelement from "@utils/getNumberOfLinesInHTMLElement";
 import useWindowSize from "@hooks/useWindowSize";
-import useDelay from "@hooks/useDelay";
 
 type TTextRevealProps = {
     children: string;
-    delay?: number;
     delayBetweenLines?: number;
     className?: string;
     shouldAnimationStart?: boolean
     onAnimationFinish?: (params?: any) => any
 };
 
-const TextReveal: React.FC<TTextRevealProps> = ({ children, delay = 0, className = "", shouldAnimationStart = true, delayBetweenLines = 150, onAnimationFinish = function () { } }) => {
+const TextReveal: React.FC<TTextRevealProps> = ({ children, className = "", shouldAnimationStart = true, delayBetweenLines = 150, onAnimationFinish = function () { } }) => {
 
-    const [lastRevealedLine, setLastRevealedLine] = useState(1);
-    const [revealedWordsCount, setRevealedWordsCount] = useState(0)
-    const skipLineCheckIteration = useRef<boolean>(false)
-    const [isDelayFinished] = useDelay(delay, { shouldStart: shouldAnimationStart })
+    const [lastRevealedLineCalculated, setLastRevealedLineCalculated] = useState(1);
+    const [revealedWordsCountCalculated, setRevealedWordsCountCalculated] = useState(0)
+    const [isCalculationsFinished, setIsCalculationsFinished] = useState(false)
+    const lastWordInLineIndexArr = useRef<number[]>([])
+
+    const windowSize = useWindowSize()
 
     const hiddenTextSizeCalcRef = useRef<HTMLDivElement>(null)
     const revealedTextRef = useRef<HTMLDivElement>(null)
-    const windowSize = useWindowSize()
+
+    const getindividualLineDelay = (wordIndex: number) => {
+        const delayMultiplier = lastWordInLineIndexArr.current.findIndex(lastWordInLineIndex => lastWordInLineIndex > wordIndex)
+        const maxDelayMultiplier = lastWordInLineIndexArr.current.length
+
+        const normalizedDelayMultiplier = delayMultiplier === -1
+            ? maxDelayMultiplier
+            : delayMultiplier
+
+        if (shouldAnimationStart) {
+            console.log(normalizedDelayMultiplier * delayBetweenLines / 1000 + "s")
+            return normalizedDelayMultiplier * delayBetweenLines / 1000 + "s"
+        }
+        else {
+            console.log(normalizedDelayMultiplier * delayBetweenLines / 1000 + "s")
+
+            return (maxDelayMultiplier - normalizedDelayMultiplier) * delayBetweenLines / 1000 + "s"
+        }
+    }
 
     useEffect(() => {
         if (!shouldAnimationStart) return
-        if (!isDelayFinished) return
+        if (!hiddenTextSizeCalcRef.current) return
 
-        if (skipLineCheckIteration.current === true) {
-            skipLineCheckIteration.current = false
-            return
-        }
-
-        if (!revealedTextRef.current) return
         const maxWords = children.split(" ").length
+        const revealedLinesHTML = getNumberOfLinesInHTMLelement(hiddenTextSizeCalcRef.current)
 
-        const revealedLinesHTML = getNumberOfLinesInHTMLelement(revealedTextRef.current)
-        if (revealedWordsCount > maxWords) {
+        if (revealedWordsCountCalculated >= maxWords) {
             onAnimationFinish()
+            setIsCalculationsFinished(true)
             return
         }
 
-        if (revealedLinesHTML < lastRevealedLine) {
-            setRevealedWordsCount(prevCount => prevCount + 1)
+        if (revealedLinesHTML === lastRevealedLineCalculated) {
+            setRevealedWordsCountCalculated(prevCount => prevCount + 1)
             return
         }
 
-        setRevealedWordsCount(prevCount => prevCount - 1)
-        skipLineCheckIteration.current = true
+        lastWordInLineIndexArr.current.push(revealedWordsCountCalculated)
+        setLastRevealedLineCalculated(revealedLinesHTML)
 
-        setTimeout(() => {
-            setLastRevealedLine(revealedLinesHTML + 1)
-        }, delayBetweenLines)
-
-    }, [revealedWordsCount, lastRevealedLine, shouldAnimationStart, isDelayFinished, windowSize])
+    }, [revealedWordsCountCalculated, lastRevealedLineCalculated, shouldAnimationStart])
 
     useEffect(() => {
-        if (!shouldAnimationStart) {
-            setLastRevealedLine(1)
-            setRevealedWordsCount(0)
-            skipLineCheckIteration.current = false
-        }
-    }, [shouldAnimationStart])
+        setRevealedWordsCountCalculated(0)
+        setLastRevealedLineCalculated(0)
+        lastWordInLineIndexArr.current = []
+        setIsCalculationsFinished(false)
+    }, [windowSize])
 
     return (
         <div className={`${classes["container"]} ${className}`}>
+
             <div className={classes["hidden-text-size-calculation-container"]} ref={hiddenTextSizeCalcRef}>
                 {children.split(" ").map((hiddenWord, wordIndex) =>
-                    <span key={wordIndex}>
+                    <span key={wordIndex} className={`${classes["hidden-word"]} ${revealedWordsCountCalculated >= wordIndex ? classes["hidden-word--size-taken-into-account"] : ""}`}>
                         {hiddenWord}&nbsp;
                     </span>
                 )}
@@ -77,7 +86,10 @@ const TextReveal: React.FC<TTextRevealProps> = ({ children, delay = 0, className
             <div className={classes["revealed-text-container"]} ref={revealedTextRef}>
                 {children.split(" ").map((word, wordIndex) => (
                     <span key={wordIndex} className={classes["word__overflow-container"]}>
-                        <span className={`${classes["word"]} ${wordIndex < revealedWordsCount ? classes["word--visible"] : ""}`}>
+                        <span
+                            className={`${classes["word"]} ${isCalculationsFinished && shouldAnimationStart ? classes["word--visible"] : ""}`}
+                            style={{ "--reveal-delay": getindividualLineDelay(wordIndex) } as React.CSSProperties}
+                        >
                             {word}&nbsp;
                         </span>
                     </span>

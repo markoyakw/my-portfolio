@@ -1,10 +1,12 @@
 import classes from "./WorkPositionCard.module.css"
 import { FC } from "react"
 import TextReveal from "@components/UI/animations/TextReveal/TextReveal"
+import useDelay from "@hooks/useDelay"
 
 const WorkPositionCard: FC<{ isRevealAnimationReady: boolean }> = ({ isRevealAnimationReady }) => {
 
     const containerClassName = `${classes["work-position"]}`
+    const [lastLineRevealDelay] = useDelay(200, { shouldStart: isRevealAnimationReady, isOneTime: true })
 
     return (
         <strong>
@@ -17,7 +19,7 @@ const WorkPositionCard: FC<{ isRevealAnimationReady: boolean }> = ({ isRevealAni
                         end
                     </TextReveal>
                 </div>
-                <TextReveal shouldAnimationStart={isRevealAnimationReady} delay={200}>
+                <TextReveal shouldAnimationStart={lastLineRevealDelay}>
                     DEVELOPER
                 </TextReveal>
             </h1>

@@ -69,7 +69,7 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
         if (isSensorScreen) return
         setTimeout(() => {
             setMousePosition(null);
-        }, 10);
+        }, 50);
     }, [])
 
     const getNormalizedX = useCallback((x: number) => {
