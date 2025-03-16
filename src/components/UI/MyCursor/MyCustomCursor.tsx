@@ -44,7 +44,7 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
         if (isSensorScreen) return
-        if (animationFrameRef.current) {
+        if (animationFrameRef.current && mousePosition) {
             cancelAnimationFrame(animationFrameRef.current);
         }
 
@@ -67,9 +67,12 @@ const MyCustomCursor: FC<TMyCustomCursorProps> = ({
 
     const handleMouseLeave = useCallback(() => {
         if (isSensorScreen) return
-        setTimeout(() => {
-            setMousePosition(null);
-        }, 50);
+        if (animationFrameRef.current) {
+            cancelAnimationFrame(animationFrameRef.current);
+        }
+        animationFrameRef.current = requestAnimationFrame(() => {
+            setMousePosition(null)
+        });
     }, [])
 
     const getNormalizedX = useCallback((x: number) => {

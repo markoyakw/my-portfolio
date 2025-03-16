@@ -7,12 +7,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    position: absolute;
     top: 0px;
     width: 100%;
 }
 
 .hidden-text-size-calculation-container {
+    position: absolute;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

@@ -9,7 +9,6 @@
 .about-me-text {
     color: var(--color-text-primary);
     font-size: var(--font-size-xl);
-    line-break: loose;
 }
 
 .cards-grid {
@@ -92,7 +91,7 @@
 }
 
 .react-highligted-span {
-    white-space: nowrap;
+    display: inline-flex;
     padding-right: calc(1em/4);
     color: #70CDFF;
 }

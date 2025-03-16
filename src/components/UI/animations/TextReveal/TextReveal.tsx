@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import classes from "./TextReveal.module.css";
 import getNumberOfLinesInHTMLelement from "@utils/getNumberOfLinesInHTMLElement";
 import useWindowSize from "@hooks/useWindowSize";
@@ -22,6 +22,16 @@ const TextReveal: React.FC<TTextRevealProps> = ({ children, className = "", shou
 
     const hiddenTextSizeCalcRef = useRef<HTMLDivElement>(null)
     const revealedTextRef = useRef<HTMLDivElement>(null)
+    const wordsToRevealCount = useMemo(
+        () => children.split(" ").length,
+        [children]
+    )
+
+    const handleAnimationEnd = (wordIndex: number) => {
+        if (wordIndex !== wordsToRevealCount - 1) return
+        if (!shouldAnimationStart) return
+        onAnimationFinish()
+    }
 
     const getindividualLineDelay = (wordIndex: number) => {
         const delayMultiplier = lastWordInLineIndexArr.current.findIndex(lastWordInLineIndex => lastWordInLineIndex > wordIndex)
@@ -32,12 +42,9 @@ const TextReveal: React.FC<TTextRevealProps> = ({ children, className = "", shou
             : delayMultiplier
 
         if (shouldAnimationStart) {
-            console.log(normalizedDelayMultiplier * delayBetweenLines / 1000 + "s")
             return normalizedDelayMultiplier * delayBetweenLines / 1000 + "s"
         }
         else {
-            console.log(normalizedDelayMultiplier * delayBetweenLines / 1000 + "s")
-
             return (maxDelayMultiplier - normalizedDelayMultiplier) * delayBetweenLines / 1000 + "s"
         }
     }
@@ -46,11 +53,9 @@ const TextReveal: React.FC<TTextRevealProps> = ({ children, className = "", shou
         if (!shouldAnimationStart) return
         if (!hiddenTextSizeCalcRef.current) return
 
-        const maxWords = children.split(" ").length
         const revealedLinesHTML = getNumberOfLinesInHTMLelement(hiddenTextSizeCalcRef.current)
 
-        if (revealedWordsCountCalculated >= maxWords) {
-            onAnimationFinish()
+        if (revealedWordsCountCalculated >= wordsToRevealCount) {
             setIsCalculationsFinished(true)
             return
         }
@@ -63,13 +68,12 @@ const TextReveal: React.FC<TTextRevealProps> = ({ children, className = "", shou
         lastWordInLineIndexArr.current.push(revealedWordsCountCalculated)
         setLastRevealedLineCalculated(revealedLinesHTML)
 
-    }, [revealedWordsCountCalculated, lastRevealedLineCalculated, shouldAnimationStart])
+    }, [revealedWordsCountCalculated, lastRevealedLineCalculated, shouldAnimationStart, isCalculationsFinished])
 
     useEffect(() => {
         setRevealedWordsCountCalculated(0)
-        setLastRevealedLineCalculated(0)
+        setLastRevealedLineCalculated(1)
         lastWordInLineIndexArr.current = []
-        setIsCalculationsFinished(false)
     }, [windowSize])
 
     return (
@@ -84,9 +88,11 @@ const TextReveal: React.FC<TTextRevealProps> = ({ children, className = "", shou
             </div>
 
             <div className={classes["revealed-text-container"]} ref={revealedTextRef}>
-                {children.split(" ").map((word, wordIndex) => (
+                {children.split(" ").map((word, wordIndex) =>
+                (
                     <span key={wordIndex} className={classes["word__overflow-container"]}>
                         <span
+                            onTransitionEnd={() => handleAnimationEnd(wordIndex)}
                             className={`${classes["word"]} ${isCalculationsFinished && shouldAnimationStart ? classes["word--visible"] : ""}`}
                             style={{ "--reveal-delay": getindividualLineDelay(wordIndex) } as React.CSSProperties}
                         >

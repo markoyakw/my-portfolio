@@ -5,6 +5,7 @@ body {
 }
 
 #loading {
+    z-index: 102;
     --toggling-color-1: #5A329A;
     --toggling-color-2: #C3423F;
     overflow: hidden;

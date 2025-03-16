@@ -2,6 +2,7 @@
     --height-without-margins: calc(100vh - var(--spacing-m) * 2);
     min-height: min(var(--height-without-margins), var(--max-home-page-height));
     display: flex;
+    padding-top: var(--spacing-s);
 }
 
 .main-row {

@@ -3,12 +3,11 @@ body {
 }
 
 #loading {
-    z-index: 102;
     animation: background-color-toggle 4s infinite steps(1), loading-finish 1.6s forwards;
 }
 
 .loading__sphere {
-    animation: sphere-bounce 2s forwards linear infinite, ball-color-toggle 4s infinite steps(1), loaded-sphere-opacity-and-scale-change 1.2s forwards 0.4s;
+    animation: sphere-bounce 2s forwards linear infinite, ball-color-toggle 4s infinite steps(1), loaded-sphere-scale-change 1.2s forwards 0.4s;
 }
 
 @keyframes loading-finish {
@@ -30,13 +29,13 @@ body {
     }
 
     100% {
+        transform: scale(0);
         display: none;
     }
 }
 
-@keyframes loaded-sphere-opacity-and-scale-change {
-    0% {
-    }
+@keyframes loaded-sphere-scale-change {
+    0% {}
 
     100% {
         scale: 5;

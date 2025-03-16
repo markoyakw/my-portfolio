@@ -28,16 +28,14 @@ const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView },
   return (
     <div className={classes["container"]} ref={ref}>
 
-      <div className={aboutMeTextClassName} style={aboutMeTextAppearDelayStyle}>
-        <p>
-          I specialize in building&nbsp;
-          <span className={classes["react-highligted-span"]}>
-            React&nbsp;
-            <IoLogoReact className={classes["react-inline-logo"]} />
-          </span>
-          applications, but I'm always down to use new technologies and grow as an engineer.
-        </p>
-      </div>
+      <p className={aboutMeTextClassName} style={aboutMeTextAppearDelayStyle}>
+        I specialize in building&nbsp;
+        <span className={classes["react-highligted-span"]}>
+          React&nbsp;
+          <IoLogoReact className={classes["react-inline-logo"]} />
+        </span>
+        applications, but I'm always down to use new technologies and grow as an engineer.
+      </p>
 
       <div className={classes["cards-grid"]} ref={cardsContainerRef}>
 

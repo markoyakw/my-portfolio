@@ -39,6 +39,13 @@
     }
 }
 
+@media(max-width: 1025px) {
+    .location-pin-circle {
+        min-width: 60px;
+        min-height: 60px;
+    }
+}
+
 @media(min-width: 1200px) {
     .text-row {
         font-size: var(--font-size-m);

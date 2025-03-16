@@ -11,15 +11,15 @@
     /* nav bar size variables are defined in globalVariables.css */
     margin-left: var(--nav-bar-width-with-margins);
     margin-right: var(--spacing-s);
-    padding-bottom: var(--spacing-xxl);
+    margin-bottom: var(--spacing-xxl);
 
     max-width: calc(100% - var(--nav-bar-width-with-margins) - var(--spacing-s));
-    margin-top: var(--spacing-s);
     gap: var(--spacing-l);
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 1400px;
+    height: 100%;
 }
 
 @media(max-width: 660px) {

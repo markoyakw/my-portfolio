@@ -8,16 +8,18 @@ type TMobileHeaderProps = {
     setIsSideBarOpenOnMobile: (isOpen: boolean) => void
 }
 
+const ALWAYS_VISIBLE_HEADER_MAX_SCROLLTOP = 40
+
 const MobileHeader: FC<TMobileHeaderProps> = ({ setIsSideBarOpenOnMobile }) => {
 
     const scrollTopRef = useRef(0)
-    const [isMobileHeaderVisible, setIsMobileHeaderVisible] = useState(true)
+    const [isMobileHeaderVisible, setIsMobileHeaderVisible] = useState(false)
 
     useEffect(() => {
         const handleHeaderVisibilityAndScrollTopValue = () => {
             const scrollTop = document.documentElement.scrollTop;
 
-            if (scrollTop > scrollTopRef.current) {
+            if (scrollTop > scrollTopRef.current && scrollTop > ALWAYS_VISIBLE_HEADER_MAX_SCROLLTOP) {
                 setIsMobileHeaderVisible(false);
             } else {
                 setIsMobileHeaderVisible(true);
@@ -33,7 +35,7 @@ const MobileHeader: FC<TMobileHeaderProps> = ({ setIsSideBarOpenOnMobile }) => {
     }, []);
 
     const mobileHeaderClassName = `${classes["mobile-header"]} ${isMobileHeaderVisible ? classes["mobile-header--visible"] : ""}`
-    
+
     const handleMobileHeaderOpen = () => {
         setIsSideBarOpenOnMobile(true)
     }

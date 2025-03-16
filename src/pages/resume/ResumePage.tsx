@@ -1,6 +1,6 @@
 import MyButton from "@components/UI/MyButton/MyButton"
 import openResumePage from "@utils/openResumePage"
-import { forwardRef, memo, useState } from "react"
+import { forwardRef, memo, useEffect, useState } from "react"
 import { FaArrowDown } from "react-icons/fa6"
 import { PiReadCvLogoFill } from "react-icons/pi"
 import classes from "./ResumePage.module.css"
@@ -10,12 +10,18 @@ import useAppearAnimationAttributes from "@hooks/useAppearAnimationProps/useAppe
 const ResumePage = forwardRef<HTMLDivElement, { isInView: boolean }>(({ isInView }, ref) => {
 
     const [isTextRevealAnimationFinished, setIsTextRevealAnimationFinished] = useState(false)
-    const shouldShowMyResumeButton = isInView && isTextRevealAnimationFinished || false
-    const { animationClassName, delayStyle } = useAppearAnimationAttributes({ type: "fade-in", delay: "0.5s", show: shouldShowMyResumeButton })
+    const shouldShowMyResumeButton = isTextRevealAnimationFinished && isInView
+    const { animationClassName, delayStyle } = useAppearAnimationAttributes({ type: "fade-in", delay: "0s", show: shouldShowMyResumeButton })
 
     const handleTextRevealAnimationFinish = () => {
         setIsTextRevealAnimationFinished(true)
     }
+
+    useEffect(() => {
+        if (!isInView) {
+            setIsTextRevealAnimationFinished(false)
+        }
+    }, [isInView])
 
     return (
         <div ref={ref} className={classes["container"]}>
