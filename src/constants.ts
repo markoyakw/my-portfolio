@@ -1,4 +1,2 @@
 export const MOBILE_WINDOW_WIDTH = 660;
 export const LOADING_DELAY_TIME_MS = 1300
-
-const test = "bebra"
