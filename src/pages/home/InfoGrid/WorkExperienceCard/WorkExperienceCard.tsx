@@ -10,8 +10,8 @@ const workExperienceComponentArr = [
         <br /> Odesa / 2023 / ONUT project semester
     </>,
     <>
-        <strong>Junior web developer (4 month)</strong>
-        <br /> Odesa / 2024 Web studio
+        <strong>Trainee, junior web developer (6 month)</strong>
+        <br /> Odesa / 2024 Small web studio
     </>,
     <>
         <strong>Your company? :)</strong>
