@@ -6,12 +6,12 @@ import { FC } from "react"
 
 const workExperienceComponentArr = [
     <>
-        <strong>Intern web developer (1 month)</strong>
-        <br /> Odesa / 2023 / ONUT project semester
+        <strong>Intern web developer</strong>
+        <br /> Odesa / Aug 2023 – Sep 2023 / ONUT project semester
     </>,
     <>
-        <strong>Trainee, junior web developer (6 month)</strong>
-        <br /> Odesa / 2024 Small web studio
+        <strong>Trainee, junior web developer</strong>
+        <br /> Odesa / 2024 Nov 2023 – Apr 2024 / Small web studio
     </>,
     <>
         <strong>Your company? :)</strong>

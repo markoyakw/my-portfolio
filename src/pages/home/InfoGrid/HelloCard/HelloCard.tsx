@@ -7,10 +7,14 @@ import MyAnimatedIconStack from '@components/UI/animations/MyAnimatedIconStack/M
 import MyAnimatedLinks from './MyAnimatedLinks'
 import classes from "./HelloCard.module.css"
 import useAppearAnimationAttributes from '@hooks/useAppearAnimationProps/useAppearAnimationProps'
+import useSensorScreen from '@hooks/useIsSensorScreen'
 
 const HelloCard: FC<{ isRevealAnimationReady: boolean }> = ({ isRevealAnimationReady }) => {
 
     const [isHelloCardHovered, setIsHelloCardHovered] = useState(false)
+    const isSensorScreen = useSensorScreen()
+    const showHowerAnimations = !isSensorScreen && isHelloCardHovered
+
     const { animationClassName } = useAppearAnimationAttributes({
         type: "from-top",
         show: isRevealAnimationReady
@@ -21,14 +25,14 @@ const HelloCard: FC<{ isRevealAnimationReady: boolean }> = ({ isRevealAnimationR
         <MyCard onMouseEnter={() => setIsHelloCardHovered(true)} onMouseLeave={() => setIsHelloCardHovered(false)} addedClassName={containerClassName}>
             <div className={classes["greetings__container"]}>
                 <div className={classes["greetings__text"]}>
-                    <div>Hello <WavyHand isHovered={isHelloCardHovered} />,&nbsp;</div>
+                    <div>Hello <WavyHand isHovered={showHowerAnimations} />,&nbsp;</div>
                     <div>I'm Marko</div>
                 </div>
                 <MyAnimatedIconStack itemArr={MyAnimatedLinks} />
             </div>
 
             <div className={`${classes["my-pictire__container"]} ${classes["my-picture-container--smaller-screen"]}`}>
-                <AddMLGGlassesOnHover isHovered={isHelloCardHovered}>
+                <AddMLGGlassesOnHover isHovered={showHowerAnimations}>
                     <img className={classes["my-picture"]} src={resumePhoto} />
                 </AddMLGGlassesOnHover>
             </div>

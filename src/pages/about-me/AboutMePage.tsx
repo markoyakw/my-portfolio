@@ -44,11 +44,11 @@ const AboutMePage = forwardRef<HTMLDivElement, TAboutMePageProps>(({ isInView },
           title={<><IoGlobeSharp /> Languages:</>}
           listStringArr={[
             "English: C1",
-            <>German:&nbsp;<AnimatedLoaderText>In progress...</AnimatedLoaderText></>,
+            <>German:&nbsp;<AnimatedLoaderText>B2 in progress...</AnimatedLoaderText></>,
             "Ukrainian: C2",
             "Russian: C2",
           ]}
-          smallCaption="I am seeking an English-speaking role while actively learning German."
+          smallCaption="I am actively learning German, hold a B1 certificate, and have good English skills."
         />
 
         <AboutMeCard

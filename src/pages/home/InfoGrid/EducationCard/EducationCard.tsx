@@ -7,15 +7,15 @@ import { FC } from 'react'
 const educationComponentArr = [
     <>
         <strong>Master's Degree with horons</strong>
-        <br />Odesa / 2023 / Odesa National University of Technology
+        <br />Odessa / Sep 2022 – Dec 2023 / Odessa National University of Technology
     </>,
     <>
         <strong>Bachelor's Degree</strong>
-        <br />Odesa / 2022 / Odesa National University of Technology
+        <br />Odessa / Sep 2020 – Jun 2022 / Odessa National University of Technology
     </>,
     <>
         <strong>Diploma of Junoir Specialist</strong>
-        <br />Odesa / 2020 / College of Industrial Automation and Information Technologies
+        <br />Odessa / Sep 2016 – Jun 2020 / College of Industrial Automation and Information Technologies
     </>
 ]
 
